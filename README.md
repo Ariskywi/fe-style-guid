@@ -15,36 +15,36 @@
 
   1. [类型](#类型)
   1. [引用](#引用)
-  1. [对象](#objects)
-  1. [数组](#arrays)
-  1. [解构](#destructuring)
-  1. [字符串](#strings)
-  1. [函数](#functions)
-  1. [箭头函数](#arrow-functions)
-  1. [构造函数](#classes--constructors)
-  1. [模块](#modules)
-  1. [迭代器与生成函数](#iterators-and-generators)
-  1. [属性](#properties)
-  1. [变量](#variables)
-  1. [作用域提升](#hoisting)
-  1. [比较运算符 & 等号](#comparison-operators--equality)
-  1. [代码块](#blocks)
-  1. [流程控制](#control-statements)
-  1. [注释](#comments)
-  1. [留白](#whitespace)
-  1. [逗号](#commas)
-  1. [分号](#semicolons)
-  1. [类型转换](#type-casting--coercion)
-  1. [命名规则](#naming-conventions)
-  1. [访问器函数](#accessors)
-  1. [事件](#events)
-  1. [jQuery](#jquery)
-  1. [ECMAScript 5 兼容性](#ecmascript-5-compatibility)
-  1. [ECMAScript 6+ (ES 2015+) 编码规范](#ecmascript-6-es-2015-styles)
-  1. [标准库](#standard-library)
-  1. [测试](#testing)
-  1. [License](#license)
-  1. [修订](#amendments)
+  1. [对象](#对象)
+  1. [数组](#数据)
+  1. [解构](#解构)
+  1. [字符串](#字符串)
+  1. [函数](#函数)
+  1. [箭头函数](#箭头函数)
+  1. [类与构造函数](#类与构造函数)
+  1. [模块](#模块)
+  1. [迭代器与生成函数](#迭代器与生成函数)
+  1. [属性](#属性)
+  1. [变量](#变量)
+  1. [作用域提升](#作用域提升)
+  1. [比较运算符与等号](#比较运算符与等号)
+  1. [代码块](#代码块)
+  1. [控制声明](#控制声明)
+  1. [注释](#注释)
+  1. [留白](#留白)
+  1. [逗号](#逗号)
+  1. [分号](#分号)
+  1. [强制类型转换](#强制类型转换)
+  1. [命名规则](#命名规范)
+  1. [访问器函数](#访问器函数)
+  1. [事件](#事件)
+  1. [jQuery](#juery)
+  1. [ECMAScript-5-兼容性](#ECMAScript-5-兼容性)
+  1. [ECMAScript-6+(ES 2015+)编码规范](#ECMAScript-6+(ES 2015+)编码规范)
+  1. [标准库](#标准库)
+  1. [测试](#测试)
+  1. [License](#icense)
+  1. [修订](#修订)
 
 ## 类型
 
@@ -1077,7 +1077,7 @@
 
 **[⬆ 回到目录](#目录)**
 
-## 类 & 构造函数
+## 类与构造函数
 
   <a name="constructors--use-class"></a><a name="9.1"></a>
   - [9.1](#constructors--use-class) 总是使用 `class`。避免直接操作 `prototype` 。
@@ -1396,7 +1396,7 @@
 
 **[⬆ 回到目录](#目录)**
 
-## 迭代器和生成函数
+## 迭代器与生成函数
 
   <a name="iterators--nope"></a><a name="11.1"></a>
   - [11.1](#iterators--nope) 不要使用迭代器，使用JavaScript的高级函数来代替`for-in` 或 `for-of`。 eslint: [`no-iterator`](https://eslint.org/docs/rules/no-iterator.html) [`no-restricted-syntax`](https://eslint.org/docs/rules/no-restricted-syntax)
@@ -1877,7 +1877,7 @@
 
 **[⬆ 回到目录](#目录)**
 
-## 比较运算符 & 等号
+## 比较运算符与等号
 
   <a name="comparison--eqeqeq"></a><a name="15.1"></a>
   - [15.1](#comparison--eqeqeq) 使用 `===` 和 `!==` 而不是 `==` 和 `!=`。 eslint: [`eqeqeq`](https://eslint.org/docs/rules/eqeqeq.html)
@@ -2177,7 +2177,7 @@
 
 **[⬆ 回到目录](#目录)**
 
-## Control Statements
+## 控制声明
 
   <a name="control-statements"></a>
   - [17.1](#control-statements) In case your control statement (`if`, `while` etc.) gets too long or exceeds the maximum line length, each (grouped) condition could be put into a new line. The logical operator should begin the line.
@@ -2389,7 +2389,7 @@
 
 **[⬆ 回到目录](#目录)**
 
-## Whitespace
+## 留白
 
   <a name="whitespace--spaces"></a><a name="18.1"></a>
   - [19.1](#whitespace--spaces) Use soft tabs (space character) set to 2 spaces. eslint: [`indent`](https://eslint.org/docs/rules/indent.html)
@@ -2877,7 +2877,7 @@
 
 **[⬆ 回到目录](#目录)**
 
-## Commas
+## 逗号
 
   <a name="commas--leading-trailing"></a><a name="19.1"></a>
   - [20.1](#commas--leading-trailing) Leading commas: **Nope.** eslint: [`comma-style`](https://eslint.org/docs/rules/comma-style.html)
@@ -3012,7 +3012,7 @@
 
 **[⬆ 回到目录](#目录)**
 
-## Semicolons
+## 分号
 
   <a name="semicolons--required"></a><a name="20.1"></a>
   - [21.1](#semicolons--required) **Yup.** eslint: [`semi`](https://eslint.org/docs/rules/semi.html)
@@ -3062,7 +3062,7 @@
 
 **[⬆ 回到目录](#目录)**
 
-## Type Casting & Coercion
+## 强制类型转换
 
   <a name="coercion--explicit"></a><a name="21.1"></a>
   - [22.1](#coercion--explicit) Perform type coercion at the beginning of the statement.
@@ -3151,7 +3151,7 @@
 
 **[⬆ 回到目录](#目录)**
 
-## Naming Conventions
+## 命名规范
 
   <a name="naming--descriptive"></a><a name="22.1"></a>
   - [23.1](#naming--descriptive) Avoid single letter names. Be descriptive with your naming. eslint: [`id-length`](https://eslint.org/docs/rules/id-length)
@@ -3390,7 +3390,7 @@
 
 **[⬆ 回到目录](#目录)**
 
-## Accessors
+## 访问器函数
 
   <a name="accessors--not-required"></a><a name="23.1"></a>
   - [24.1](#accessors--not-required) Accessor functions for properties are not required.
@@ -3459,7 +3459,7 @@
 
 **[⬆ 回到目录](#目录)**
 
-## Events
+## 事件
 
   <a name="events--hash"></a><a name="24.1"></a>
   - [25.1](#events--hash) When attaching data payloads to events (whether DOM events or something more proprietary like Backbone events), pass an object literal (also known as a "hash") instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
@@ -3559,7 +3559,7 @@
 
 **[⬆ 回到目录](#目录)**
 
-## ECMAScript 5 Compatibility
+## ECMAScript-5-兼容性
 
   <a name="es5-compat--kangax"></a><a name="26.1"></a>
   - [27.1](#es5-compat--kangax) Refer to [Kangax](https://twitter.com/kangax/)’s ES5 [compatibility table](https://kangax.github.io/es5-compat-table/).
@@ -3567,7 +3567,7 @@
 **[⬆ 回到目录](#目录)**
 
 <a name="ecmascript-6-styles"></a>
-## ECMAScript 6+ (ES 2015+) Styles
+## ECMAScript-6+(ES 2015+)编码规范
 
   <a name="es6-styles"></a><a name="27.1"></a>
   - [28.1](#es6-styles) This is a collection of links to the various ES6+ features.
@@ -3594,7 +3594,7 @@
 
 **[⬆ 回到目录](#目录)**
 
-## Standard Library
+## 标准库
 
   The [Standard Library](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects)
   contains utilities that are functionally broken but remain for legacy reasons.
