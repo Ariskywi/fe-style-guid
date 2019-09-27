@@ -1,14 +1,15 @@
-# 滨海金融 JavaScript 风格指南
+# 前端开发 JavaScript 风格指南
 
 *JavaScript的最佳实践*
 
-> **注意**: 本指南假设项目正在使用[Babel](https://babeljs.io)
+> **注意**: 本指南假设项目正在使用[Babel](https://babeljs.io)  
+> 基于`airbnb`的`JavaScript Style Guid`翻译修改
 
 其他风格指南
 
+  - [CSS & Sass](css/)
   - [React](react/)
   - [CSS-in-JavaScript](css-in-javascript/)
-  - [CSS & Sass](css/)
 
 ## 目录
 
@@ -1292,9 +1293,9 @@
     ```
 
   <a name="modules--no-duplicate-imports"></a>
-  - [10.4](#modules--no-duplicate-imports) Only import from a path in one place.
+  - [10.4](#modules--no-duplicate-imports) 一个路径只import一次。
  eslint: [`no-duplicate-imports`](https://eslint.org/docs/rules/no-duplicate-imports)
-    > Why? Having multiple lines that import from the same path can make code harder to maintain.
+    > 因为从同一个路径下import多行会使代码难以维护。
 
     ```javascript
     // 反例
@@ -1313,9 +1314,9 @@
     ```
 
   <a name="modules--no-mutable-exports"></a>
-  - [10.5](#modules--no-mutable-exports) Do not export mutable bindings.
+  - [10.5](#modules--no-mutable-exports) 不要导出可变的引用。
  eslint: [`import/no-mutable-exports`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-mutable-exports.md)
-    > Why? Mutation should be avoided in general, but in particular when exporting mutable bindings. While this technique may be needed for some special cases, in general, only constant references should be exported.
+    > 模块通常应该避免变动，尤其是在导出可变的引用时。尽管在某些特殊情况下可能需要使用此技术，但通常只应导出常量引用。
 
     ```javascript
     // 反例
@@ -1328,9 +1329,9 @@
     ```
 
   <a name="modules--prefer-default-export"></a>
-  - [10.6](#modules--prefer-default-export) In modules with a single export, prefer default export over named export.
+  - [10.6](#modules--prefer-default-export) 在单一导出的模块里，使用export default 更好。
  eslint: [`import/prefer-default-export`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/prefer-default-export.md)
-    > Why? To encourage more files that only ever export one thing, which is better for readability and maintainability.
+    > 鼓励使用多个文件，每个文件只做一件事情并导出，这样可读性和可维护性更好。
 
     ```javascript
     // 反例
@@ -1341,9 +1342,9 @@
     ```
 
   <a name="modules--imports-first"></a>
-  - [10.7](#modules--imports-first) Put all `import`s above non-import statements.
+  - [10.7](#modules--imports-first) `import`放在所有其他语句之前。
  eslint: [`import/first`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/first.md)
-    > Why? Since `import`s are hoisted, keeping them all at the top prevents surprising behavior.
+    > 因为`import`有作用域提升，将其放在最前面防止发生不可控行为。
 
     ```javascript
     // 反例
@@ -1360,9 +1361,9 @@
     ```
 
   <a name="modules--multiline-imports-over-newlines"></a>
-  - [10.8](#modules--multiline-imports-over-newlines) Multiline imports should be indented just like multiline array and object literals.
+  - [10.8](#modules--multiline-imports-over-newlines) 多行import应缩进，就像多行数组和对象字面量一样。
 
-    > Why? The curly braces follow the same indentation rules as every other curly brace block in the style guide, as do the trailing commas.
+    > 大括号应与本指南中其他大括号模块遵循同样的缩进规则, 末尾的逗号同样如此。
 
     ```javascript
     // 反例
@@ -1379,9 +1380,9 @@
     ```
 
   <a name="modules--no-webpack-loader-syntax"></a>
-  - [10.9](#modules--no-webpack-loader-syntax) Disallow Webpack loader syntax in module import statements.
+  - [10.9](#modules--no-webpack-loader-syntax) import语句中不允许使用webpack loader语法。
  eslint: [`import/no-webpack-loader-syntax`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md)
-    > Why? Since using Webpack syntax in the imports couples the code to a module bundler. Prefer using the loader syntax in `webpack.config.js`.
+    > 因为如果在import中使用webpack语法，就会使模块打包与代码耦合。 在`webpack.config.js`中配置loader语法会更好。
 
     ```javascript
     // 反例
@@ -1395,14 +1396,14 @@
 
 **[⬆ 回到目录](#目录)**
 
-## Iterators and Generators
+## 迭代器和生成函数
 
   <a name="iterators--nope"></a><a name="11.1"></a>
-  - [11.1](#iterators--nope) Don’t use iterators. Prefer JavaScript’s higher-order functions instead of loops like `for-in` or `for-of`. eslint: [`no-iterator`](https://eslint.org/docs/rules/no-iterator.html) [`no-restricted-syntax`](https://eslint.org/docs/rules/no-restricted-syntax)
+  - [11.1](#iterators--nope) 不要使用迭代器，使用JavaScript的高级函数来代替`for-in` 或 `for-of`。 eslint: [`no-iterator`](https://eslint.org/docs/rules/no-iterator.html) [`no-restricted-syntax`](https://eslint.org/docs/rules/no-restricted-syntax)
 
-    > Why? This enforces our immutable rule. Dealing with pure functions that return values is easier to reason about than side effects.
+    > 这强调了不可变原则。 Dealing with pure functions that return values is easier to reason about than side effects.
 
-    > Use `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` / ... to iterate over arrays, and `Object.keys()` / `Object.values()` / `Object.entries()` to produce arrays so you can iterate over objects.
+    > 使用迭代方法 `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` /遍历数组， 使用对象的这些方法 `Object.keys()` / `Object.values()` / `Object.entries()`生成数组，这样就可以遍历对象了。
 
     ```javascript
     const numbers = [1, 2, 3, 4, 5];
@@ -1441,13 +1442,8 @@
     const increasedByOne = numbers.map((num) => num + 1);
     ```
 
-  <a name="generators--nope"></a><a name="11.2"></a>
-  - [11.2](#generators--nope) Don’t use generators for now.
-
-    > Why? They don’t transpile well to ES5.
-
   <a name="generators--spacing"></a>
-  - [11.3](#generators--spacing) If you must use generators, or if you disregard [our advice](#generators--nope), make sure their function signature is spaced properly. eslint: [`generator-star-spacing`](https://eslint.org/docs/rules/generator-star-spacing)
+  - [11.2](#generators--spacing) 如果使用生成函数, 确保它们的函数声明中空格与普通函数是一致的。 eslint: [`generator-star-spacing`](https://eslint.org/docs/rules/generator-star-spacing)
 
     > Why? `function` and `*` are part of the same conceptual keyword - `*` is not a modifier for `function`, `function*` is a unique construct, different from `function`.
 
@@ -1509,10 +1505,10 @@
 
 **[⬆ 回到目录](#目录)**
 
-## Properties
+## 属性
 
   <a name="properties--dot"></a><a name="12.1"></a>
-  - [12.1](#properties--dot) Use dot notation when accessing properties. eslint: [`dot-notation`](https://eslint.org/docs/rules/dot-notation.html)
+  - [12.1](#properties--dot)使用点号访问属性。 eslint: [`dot-notation`](https://eslint.org/docs/rules/dot-notation.html)
 
     ```javascript
     const luke = {
@@ -1528,7 +1524,7 @@
     ```
 
   <a name="properties--bracket"></a><a name="12.2"></a>
-  - [12.2](#properties--bracket) Use bracket notation `[]` when accessing properties with a variable.
+  - [12.2](#properties--bracket) 使用 `[]` 获取变量属性。
 
     ```javascript
     const luke = {
@@ -1543,7 +1539,7 @@
     const isJedi = getProp('jedi');
     ```
   <a name="es2016-properties--exponentiation-operator"></a>
-  - [12.3](#es2016-properties--exponentiation-operator) Use exponentiation operator `**` when calculating exponentiations. eslint: [`no-restricted-properties`](https://eslint.org/docs/rules/no-restricted-properties).
+  - [12.3](#es2016-properties--exponentiation-operator) 使用幂操作符`**` 做幂运算。 eslint: [`no-restricted-properties`](https://eslint.org/docs/rules/no-restricted-properties).
 
     ```javascript
     // 反例
@@ -1555,10 +1551,10 @@
 
 **[⬆ 回到目录](#目录)**
 
-## Variables
+## 变量
 
   <a name="variables--const"></a><a name="13.1"></a>
-  - [13.1](#variables--const) Always use `const` or `let` to declare variables. Not doing so will result in global variables. We want to avoid polluting the global namespace. Captain Planet warned us of that. eslint: [`no-undef`](https://eslint.org/docs/rules/no-undef) [`prefer-const`](https://eslint.org/docs/rules/prefer-const)
+  - [13.1](#variables--const) 使用 `const` 和 `let` 声明变量。否则会产生全局变量。应避免污染全局命名空间。 eslint: [`no-undef`](https://eslint.org/docs/rules/no-undef) [`prefer-const`](https://eslint.org/docs/rules/prefer-const)
 
     ```javascript
     // 反例
@@ -1569,9 +1565,9 @@
     ```
 
   <a name="variables--one-const"></a><a name="13.2"></a>
-  - [13.2](#variables--one-const) Use one `const` or `let` declaration per variable or assignment. eslint: [`one-var`](https://eslint.org/docs/rules/one-var.html)
+  - [13.2](#variables--one-const) 每个变量都用一个 `const` 或 `let` 声明。 eslint: [`one-var`](https://eslint.org/docs/rules/one-var.html)
 
-    > Why? It’s easier to add new variable declarations this way, and you never have to worry about swapping out a `;` for a `,` or introducing punctuation-only diffs. You can also step through each declaration with the debugger, instead of jumping through all of them at once.
+    > 此种方式很容易声明新的变量，儿不需要考虑将`;` 换成 `,` ，或者产生一个只有标点不同的修改。 此方式也可以使得在调试时，单步跟踪每个声明语句，而不是一下跳过所有声明。
 
     ```javascript
     // 反例
@@ -1592,9 +1588,9 @@
     ```
 
   <a name="variables--const-let-group"></a><a name="13.3"></a>
-  - [13.3](#variables--const-let-group) Group all your `const`s and then group all your `let`s.
+  - [13.3](#variables--const-let-group) 将`const`与`let`分别放在一起。
 
-    > Why? This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
+    > 当需要分配一个新的变量，而此变量又依赖之前分配过的变量的时候，这样很便捷。
 
     ```javascript
     // 反例
@@ -1618,9 +1614,9 @@
     ```
 
   <a name="variables--define-where-used"></a><a name="13.4"></a>
-  - [13.4](#variables--define-where-used) Assign variables where you need them, but place them in a reasonable place.
+  - [13.4](#variables--define-where-used) 在需要时声明变量，但是要放在合理的位置。
 
-    > Why? `let` and `const` are block scoped and not function scoped.
+    > `let` 和 `const` 都是块级作用域而不是函数级作用域。
 
     ```javascript
     // 反例 - unnecessary function call
@@ -1656,9 +1652,9 @@
     }
     ```
   <a name="variables--no-chain-assignment"></a><a name="13.5"></a>
-  - [13.5](#variables--no-chain-assignment) Don’t chain variable assignments. eslint: [`no-multi-assign`](https://eslint.org/docs/rules/no-multi-assign)
+  - [13.5](#variables--no-chain-assignment) 不要链式分配变量。 eslint: [`no-multi-assign`](https://eslint.org/docs/rules/no-multi-assign)
 
-    > Why? Chaining variable assignments creates implicit global variables.
+    > 链式分配变量会创建隐式全局变量。
 
     ```javascript
     // 反例
@@ -1689,9 +1685,9 @@
     ```
 
   <a name="variables--unary-increment-decrement"></a><a name="13.6"></a>
-  - [13.6](#variables--unary-increment-decrement) Avoid using unary increments and decrements (`++`, `--`). eslint [`no-plusplus`](https://eslint.org/docs/rules/no-plusplus)
+  - [13.6](#variables--unary-increment-decrement) 不要使用一元自增减运算符 (`++`, `--`)。 eslint [`no-plusplus`](https://eslint.org/docs/rules/no-plusplus)
 
-    > Why? Per the eslint documentation, unary increment and decrement statements are subject to automatic semicolon insertion and can cause silent errors with incrementing or decrementing values within an application. It is also more expressive to mutate your values with statements like `num += 1` instead of `num++` or `num ++`. Disallowing unary increment and decrement statements also prevents you from pre-incrementing/pre-decrementing values unintentionally which can also cause unexpected behavior in your programs.
+    > 根据eslint文档，一元增减运算符受自动插入分号的影响，可能会导致应用中值自增减的静默错误。使用`num += 1` 语句代替 `num++` 或 `num ++`也更有表现力。 禁用一元自增减运算符还会防止无意的预增/预减值，这也会导致程序出现意外行为。
 
     ```javascript
     // 反例
@@ -1723,9 +1719,9 @@
     ```
 
 <a name="variables--linebreak"></a>
-  - [13.7](#variables--linebreak) Avoid linebreaks before or after `=` in an assignment. If your assignment violates [`max-len`](https://eslint.org/docs/rules/max-len.html), surround the value in parens. eslint [`operator-linebreak`](https://eslint.org/docs/rules/operator-linebreak.html).
+  - [13.7](#variables--linebreak) 在赋值时避免在`=` 前后换行。如果赋值语句超出[`max-len`](https://eslint.org/docs/rules/max-len.html), 就用小括号将此值包起来再换行。 eslint [`operator-linebreak`](https://eslint.org/docs/rules/operator-linebreak.html).
 
-    > Why? Linebreaks surrounding `=` can obfuscate the value of an assignment.
+    > 在 `=` 附近换行容易混淆这个赋值语句。
 
     ```javascript
     // 反例
@@ -1746,9 +1742,9 @@
     ```
 
 <a name="variables--no-unused-vars"></a>
-  - [13.8](#variables--no-unused-vars) Disallow unused variables. eslint: [`no-unused-vars`](https://eslint.org/docs/rules/no-unused-vars)
+  - [13.8](#variables--no-unused-vars) 不允许有未使用的变量。 eslint: [`no-unused-vars`](https://eslint.org/docs/rules/no-unused-vars)
 
-    > Why? Variables that are declared and not used anywhere in the code are most likely an error due to incomplete refactoring. Such variables take up space in the code and can lead to confusion by readers.
+    > 一个声明了但未使用的变量更像是由于重构未完成而产生的错误。这种变量在代码中出现会使代码可读性变差。
 
     ```javascript
     // 反例
@@ -1787,37 +1783,33 @@
 
 **[⬆ 回到目录](#目录)**
 
-## Hoisting
+## 作用域提升
 
   <a name="hoisting--about"></a><a name="14.1"></a>
-  - [14.1](#hoisting--about) `var` declarations get hoisted to the top of their closest enclosing function scope, their assignment does not. `const` and `let` declarations are blessed with a new concept called [Temporal Dead Zones (TDZ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_Dead_Zone). It’s important to know why [typeof is no longer safe](http://es-discourse.com/t/why-typeof-is-no-longer-safe/15).
+  - [14.1](#hoisting--about) `var` 声明会被提升至作用域顶部，但是它的赋值不会提升。 `const` 和 `let` 声明被赋予了一种称为 [Temporal Dead Zones (TDZ)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_Dead_Zone)的概念。这对于了解为什么[typeof不再安全](http://es-discourse.com/t/why-typeof-is-no-longer-safe/15)很重要。
 
     ```javascript
-    // we know this wouldn’t work (assuming there
-    // is no notDefined global variable)
+    // 假设没有在全局定义变量notDefined,则如下会出错
     function example() {
       console.log(notDefined); // => throws a ReferenceError
     }
 
-    // creating a variable declaration after you
-    // reference the variable will work due to
-    // variable hoisting. Note: the assignment
-    // value of `true` is not hoisted.
+    // 因为变量作用域提升，在引用位置之后声明变量，会正常运行。
+    // 注：分配的值`true`没有提升
     function example() {
       console.log(declaredButNotAssigned); // => undefined
       var declaredButNotAssigned = true;
     }
 
-    // the interpreter is hoisting the variable
-    // declaration to the top of the scope,
-    // which means our example could be rewritten as:
+    // 解释器将变量声明提升至顶部
+    // 这意味着可以重写示例如下：
     function example() {
       let declaredButNotAssigned;
       console.log(declaredButNotAssigned); // => undefined
       declaredButNotAssigned = true;
     }
 
-    // using const and let
+    // 使用const和let则不同
     function example() {
       console.log(declaredButNotAssigned); // => throws a ReferenceError
       console.log(typeof declaredButNotAssigned); // => throws a ReferenceError
@@ -1826,7 +1818,7 @@
     ```
 
   <a name="hoisting--anon-expressions"></a><a name="14.2"></a>
-  - [14.2](#hoisting--anon-expressions) Anonymous function expressions hoist their variable name, but not the function assignment.
+  - [14.2](#hoisting--anon-expressions) 匿名函数表达式的变量名会被提升，但函数内容并不会。与`var`的情况相同。
 
     ```javascript
     function example() {
@@ -1841,7 +1833,7 @@
     ```
 
   <a name="hoisting--named-expresions"></a><a name="hoisting--named-expressions"></a><a name="14.3"></a>
-  - [14.3](#hoisting--named-expressions) Named function expressions hoist the variable name, not the function name or the function body.
+  - [14.3](#hoisting--named-expressions) 命名的函数表达式的变量名会被提升，但函数名和函数内容并不会。
 
     ```javascript
     function example() {
@@ -1856,8 +1848,7 @@
       };
     }
 
-    // the same is true when the function name
-    // is the same as the variable name.
+    // 函数名与变量名相同时也一样
     function example() {
       console.log(named); // => undefined
 
@@ -1870,7 +1861,7 @@
     ```
 
   <a name="hoisting--declarations"></a><a name="14.4"></a>
-  - [14.4](#hoisting--declarations) Function declarations hoist their name and the function body.
+  - [14.4](#hoisting--declarations) 函数声明的名称和函数体都会被提升。
 
     ```javascript
     function example() {
@@ -1882,24 +1873,24 @@
     }
     ```
 
-  - For more information refer to [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) by [Ben Cherry](http://www.adequatelygood.com/).
+  - 更多的信息请参考 [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) by [Ben Cherry](http://www.adequatelygood.com/).
 
 **[⬆ 回到目录](#目录)**
 
-## Comparison Operators & Equality
+## 比较运算符 & 等号
 
   <a name="comparison--eqeqeq"></a><a name="15.1"></a>
-  - [15.1](#comparison--eqeqeq) Use `===` and `!==` over `==` and `!=`. eslint: [`eqeqeq`](https://eslint.org/docs/rules/eqeqeq.html)
+  - [15.1](#comparison--eqeqeq) 使用 `===` 和 `!==` 而不是 `==` 和 `!=`。 eslint: [`eqeqeq`](https://eslint.org/docs/rules/eqeqeq.html)
 
   <a name="comparison--if"></a><a name="15.2"></a>
-  - [15.2](#comparison--if) Conditional statements such as the `if` statement evaluate their expression using coercion with the `ToBoolean` abstract method and always follow these simple rules:
+  - [15.2](#comparison--if) 条件表达式如 `if` 语句通过抽象方法 `ToBoolean`强制计算它们的表达式并总是遵守如下规则:
 
-    - **Objects** evaluate to **true**
-    - **Undefined** evaluates to **false**
-    - **Null** evaluates to **false**
-    - **Booleans** evaluate to **the value of the boolean**
-    - **Numbers** evaluate to **false** if **+0, -0, or NaN**, otherwise **true**
-    - **Strings** evaluate to **false** if an empty string `''`, otherwise **true**
+    - **Objects** 被计算为 **true**
+    - **Undefined** 被计算为 **false**
+    - **Null** 被计算为 **false**
+    - **Booleans** 被计算为 **the value of the boolean**
+    - **Numbers** 被计算为 **false** if **+0, -0, or NaN**, otherwise **true**
+    - **Strings** 被计算为 **false** if an empty string `''`, otherwise **true**
 
     ```javascript
     if ([0] && []) {
@@ -1909,7 +1900,7 @@
     ```
 
   <a name="comparison--shortcuts"></a><a name="15.3"></a>
-  - [15.3](#comparison--shortcuts) Use shortcuts for booleans, but explicit comparisons for strings and numbers.
+  - [15.3](#comparison--shortcuts) 布尔值使用简写, 字符串和数字要明确比较对象。
 
     ```javascript
     // 反例
@@ -1943,13 +1934,10 @@
     }
     ```
 
-  <a name="comparison--moreinfo"></a><a name="15.4"></a>
-  - [15.4](#comparison--moreinfo) For more information see [Truth Equality and JavaScript](https://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll.
+  <a name="comparison--switch-blocks"></a><a name="15.4"></a>
+  - [15.4](#comparison--switch-blocks) 在 `case` and `default` 分句中使用花括号创建包含语法声明的块级作用域。(例如： `let`, `const`, `function`, and `class`). eslint: [`no-case-declarations`](https://eslint.org/docs/rules/no-case-declarations.html)
 
-  <a name="comparison--switch-blocks"></a><a name="15.5"></a>
-  - [15.5](#comparison--switch-blocks) Use braces to create blocks in `case` and `default` clauses that contain lexical declarations (e.g. `let`, `const`, `function`, and `class`). eslint: [`no-case-declarations`](https://eslint.org/docs/rules/no-case-declarations.html)
-
-    > Why? Lexical declarations are visible in the entire `switch` block but only get initialized when assigned, which only happens when its `case` is reached. This causes problems when multiple `case` clauses attempt to define the same thing.
+    > 词法声明在整个`switch` 块中都是可见的, 但只有赋值时才会初始化，这在`case` 语句被执行时发生。 当多个 `case` 分句中有相同定义时会引发问题。
 
     ```javascript
     // 反例
@@ -1994,8 +1982,8 @@
     }
     ```
 
-  <a name="comparison--nested-ternaries"></a><a name="15.6"></a>
-  - [15.6](#comparison--nested-ternaries) Ternaries should not be nested and generally be single line expressions. eslint: [`no-nested-ternary`](https://eslint.org/docs/rules/no-nested-ternary.html)
+  <a name="comparison--nested-ternaries"></a><a name="15.5"></a>
+  - [15.5](#comparison--nested-ternaries) 三元表达式不能嵌套，并且应该在同一行中。 eslint: [`no-nested-ternary`](https://eslint.org/docs/rules/no-nested-ternary.html)
 
     ```javascript
     // 反例
@@ -2015,8 +2003,8 @@
     const foo = maybe1 > maybe2 ? 'bar' : maybeNull;
     ```
 
-  <a name="comparison--unneeded-ternary"></a><a name="15.7"></a>
-  - [15.7](#comparison--unneeded-ternary) Avoid unneeded ternary statements. eslint: [`no-unneeded-ternary`](https://eslint.org/docs/rules/no-unneeded-ternary.html)
+  <a name="comparison--unneeded-ternary"></a><a name="15.6"></a>
+  - [15.6](#comparison--unneeded-ternary) 避免不必要的三元表达式。 eslint: [`no-unneeded-ternary`](https://eslint.org/docs/rules/no-unneeded-ternary.html)
 
     ```javascript
     // 反例
@@ -2030,8 +2018,8 @@
     const baz = !c;
     ```
 
-  <a name="comparison--no-mixed-operators"></a>
-  - [15.8](#comparison--no-mixed-operators) When mixing operators, enclose them in parentheses. The only exception is the standard arithmetic operators: `+`, `-`, and `**` since their precedence is broadly understood. We recommend enclosing `/` and `*` in parentheses because their precedence can be ambiguous when they are mixed.
+  <a name="comparison--no-mixed-operators"></a><a name="15.7"></a>
+  - [15.7](#comparison--no-mixed-operators) 当操作符混用时，使用圆括号。 只有标准运算符: `+`, `-`, 和 `**` 的优先级显而易见时，可以不使用圆括号。 建议将 `/` 和 `*` 放在圆括号中，因为当它们混合使用时，优先级可能产生歧义。
   eslint: [`no-mixed-operators`](https://eslint.org/docs/rules/no-mixed-operators.html)
 
     > Why? This improves readability and clarifies the developer’s intention.
@@ -2066,10 +2054,14 @@
     // 正确示例
     const bar = a + (b / c) * d;
     ```
+    
+  <a name="comparison--moreinfo"></a><a name="15.8"></a>
+  - [15.8](#comparison--moreinfo) 更多信息请见 Angus Croll 的 [Truth Equality and JavaScript](https://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108)
+
 
 **[⬆ 回到目录](#目录)**
 
-## Blocks
+## 代码块
 
   <a name="blocks--braces"></a><a name="16.1"></a>
   - [16.1](#blocks--braces) Use braces with all multi-line blocks. eslint: [`nonblock-statement-body-position`](https://eslint.org/docs/rules/nonblock-statement-body-position)
@@ -2256,7 +2248,7 @@
 
 **[⬆ 回到目录](#目录)**
 
-## Comments
+## 注释
 
   <a name="comments--multiline"></a><a name="17.1"></a>
   - [18.1](#comments--multiline) Use `/** ... */` for multi-line comments.
