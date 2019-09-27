@@ -16,7 +16,7 @@
   1. [类型](#类型)
   1. [引用](#引用)
   1. [对象](#对象)
-  1. [数组](#数据)
+  1. [数组](#数组)
   1. [解构](#解构)
   1. [字符串](#字符串)
   1. [函数](#函数)
@@ -38,12 +38,12 @@
   1. [命名规则](#命名规范)
   1. [访问器函数](#访问器函数)
   1. [事件](#事件)
-  1. [jQuery](#juery)
+  1. [jQuery](#jQuery)
   1. [ECMAScript-5-兼容性](#ECMAScript-5-兼容性)
-  1. [ECMAScript-6+(ES 2015+)编码规范](#ECMAScript-6+(ES 2015+)编码规范)
+  1. [ECMAScript-6+(ES-2015+)编码规范](#ECMAScript-6+(ES-2015+)编码规范)
   1. [标准库](#标准库)
   1. [测试](#测试)
-  1. [License](#icense)
+  1. [License](#License)
   1. [修订](#修订)
 
 ## 类型
@@ -3567,7 +3567,7 @@
 **[⬆ 回到目录](#目录)**
 
 <a name="ecmascript-6-styles"></a>
-## ECMAScript-6+(ES 2015+)编码规范
+## ECMAScript-6+(ES-2015+)编码规范
 
   <a name="es6-styles"></a><a name="27.1"></a>
   - [28.1](#es6-styles) This is a collection of links to the various ES6+ features.
@@ -3675,7 +3675,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 **[⬆ 回到目录](#目录)**
 
-## 修订记录
+## 修订
 
 
 
