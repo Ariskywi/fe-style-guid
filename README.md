@@ -1,69 +1,54 @@
-# Airbnb JavaScript Style Guide() {
+# 滨海金融 JavaScript 风格指南
 
-*A mostly reasonable approach to JavaScript*
+*JavaScript的最佳实践*
 
-> **Note**: this guide assumes you are using [Babel](https://babeljs.io), and requires that you use [babel-preset-airbnb](https://npmjs.com/babel-preset-airbnb) or the equivalent. It also assumes you are installing shims/polyfills in your app, with [airbnb-browser-shims](https://npmjs.com/airbnb-browser-shims) or the equivalent.
+> **注意**: 本指南假设项目正在使用[Babel](https://babeljs.io)
 
-[![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb.svg)](https://www.npmjs.com/package/eslint-config-airbnb)
-[![Downloads](https://img.shields.io/npm/dm/eslint-config-airbnb-base.svg)](https://www.npmjs.com/package/eslint-config-airbnb-base)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+其他风格指南
 
-This guide is available in other languages too. See [Translation](#translation)
-
-Other Style Guides
-
-  - [ES5 (Deprecated)](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
   - [React](react/)
   - [CSS-in-JavaScript](css-in-javascript/)
-  - [CSS & Sass](https://github.com/airbnb/css)
-  - [Ruby](https://github.com/airbnb/ruby)
+  - [CSS & Sass](css/)
 
-## Table of Contents
+## 目录
 
-  1. [Types](#types)
-  1. [References](#references)
-  1. [Objects](#objects)
-  1. [Arrays](#arrays)
-  1. [Destructuring](#destructuring)
-  1. [Strings](#strings)
-  1. [Functions](#functions)
-  1. [Arrow Functions](#arrow-functions)
-  1. [Classes & Constructors](#classes--constructors)
-  1. [Modules](#modules)
-  1. [Iterators and Generators](#iterators-and-generators)
-  1. [Properties](#properties)
-  1. [Variables](#variables)
-  1. [Hoisting](#hoisting)
-  1. [Comparison Operators & Equality](#comparison-operators--equality)
-  1. [Blocks](#blocks)
-  1. [Control Statements](#control-statements)
-  1. [Comments](#comments)
-  1. [Whitespace](#whitespace)
-  1. [Commas](#commas)
-  1. [Semicolons](#semicolons)
-  1. [Type Casting & Coercion](#type-casting--coercion)
-  1. [Naming Conventions](#naming-conventions)
-  1. [Accessors](#accessors)
-  1. [Events](#events)
+  1. [类型](#types)
+  1. [引用](#references)
+  1. [对象](#objects)
+  1. [数组](#arrays)
+  1. [解构](#destructuring)
+  1. [字符串](#strings)
+  1. [函数](#functions)
+  1. [箭头函数](#arrow-functions)
+  1. [构造函数](#classes--constructors)
+  1. [模块](#modules)
+  1. [迭代器与生成函数](#iterators-and-generators)
+  1. [属性](#properties)
+  1. [变量](#variables)
+  1. [作用域提升](#hoisting)
+  1. [比较运算符 & 等号](#comparison-operators--equality)
+  1. [代码块](#blocks)
+  1. [流程控制](#control-statements)
+  1. [注释](#comments)
+  1. [留白](#whitespace)
+  1. [逗号](#commas)
+  1. [分号](#semicolons)
+  1. [类型转换](#type-casting--coercion)
+  1. [命名规则](#naming-conventions)
+  1. [访问器函数](#accessors)
+  1. [事件](#events)
   1. [jQuery](#jquery)
-  1. [ECMAScript 5 Compatibility](#ecmascript-5-compatibility)
-  1. [ECMAScript 6+ (ES 2015+) Styles](#ecmascript-6-es-2015-styles)
-  1. [Standard Library](#standard-library)
-  1. [Testing](#testing)
-  1. [Performance](#performance)
-  1. [Resources](#resources)
-  1. [In the Wild](#in-the-wild)
-  1. [Translation](#translation)
-  1. [The JavaScript Style Guide Guide](#the-javascript-style-guide-guide)
-  1. [Chat With Us About JavaScript](#chat-with-us-about-javascript)
-  1. [Contributors](#contributors)
+  1. [ECMAScript 5 兼容性](#ecmascript-5-compatibility)
+  1. [ECMAScript 6+ (ES 2015+) 编码规范](#ecmascript-6-es-2015-styles)
+  1. [标准库](#standard-library)
+  1. [测试](#testing)
   1. [License](#license)
-  1. [Amendments](#amendments)
+  1. [修订](#amendments)
 
-## Types
+## 类型
 
   <a name="types--primitives"></a><a name="1.1"></a>
-  - [1.1](#types--primitives) **Primitives**: When you access a primitive type you work directly on its value.
+  - [1.1](#types--primitives) **基本类型**: 直接存取基本数据类型
 
     - `string`
     - `number`
@@ -81,10 +66,10 @@ Other Style Guides
     console.log(foo, bar); // => 1, 9
     ```
 
-    - Symbols cannot be faithfully polyfilled, so they should not be used when targeting browsers/environments that don’t support them natively.
+    - Symbols 不能被正确的polyfill。 所以在不能原生支持symbol类型的环境[浏览器]中，不应该使用 symbol 类型。
 
   <a name="types--complex"></a><a name="1.2"></a>
-  - [1.2](#types--complex)  **Complex**: When you access a complex type you work on a reference to its value.
+  - [1.2](#types--complex)  **复合类型**: 通过引用的方式存取复合类型。
 
     - `object`
     - `array`
@@ -99,38 +84,38 @@ Other Style Guides
     console.log(foo[0], bar[0]); // => 9, 9
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到顶部](#目录)**
 
-## References
+## 引用
 
   <a name="references--prefer-const"></a><a name="2.1"></a>
-  - [2.1](#references--prefer-const) Use `const` for all of your references; avoid using `var`. eslint: [`prefer-const`](https://eslint.org/docs/rules/prefer-const.html), [`no-const-assign`](https://eslint.org/docs/rules/no-const-assign.html)
+  - [2.1](#references--prefer-const) 所有的赋值都用const，避免使用var. eslint: [`prefer-const`](https://eslint.org/docs/rules/prefer-const.html), [`no-const-assign`](https://eslint.org/docs/rules/no-const-assign.html)
 
-    > Why? This ensures that you can’t reassign your references, which can lead to bugs and difficult to comprehend code.
+    > 原因： 这将保证不会改变初始值,重复引用会导致bug，并且代码难以理解。
 
     ```javascript
-    // bad
+    // 反例
     var a = 1;
     var b = 2;
 
-    // good
+    // 正确示例
     const a = 1;
     const b = 2;
     ```
 
   <a name="references--disallow-var"></a><a name="2.2"></a>
-  - [2.2](#references--disallow-var) If you must reassign references, use `let` instead of `var`. eslint: [`no-var`](https://eslint.org/docs/rules/no-var.html)
+  - [2.2](#references--disallow-var) 如果一定要对参数重新赋值，那就用let，而不是var。 eslint: [`no-var`](https://eslint.org/docs/rules/no-var.html)
 
-    > Why? `let` is block-scoped rather than function-scoped like `var`.
+    > 因为let是块级作用域，而var是函数级作用域
 
     ```javascript
-    // bad
+    // 反例
     var count = 1;
     if (true) {
       count += 1;
     }
 
-    // good, use the let.
+    // 正确示例, use the let.
     let count = 1;
     if (true) {
       count += 1;
@@ -138,37 +123,37 @@ Other Style Guides
     ```
 
   <a name="references--block-scope"></a><a name="2.3"></a>
-  - [2.3](#references--block-scope) Note that both `let` and `const` are block-scoped.
+  - [2.3](#references--block-scope) 注意 `let` 和 `const` 都是块级作用域。
 
     ```javascript
-    // const and let only exist in the blocks they are defined in.
+    // const 和 let 仅作用于它们定义的块内
     {
       let a = 1;
       const b = 1;
     }
-    console.log(a); // ReferenceError
-    console.log(b); // ReferenceError
+    console.log(a); // 引用错误
+    console.log(b); // 引用错误
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
-## Objects
+## 对象
 
   <a name="objects--no-new"></a><a name="3.1"></a>
-  - [3.1](#objects--no-new) Use the literal syntax for object creation. eslint: [`no-new-object`](https://eslint.org/docs/rules/no-new-object.html)
+  - [3.1](#objects--no-new)使用字面量创建对象。 eslint: [`no-new-object`](https://eslint.org/docs/rules/no-new-object.html)
 
     ```javascript
-    // bad
+    // 反例
     const item = new Object();
 
-    // good
+    // 正确示例
     const item = {};
     ```
 
   <a name="es6-computed-properties"></a><a name="3.4"></a>
-  - [3.2](#es6-computed-properties) Use computed property names when creating objects with dynamic property names.
+  - [3.2](#es6-computed-properties) 当创建一个带有动态属性名的对象时，使用用可被计算的属性名
 
-    > Why? They allow you to define all the properties of an object in one place.
+    > 这样可以在一个地方定义所有的对象属性。
 
     ```javascript
 
@@ -176,14 +161,14 @@ Other Style Guides
       return `a key named ${k}`;
     }
 
-    // bad
+    // 反例
     const obj = {
       id: 5,
       name: 'San Francisco',
     };
     obj[getKey('enabled')] = true;
 
-    // good
+    // 正确示例
     const obj = {
       id: 5,
       name: 'San Francisco',
@@ -192,10 +177,10 @@ Other Style Guides
     ```
 
   <a name="es6-object-shorthand"></a><a name="3.5"></a>
-  - [3.3](#es6-object-shorthand) Use object method shorthand. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand.html)
+  - [3.3](#es6-object-shorthand) 使用简写定义对象方法。 eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand.html)
 
     ```javascript
-    // bad
+    // 反例
     const atom = {
       value: 1,
 
@@ -204,7 +189,7 @@ Other Style Guides
       },
     };
 
-    // good
+    // 正确示例
     const atom = {
       value: 1,
 
@@ -215,34 +200,34 @@ Other Style Guides
     ```
 
   <a name="es6-object-concise"></a><a name="3.6"></a>
-  - [3.4](#es6-object-concise) Use property value shorthand. eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand.html)
+  - [3.4](#es6-object-concise) 使用简写定义对象属性。 eslint: [`object-shorthand`](https://eslint.org/docs/rules/object-shorthand.html)
 
-    > Why? It is shorter and descriptive.
+    > 这样更短，描述性更强。
 
     ```javascript
     const lukeSkywalker = 'Luke Skywalker';
 
-    // bad
+    // 反例
     const obj = {
       lukeSkywalker: lukeSkywalker,
     };
 
-    // good
+    // 正确示例
     const obj = {
       lukeSkywalker,
     };
     ```
 
   <a name="objects--grouped-shorthand"></a><a name="3.7"></a>
-  - [3.5](#objects--grouped-shorthand) Group your shorthand properties at the beginning of your object declaration.
+  - [3.5](#objects--grouped-shorthand) 在声明对象属性时，将简写的属性分组。
 
-    > Why? It’s easier to tell which properties are using the shorthand.
+    > 这样可以清晰的看出哪些属性使用了简写。
 
     ```javascript
     const anakinSkywalker = 'Anakin Skywalker';
     const lukeSkywalker = 'Luke Skywalker';
 
-    // bad
+    // 反例
     const obj = {
       episodeOne: 1,
       twoJediWalkIntoACantina: 2,
@@ -252,7 +237,7 @@ Other Style Guides
       anakinSkywalker,
     };
 
-    // good
+    // 正确示例
     const obj = {
       lukeSkywalker,
       anakinSkywalker,
@@ -264,19 +249,19 @@ Other Style Guides
     ```
 
   <a name="objects--quoted-props"></a><a name="3.8"></a>
-  - [3.6](#objects--quoted-props) Only quote properties that are invalid identifiers. eslint: [`quote-props`](https://eslint.org/docs/rules/quote-props.html)
+  - [3.6](#objects--quoted-props) 只对无效的属性标识使用引号。 eslint: [`quote-props`](https://eslint.org/docs/rules/quote-props.html)
 
-    > Why? In general we consider it subjectively easier to read. It improves syntax highlighting, and is also more easily optimized by many JS engines.
+    > 这种方式主观上更易读，会被代码高亮优化，并且更容易被许多JS引擎压缩。
 
     ```javascript
-    // bad
+    // 反例
     const bad = {
       'foo': 3,
       'bar': 4,
       'data-blah': 5,
     };
 
-    // good
+    // 正确示例
     const good = {
       foo: 3,
       bar: 4,
@@ -285,15 +270,15 @@ Other Style Guides
     ```
 
   <a name="objects--prototype-builtins"></a>
-  - [3.7](#objects--prototype-builtins) Do not call `Object.prototype` methods directly, such as `hasOwnProperty`, `propertyIsEnumerable`, and `isPrototypeOf`. eslint: [`no-prototype-builtins`](https://eslint.org/docs/rules/no-prototype-builtins)
+  - [3.7](#objects--prototype-builtins) 不要直接调用 `Object.prototype` 上的方法，例如 `hasOwnProperty`, `propertyIsEnumerable` 和 `isPrototypeOf`。 eslint: [`no-prototype-builtins`](https://eslint.org/docs/rules/no-prototype-builtins)
 
-    > Why? These methods may be shadowed by properties on the object in question - consider `{ hasOwnProperty: false }` - or, the object may be a null object (`Object.create(null)`).
+    > 这些方法在某些对象上可能会被屏蔽掉。 例如： `{ hasOwnProperty: false }` - 或是一个空对象 (`Object.create(null)`).
 
     ```javascript
-    // bad
+    // 反例
     console.log(object.hasOwnProperty(key));
 
-    // good
+    // 正确示例
     console.log(Object.prototype.hasOwnProperty.call(object, key));
 
     // best
@@ -305,58 +290,58 @@ Other Style Guides
     ```
 
   <a name="objects--rest-spread"></a>
-  - [3.8](#objects--rest-spread) Prefer the object spread operator over [`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) to shallow-copy objects. Use the object rest operator to get a new object with certain properties omitted.
+  - [3.8](#objects--rest-spread) 对象浅拷贝时，更推荐使用扩展运算符`...` 而不是[`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) 获取对象指定的几个属性时，用对象的解构运算符也更好
 
     ```javascript
     // very bad
     const original = { a: 1, b: 2 };
-    const copy = Object.assign(original, { c: 3 }); // this mutates `original` ಠ_ಠ
-    delete copy.a; // so does this
+    const copy = Object.assign(original, { c: 3 }); // 这改变了 `original` ಠ_ಠ
+    delete copy.a; // 同样的改变了`original`
 
-    // bad
+    // 反例
     const original = { a: 1, b: 2 };
     const copy = Object.assign({}, original, { c: 3 }); // copy => { a: 1, b: 2, c: 3 }
 
-    // good
+    // 正确示例
     const original = { a: 1, b: 2 };
     const copy = { ...original, c: 3 }; // copy => { a: 1, b: 2, c: 3 }
 
     const { a, ...noA } = copy; // noA => { b: 2, c: 3 }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
-## Arrays
+## 数组
 
   <a name="arrays--literals"></a><a name="4.1"></a>
-  - [4.1](#arrays--literals) Use the literal syntax for array creation. eslint: [`no-array-constructor`](https://eslint.org/docs/rules/no-array-constructor.html)
+  - [4.1](#arrays--literals) 使用字面量创建数组。 eslint: [`no-array-constructor`](https://eslint.org/docs/rules/no-array-constructor.html)
 
     ```javascript
-    // bad
+    // 反例
     const items = new Array();
 
-    // good
+    // 正确示例
     const items = [];
     ```
 
   <a name="arrays--push"></a><a name="4.2"></a>
-  - [4.2](#arrays--push) Use [Array#push](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/push) instead of direct assignment to add items to an array.
+  - [4.2](#arrays--push) 向数组添加元素时使用[Array#push](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/push)替代直接赋值。
 
     ```javascript
     const someStack = [];
 
-    // bad
+    // 反例
     someStack[someStack.length] = 'abracadabra';
 
-    // good
+    // 正确示例
     someStack.push('abracadabra');
     ```
 
   <a name="es6-array-spreads"></a><a name="4.3"></a>
-  - [4.3](#es6-array-spreads) Use array spreads `...` to copy arrays.
+  - [4.3](#es6-array-spreads) 使用拓展运算符 `...` 复制数组。
 
     ```javascript
-    // bad
+    // 反例
     const len = items.length;
     const itemsCopy = [];
     let i;
@@ -365,18 +350,18 @@ Other Style Guides
       itemsCopy[i] = items[i];
     }
 
-    // good
+    // 正确示例
     const itemsCopy = [...items];
     ```
 
   <a name="arrays--from"></a>
   <a name="arrays--from-iterable"></a><a name="4.4"></a>
-  - [4.4](#arrays--from-iterable) To convert an iterable object to an array, use spreads `...` instead of [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from).
+  - [4.4](#arrays--from-iterable) 使用拓展运算符 `...` 代替[`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) 将一个可迭代对象转换为数组。
 
     ```javascript
     const foo = document.querySelectorAll('.foo');
 
-    // good
+    // 正确示例
     const nodes = Array.from(foo);
 
     // best
@@ -384,54 +369,54 @@ Other Style Guides
     ```
 
   <a name="arrays--from-array-like"></a>
-  - [4.5](#arrays--from-array-like) Use [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) for converting an array-like object to an array.
+  - [4.5](#arrays--from-array-like) 使用 [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) 将一个类数组对象转换为数组。
 
     ```javascript
     const arrLike = { 0: 'foo', 1: 'bar', 2: 'baz', length: 3 };
 
-    // bad
+    // 反例
     const arr = Array.prototype.slice.call(arrLike);
 
-    // good
+    // 正确示例
     const arr = Array.from(arrLike);
     ```
 
   <a name="arrays--mapping"></a>
-  - [4.6](#arrays--mapping) Use [`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) instead of spread `...` for mapping over iterables, because it avoids creating an intermediate array.
+  - [4.6](#arrays--mapping) 使用[`Array.from`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from) 而不是拓展运算符 `...` 来做map遍历, 这样可以避免创建一个临时数组。
 
     ```javascript
-    // bad
+    // 反例
     const baz = [...foo].map(bar);
 
-    // good
+    // 正确示例
     const baz = Array.from(foo, bar);
     ```
 
   <a name="arrays--callback-return"></a><a name="4.5"></a>
-  - [4.7](#arrays--callback-return) Use return statements in array method callbacks. It’s ok to omit the return if the function body consists of a single statement returning an expression without side effects, following [8.2](#arrows--implicit-return). eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
+  - [4.7](#arrays--callback-return) 在数组方法的回调函数中使用return语句。 如果函数体返回是一条没有副作用的表达式语句，那么可以忽略return语句。 详见 [8.2](#arrows--implicit-return). eslint: [`array-callback-return`](https://eslint.org/docs/rules/array-callback-return)
 
     ```javascript
-    // good
+    // 正确示例
     [1, 2, 3].map((x) => {
       const y = x + 1;
       return x * y;
     });
 
-    // good
+    // 正确示例
     [1, 2, 3].map((x) => x + 1);
 
-    // bad - no returned value means `acc` becomes undefined after the first iteration
+    // 反例 - 没有返回值，意味着 `acc` 将在首次迭代后变为undefined
     [[0, 1], [2, 3], [4, 5]].reduce((acc, item, index) => {
       const flatten = acc.concat(item);
     });
 
-    // good
+    // 正确示例
     [[0, 1], [2, 3], [4, 5]].reduce((acc, item, index) => {
       const flatten = acc.concat(item);
       return flatten;
     });
 
-    // bad
+    // 反例
     inbox.filter((msg) => {
       const { subject, author } = msg;
       if (subject === 'Mockingbird') {
@@ -441,7 +426,7 @@ Other Style Guides
       }
     });
 
-    // good
+    // 正确示例
     inbox.filter((msg) => {
       const { subject, author } = msg;
       if (subject === 'Mockingbird') {
@@ -453,10 +438,10 @@ Other Style Guides
     ```
 
   <a name="arrays--bracket-newline"></a>
-  - [4.8](#arrays--bracket-newline) Use line breaks after open and before close array brackets if an array has multiple lines
+  - [4.8](#arrays--bracket-newline) 如果数组有很多行，在数组的起始括号`[`后和结束括号`]`前断行。
 
     ```javascript
-    // bad
+    // 反例
     const arr = [
       [0, 1], [2, 3], [4, 5],
     ];
@@ -471,7 +456,7 @@ Other Style Guides
       1, 2,
     ];
 
-    // good
+    // 正确示例
     const arr = [[0, 1], [2, 3], [4, 5]];
 
     const objectInArray = [
@@ -489,17 +474,17 @@ Other Style Guides
     ];
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
-## Destructuring
+## 解构
 
   <a name="destructuring--object"></a><a name="5.1"></a>
-  - [5.1](#destructuring--object) Use object destructuring when accessing and using multiple properties of an object. eslint: [`prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring)
+  - [5.1](#destructuring--object) 使用解构来存取和使用对象的多个属性值。 eslint: [`prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring)
 
     > Why? Destructuring saves you from creating temporary references for those properties.
 
     ```javascript
-    // bad
+    // 反例
     function getFullName(user) {
       const firstName = user.firstName;
       const lastName = user.lastName;
@@ -507,7 +492,7 @@ Other Style Guides
       return `${firstName} ${lastName}`;
     }
 
-    // good
+    // 正确示例
     function getFullName(user) {
       const { firstName, lastName } = user;
       return `${firstName} ${lastName}`;
@@ -520,158 +505,158 @@ Other Style Guides
     ```
 
   <a name="destructuring--array"></a><a name="5.2"></a>
-  - [5.2](#destructuring--array) Use array destructuring. eslint: [`prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring)
+  - [5.2](#destructuring--array) 使用数组解构。 eslint: [`prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring)
 
     ```javascript
     const arr = [1, 2, 3, 4];
 
-    // bad
+    // 反例
     const first = arr[0];
     const second = arr[1];
 
-    // good
+    // 正确示例
     const [first, second] = arr;
     ```
 
   <a name="destructuring--object-over-array"></a><a name="5.3"></a>
-  - [5.3](#destructuring--object-over-array) Use object destructuring for multiple return values, not array destructuring.
+  - [5.3](#destructuring--object-over-array) 多返回值时使用对象解构，而不是数组解构。
 
-    > Why? You can add new properties over time or change the order of things without breaking call sites.
+    > 因为可以在后期添加新的属性或改变顺序而不影响调用。
 
     ```javascript
-    // bad
+    // 反例
     function processInput(input) {
       // then a miracle occurs
       return [left, right, top, bottom];
     }
 
-    // the caller needs to think about the order of return data
+    // 调用者需要考虑返回值的顺序
     const [left, __, top] = processInput(input);
 
-    // good
+    // 正确示例
     function processInput(input) {
-      // then a miracle occurs
+      // 见证奇迹的时刻
       return { left, right, top, bottom };
     }
 
-    // the caller selects only the data they need
+    // 调用者只需要选择需要使用的值即可
     const { left, top } = processInput(input);
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
-## Strings
+## 字符串
 
   <a name="strings--quotes"></a><a name="6.1"></a>
-  - [6.1](#strings--quotes) Use single quotes `''` for strings. eslint: [`quotes`](https://eslint.org/docs/rules/quotes.html)
+  - [6.1](#strings--quotes) 对string使用单引号 `''` eslint: [`quotes`](https://eslint.org/docs/rules/quotes.html)
 
     ```javascript
-    // bad
+    // 反例
     const name = "Capt. Janeway";
 
-    // bad - template literals should contain interpolation or newlines
+    // 反例 - template literals should contain interpolation or newlines
     const name = `Capt. Janeway`;
 
-    // good
+    // 正确示例
     const name = 'Capt. Janeway';
     ```
 
   <a name="strings--line-length"></a><a name="6.2"></a>
-  - [6.2](#strings--line-length) Strings that cause the line to go over 100 characters should not be written across multiple lines using string concatenation.
+  - [6.2](#strings--line-length) 超过100个字符的字符串不应该用string串联成多行。
 
-    > Why? Broken strings are painful to work with and make code less searchable.
+    > 被断行的字符串工作体验差并且不易被搜索到。
 
     ```javascript
-    // bad
+    // 反例
     const errorMessage = 'This is a super long error that was thrown because \
     of Batman. When you stop to think about how Batman had anything to do \
     with this, you would get nowhere \
     fast.';
 
-    // bad
+    // 反例
     const errorMessage = 'This is a super long error that was thrown because ' +
       'of Batman. When you stop to think about how Batman had anything to do ' +
       'with this, you would get nowhere fast.';
 
-    // good
+    // 正确示例
     const errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
     ```
 
   <a name="es6-template-literals"></a><a name="6.4"></a>
-  - [6.3](#es6-template-literals) When programmatically building up strings, use template strings instead of concatenation. eslint: [`prefer-template`](https://eslint.org/docs/rules/prefer-template.html) [`template-curly-spacing`](https://eslint.org/docs/rules/template-curly-spacing)
+  - [6.3](#es6-template-literals) 使用字符串模板而不是字符串拼接来组织可变的字符串。 eslint: [`prefer-template`](https://eslint.org/docs/rules/prefer-template.html) [`template-curly-spacing`](https://eslint.org/docs/rules/template-curly-spacing)
 
     > Why? Template strings give you a readable, concise syntax with proper newlines and string interpolation features.
 
     ```javascript
-    // bad
+    // 反例
     function sayHi(name) {
       return 'How are you, ' + name + '?';
     }
 
-    // bad
+    // 反例
     function sayHi(name) {
       return ['How are you, ', name, '?'].join();
     }
 
-    // bad
+    // 反例
     function sayHi(name) {
       return `How are you, ${ name }?`;
     }
 
-    // good
+    // 正确示例
     function sayHi(name) {
       return `How are you, ${name}?`;
     }
     ```
 
   <a name="strings--eval"></a><a name="6.5"></a>
-  - [6.4](#strings--eval) Never use `eval()` on a string, it opens too many vulnerabilities. eslint: [`no-eval`](https://eslint.org/docs/rules/no-eval)
+  - [6.4](#strings--eval) 不要在字符串中使用 `eval()` , 这就是一个潘多拉魔盒。 eslint: [`no-eval`](https://eslint.org/docs/rules/no-eval)
 
   <a name="strings--escaping"></a>
-  - [6.5](#strings--escaping) Do not unnecessarily escape characters in strings. eslint: [`no-useless-escape`](https://eslint.org/docs/rules/no-useless-escape)
+  - [6.5](#strings--escaping) 不要使用不必要的转义字符。 eslint: [`no-useless-escape`](https://eslint.org/docs/rules/no-useless-escape)
 
-    > Why? Backslashes harm readability, thus they should only be present when necessary.
+    > 反斜杠可读性差，应该只在需要时出现。
 
     ```javascript
-    // bad
+    // 反例
     const foo = '\'this\' \i\s \"quoted\"';
 
-    // good
+    // 正确示例
     const foo = '\'this\' is "quoted"';
     const foo = `my name is '${name}'`;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
-## Functions
+## 函数
 
   <a name="functions--declarations"></a><a name="7.1"></a>
-  - [7.1](#functions--declarations) Use named function expressions instead of function declarations. eslint: [`func-style`](https://eslint.org/docs/rules/func-style)
+  - [7.1](#functions--declarations) 使用命名函数表达式而不是函数声明。 eslint: [`func-style`](https://eslint.org/docs/rules/func-style)
 
-    > Why? Function declarations are hoisted, which means that it’s easy - too easy - to reference the function before it is defined in the file. This harms readability and maintainability. If you find that a function’s definition is large or complex enough that it is interfering with understanding the rest of the file, then perhaps it’s time to extract it to its own module! Don’t forget to explicitly name the expression, regardless of whether or not the name is inferred from the containing variable (which is often the case in modern browsers or when using compilers such as Babel). This eliminates any assumptions made about the Error’s call stack. ([Discussion](https://github.com/airbnb/javascript/issues/794))
+    > 函数声明提升，意味着在文件中非常容易在定义函数前就使用函数的引用。 这对可读性和可维护性都有损害。如果函数足够大或复杂，以至于影响到了对上下文其他内容的理解, 这可能是时候将这个函数单独抽成一个模块了! 不要忘记显示命名表达式, 无论该名字是否可以从包含的变量推断出(在现代浏览器或使用Babel等编译器时，经常会出现这种情况)。这消除了由错误调用栈产生的所有假设。  ([Discussion](https://github.com/airbnb/javascript/issues/794))
 
     ```javascript
-    // bad
+    // 反例
     function foo() {
       // ...
     }
 
-    // bad
+    // 反例
     const foo = function () {
       // ...
     };
 
-    // good
-    // lexical name distinguished from the variable-referenced invocation(s)
+    // 正确示例
+    // 函数表达式名和声明的函数名不一样
     const short = function longUniqueMoreDescriptiveLexicalFoo() {
       // ...
     };
     ```
 
   <a name="functions--iife"></a><a name="7.2"></a>
-  - [7.2](#functions--iife) Wrap immediately invoked function expressions in parentheses. eslint: [`wrap-iife`](https://eslint.org/docs/rules/wrap-iife.html)
+  - [7.2](#functions--iife) 使用圆括号包裹立即执行函数。 eslint: [`wrap-iife`](https://eslint.org/docs/rules/wrap-iife.html)
 
-    > Why? An immediately invoked function expression is a single unit - wrapping both it, and its invocation parens, in parens, cleanly expresses this. Note that in a world with modules everywhere, you almost never need an IIFE.
+    > 因为一个立即调用函数表达式是一个单元 - 使用圆括号将它和它的调用者包裹起来，清晰的表达出了这些。注意：在模块化世界里，几乎用不到IIFE(立即执行函数)。
 
     ```javascript
     // immediately-invoked function expression (IIFE)
@@ -681,20 +666,20 @@ Other Style Guides
     ```
 
   <a name="functions--in-blocks"></a><a name="7.3"></a>
-  - [7.3](#functions--in-blocks) Never declare a function in a non-function block (`if`, `while`, etc). Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently, which is bad news bears. eslint: [`no-loop-func`](https://eslint.org/docs/rules/no-loop-func.html)
+  - [7.3](#functions--in-blocks) 不要在非函数模块内声明函数(`if`、 `while` 等)。而是将函数分配给一个变量。一个糟糕的信息是：浏览器允许这样做(在非函数模块内声明函数)，但是不同的浏览器对此解析不同。 eslint: [`no-loop-func`](https://eslint.org/docs/rules/no-loop-func.html)
 
   <a name="functions--note-on-blocks"></a><a name="7.4"></a>
-  - [7.4](#functions--note-on-blocks) **Note:** ECMA-262 defines a `block` as a list of statements. A function declaration is not a statement.
+  - [7.4](#functions--note-on-blocks) **注意:** ECMA-262 对模块 `block` 的定义是一系列的语句。 但函数声明不是一个语句。函数表达式是一个语句。
 
     ```javascript
-    // bad
+    // 反例
     if (currentUser) {
       function test() {
         console.log('Nope.');
       }
     }
 
-    // good
+    // 正确示例
     let test;
     if (currentUser) {
       test = () => {
@@ -704,52 +689,52 @@ Other Style Guides
     ```
 
   <a name="functions--arguments-shadow"></a><a name="7.5"></a>
-  - [7.5](#functions--arguments-shadow) Never name a parameter `arguments`. This will take precedence over the `arguments` object that is given to every function scope.
+  - [7.5](#functions--arguments-shadow) 不要用 `arguments`命名参数，这会导致函数自带的`arguments` 值被覆盖。因为参数arguments的优先级高于每个函数作用域自带的arguments对象。
 
     ```javascript
-    // bad
+    // 反例
     function foo(name, options, arguments) {
       // ...
     }
 
-    // good
+    // 正确示例
     function foo(name, options, args) {
       // ...
     }
     ```
 
   <a name="es6-rest"></a><a name="7.6"></a>
-  - [7.6](#es6-rest) Never use `arguments`, opt to use rest syntax `...` instead. eslint: [`prefer-rest-params`](https://eslint.org/docs/rules/prefer-rest-params)
+  - [7.6](#es6-rest) 不要使用 `arguments`使用解构`...` 语法代替。 eslint: [`prefer-rest-params`](https://eslint.org/docs/rules/prefer-rest-params)
 
-    > Why? `...` is explicit about which arguments you want pulled. Plus, rest arguments are a real Array, and not merely Array-like like `arguments`.
+    > 因为`...`是所需参数的明确表示。另外，rest参数是真正的数组而不是类数组的`arguments`.
 
     ```javascript
-    // bad
+    // 反例
     function concatenateAll() {
       const args = Array.prototype.slice.call(arguments);
       return args.join('');
     }
 
-    // good
+    // 正确示例
     function concatenateAll(...args) {
       return args.join('');
     }
     ```
 
   <a name="es6-default-parameters"></a><a name="7.7"></a>
-  - [7.7](#es6-default-parameters) Use default parameter syntax rather than mutating function arguments.
+  - [7.7](#es6-default-parameters) 使用参数默认值语法，而不是在函数里对参数重新赋值。
 
     ```javascript
-    // really bad
+    // 特别糟糕的做法
     function handleThings(opts) {
-      // No! We shouldn’t mutate function arguments.
-      // Double bad: if opts is falsy it'll be set to an object which may
-      // be what you want but it can introduce subtle bugs.
+      // 错误一: 不应该修改arguments
+      // 错误二: 如果opts的值为false，它会被赋值为{}
+      // 这可能会带来一些bug
       opts = opts || {};
       // ...
     }
 
-    // still bad
+    // 仍然错误的做法
     function handleThings(opts) {
       if (opts === void 0) {
         opts = {};
@@ -757,20 +742,20 @@ Other Style Guides
       // ...
     }
 
-    // good
+    // 正确示例
     function handleThings(opts = {}) {
       // ...
     }
     ```
 
   <a name="functions--default-side-effects"></a><a name="7.8"></a>
-  - [7.8](#functions--default-side-effects) Avoid side effects with default parameters.
+  - [7.8](#functions--default-side-effects) 默认参数避免产生副作用。
 
-    > Why? They are confusing to reason about.
+    > 因为如果产生副作用，会令人迷惑。如下所示：a到底等于多少？
 
     ```javascript
     var b = 1;
-    // bad
+    // 反例
     function count(a = b++) {
       console.log(a);
     }
@@ -781,73 +766,73 @@ Other Style Guides
     ```
 
   <a name="functions--defaults-last"></a><a name="7.9"></a>
-  - [7.9](#functions--defaults-last) Always put default parameters last.
+  - [7.9](#functions--defaults-last) 将默认参数赋值放在最后。
 
     ```javascript
-    // bad
+    // 反例
     function handleThings(opts = {}, name) {
       // ...
     }
 
-    // good
+    // 正确示例
     function handleThings(name, opts = {}) {
       // ...
     }
     ```
 
   <a name="functions--constructor"></a><a name="7.10"></a>
-  - [7.10](#functions--constructor) Never use the Function constructor to create a new function. eslint: [`no-new-func`](https://eslint.org/docs/rules/no-new-func)
+  - [7.10](#functions--constructor) 不要使用Function类创建函数。 eslint: [`no-new-func`](https://eslint.org/docs/rules/no-new-func)
 
-    > Why? Creating a function in this way evaluates a string similarly to `eval()`, which opens vulnerabilities.
+    > 因为此种方式创建函数类似于 `eval()`, 会导致漏洞。
 
     ```javascript
-    // bad
+    // 反例
     var add = new Function('a', 'b', 'return a + b');
 
-    // still bad
+    // 仍然错误
     var subtract = Function('a', 'b', 'return a - b');
     ```
 
   <a name="functions--signature-spacing"></a><a name="7.11"></a>
-  - [7.11](#functions--signature-spacing) Spacing in a function signature. eslint: [`space-before-function-paren`](https://eslint.org/docs/rules/space-before-function-paren) [`space-before-blocks`](https://eslint.org/docs/rules/space-before-blocks)
+  - [7.11](#functions--signature-spacing) 函数签名要有空格。 eslint: [`space-before-function-paren`](https://eslint.org/docs/rules/space-before-function-paren) [`space-before-blocks`](https://eslint.org/docs/rules/space-before-blocks)
 
-    > Why? Consistency is good, and you shouldn’t have to add or remove a space when adding or removing a name.
+    > 这样统一性好，而且在添加/删除一个名字的时候不需要添加/删除空格。(使用prettier配置即可)
 
     ```javascript
-    // bad
+    // 反例
     const f = function(){};
     const g = function (){};
     const h = function() {};
 
-    // good
+    // 正确示例
     const x = function () {};
     const y = function a() {};
     ```
 
   <a name="functions--mutate-params"></a><a name="7.12"></a>
-  - [7.12](#functions--mutate-params) Never mutate parameters. eslint: [`no-param-reassign`](https://eslint.org/docs/rules/no-param-reassign.html)
+  - [7.12](#functions--mutate-params) 不要修改参数。 eslint: [`no-param-reassign`](https://eslint.org/docs/rules/no-param-reassign.html)
 
-    > Why? Manipulating objects passed in as parameters can cause unwanted variable side effects in the original caller.
+    > 因为修改参数对象会对调用者产生无法预料的副作用(引用类型)。
 
     ```javascript
-    // bad
+    // 反例
     function f1(obj) {
       obj.key = 1;
     }
 
-    // good
+    // 正确示例
     function f2(obj) {
       const key = Object.prototype.hasOwnProperty.call(obj, 'key') ? obj.key : 1;
     }
     ```
 
   <a name="functions--reassign-params"></a><a name="7.13"></a>
-  - [7.13](#functions--reassign-params) Never reassign parameters. eslint: [`no-param-reassign`](https://eslint.org/docs/rules/no-param-reassign.html)
+  - [7.13](#functions--reassign-params) 不要重新赋值参数。 eslint: [`no-param-reassign`](https://eslint.org/docs/rules/no-param-reassign.html)
 
-    > Why? Reassigning parameters can lead to unexpected behavior, especially when accessing the `arguments` object. It can also cause optimization issues, especially in V8.
+    > 因为重新赋值会导致意外行为，尤其是访问 `arguments` 对象时。这还会产生优化问题，尤其是在v8中。
 
     ```javascript
-    // bad
+    // 反例
     function f1(a) {
       a = 1;
       // ...
@@ -858,7 +843,7 @@ Other Style Guides
       // ...
     }
 
-    // good
+    // 正确示例
     function f3(a) {
       const b = a || 1;
       // ...
@@ -870,38 +855,38 @@ Other Style Guides
     ```
 
   <a name="functions--spread-vs-apply"></a><a name="7.14"></a>
-  - [7.14](#functions--spread-vs-apply) Prefer the use of the spread operator `...` to call variadic functions. eslint: [`prefer-spread`](https://eslint.org/docs/rules/prefer-spread)
+  - [7.14](#functions--spread-vs-apply) 使用拓展运算符`...` 来调用参数可变的函数。 eslint: [`prefer-spread`](https://eslint.org/docs/rules/prefer-spread)
 
-    > Why? It’s cleaner, you don’t need to supply a context, and you can not easily compose `new` with `apply`.
+    > 因为这样更清晰，不比提供上下文。另外也难以将 `new` 和 `apply`组合使用。 
 
     ```javascript
-    // bad
+    // 反例
     const x = [1, 2, 3, 4, 5];
     console.log.apply(console, x);
 
-    // good
+    // 正确示例
     const x = [1, 2, 3, 4, 5];
     console.log(...x);
 
-    // bad
+    // 反例
     new (Function.prototype.bind.apply(Date, [null, 2016, 8, 5]));
 
-    // good
+    // 正确示例
     new Date(...[2016, 8, 5]);
     ```
 
   <a name="functions--signature-invocation-indentation"></a>
-  - [7.15](#functions--signature-invocation-indentation) Functions with multiline signatures, or invocations, should be indented just like every other multiline list in this guide: with each item on a line by itself, with a trailing comma on the last item. eslint: [`function-paren-newline`](https://eslint.org/docs/rules/function-paren-newline)
+  - [7.15](#functions--signature-invocation-indentation) 声明或调用一个包含多个参数的函数应该像本指南中其他多行代码写法一样：每行一项，以逗号结尾。 eslint: [`function-paren-newline`](https://eslint.org/docs/rules/function-paren-newline)
 
     ```javascript
-    // bad
+    // 反例
     function foo(bar,
                  baz,
                  quux) {
       // ...
     }
 
-    // good
+    // 正确示例
     function foo(
       bar,
       baz,
@@ -910,12 +895,12 @@ Other Style Guides
       // ...
     }
 
-    // bad
+    // 反例
     console.log(foo,
       bar,
       baz);
 
-    // good
+    // 正确示例
     console.log(
       foo,
       bar,
@@ -923,25 +908,25 @@ Other Style Guides
     );
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
-## Arrow Functions
+## 箭头函数
 
   <a name="arrows--use-them"></a><a name="8.1"></a>
-  - [8.1](#arrows--use-them) When you must use an anonymous function (as when passing an inline callback), use arrow function notation. eslint: [`prefer-arrow-callback`](https://eslint.org/docs/rules/prefer-arrow-callback.html), [`arrow-spacing`](https://eslint.org/docs/rules/arrow-spacing.html)
+  - [8.1](#arrows--use-them) 当需要使用匿名函数时 (譬如传递一个行内回调), 使用箭头函数语法。 eslint: [`prefer-arrow-callback`](https://eslint.org/docs/rules/prefer-arrow-callback.html), [`arrow-spacing`](https://eslint.org/docs/rules/arrow-spacing.html)
 
-    > Why? It creates a version of the function that executes in the context of `this`, which is usually what you want, and is a more concise syntax.
+    > 因为此方式创建了函数的关于当前`this`上下文的副本,这通常就是想要的。而且箭头函数是更简洁的语法。
 
-    > Why not? If you have a fairly complicated function, you might move that logic out into its own named function expression.
+    > 什么时候不用? 如果有一个复杂函数，可以将此逻辑移到命名函数表达式里。
 
     ```javascript
-    // bad
+    // 反例
     [1, 2, 3].map(function (x) {
       const y = x + 1;
       return x * y;
     });
 
-    // good
+    // 正确示例
     [1, 2, 3].map((x) => {
       const y = x + 1;
       return x * y;
@@ -949,27 +934,27 @@ Other Style Guides
     ```
 
   <a name="arrows--implicit-return"></a><a name="8.2"></a>
-  - [8.2](#arrows--implicit-return) If the function body consists of a single statement returning an [expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) without side effects, omit the braces and use the implicit return. Otherwise, keep the braces and use a `return` statement. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html), [`arrow-body-style`](https://eslint.org/docs/rules/arrow-body-style.html)
+  - [8.2](#arrows--implicit-return) 如果函数体是由没有副作用的[表达式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions)语句组成, 删除大括号和return. 否则，保持大括号和 `return` 语句。eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html), [`arrow-body-style`](https://eslint.org/docs/rules/arrow-body-style.html)
 
-    > Why? Syntactic sugar. It reads well when multiple functions are chained together.
+    > 语法糖，当多个函数组成函数链时易于阅读。
 
     ```javascript
-    // bad
+    // 反例
     [1, 2, 3].map((number) => {
       const nextNumber = number + 1;
       `A string containing the ${nextNumber}.`;
     });
 
-    // good
+    // 正确示例
     [1, 2, 3].map((number) => `A string containing the ${number + 1}.`);
 
-    // good
+    // 正确示例
     [1, 2, 3].map((number) => {
       const nextNumber = number + 1;
       return `A string containing the ${nextNumber}.`;
     });
 
-    // good
+    // 正确示例
     [1, 2, 3].map((number, index) => ({
       [index]: number,
     }));
@@ -984,29 +969,29 @@ Other Style Guides
 
     let bool = false;
 
-    // bad
+    // 反例
     foo(() => bool = true);
 
-    // good
+    // 正确示例
     foo(() => {
       bool = true;
     });
     ```
 
   <a name="arrows--paren-wrap"></a><a name="8.3"></a>
-  - [8.3](#arrows--paren-wrap) In case the expression spans over multiple lines, wrap it in parentheses for better readability.
+  - [8.3](#arrows--paren-wrap) 如果是多行表达式, 将表达式包裹在圆括号中可读性更好。
 
-    > Why? It shows clearly where the function starts and ends.
+    > 因为函数的起始很清晰。
 
     ```javascript
-    // bad
+    // 反例
     ['get', 'post', 'put'].map((httpMethod) => Object.prototype.hasOwnProperty.call(
         httpMagicObjectWithAVeryLongName,
         httpMethod,
       )
     );
 
-    // good
+    // 正确示例
     ['get', 'post', 'put'].map((httpMethod) => (
       Object.prototype.hasOwnProperty.call(
         httpMagicObjectWithAVeryLongName,
@@ -1016,34 +1001,34 @@ Other Style Guides
     ```
 
   <a name="arrows--one-arg-parens"></a><a name="8.4"></a>
-  - [8.4](#arrows--one-arg-parens) Always include parentheses around arguments for clarity and consistency. eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html)
+  - [8.4](#arrows--one-arg-parens) 如果函数只有一个参数并且函数体没有大括号，就删除圆括号。否则，参数总是放在圆括号里。注意：一直使用圆括号也没有问题，只需要配置eslint的always 选项。eslint: [`arrow-parens`](https://eslint.org/docs/rules/arrow-parens.html)
 
-    > Why? Minimizes diff churn when adding or removing arguments.
+    > 一种风格，可以使添加/删除参数时最小化差异。
 
     ```javascript
-    // bad
+    // 反例
     [1, 2, 3].map(x => x * x);
 
-    // good
+    // 正确示例
     [1, 2, 3].map((x) => x * x);
 
-    // bad
+    // 反例
     [1, 2, 3].map(number => (
       `A long string with the ${number}. It’s so long that we don’t want it to take up space on the .map line!`
     ));
 
-    // good
+    // 正确示例
     [1, 2, 3].map((number) => (
       `A long string with the ${number}. It’s so long that we don’t want it to take up space on the .map line!`
     ));
 
-    // bad
+    // 反例
     [1, 2, 3].map(x => {
       const y = x + 1;
       return x * y;
     });
 
-    // good
+    // 正确示例
     [1, 2, 3].map((x) => {
       const y = x + 1;
       return x * y;
@@ -1051,19 +1036,19 @@ Other Style Guides
     ```
 
   <a name="arrows--confusing"></a><a name="8.5"></a>
-  - [8.5](#arrows--confusing) Avoid confusing arrow function syntax (`=>`) with comparison operators (`<=`, `>=`). eslint: [`no-confusing-arrow`](https://eslint.org/docs/rules/no-confusing-arrow)
+  - [8.5](#arrows--confusing) 不要将箭头函数语法 (`=>`) 与比较操作符 (`<=`, `>=`)混淆。 eslint: [`no-confusing-arrow`](https://eslint.org/docs/rules/no-confusing-arrow)
 
     ```javascript
-    // bad
+    // 反例
     const itemHeight = (item) => item.height <= 256 ? item.largeSize : item.smallSize;
 
-    // bad
+    // 反例
     const itemHeight = (item) => item.height >= 256 ? item.largeSize : item.smallSize;
 
-    // good
+    // 正确示例
     const itemHeight = (item) => (item.height <= 256 ? item.largeSize : item.smallSize);
 
-    // good
+    // 正确示例
     const itemHeight = (item) => {
       const { height, largeSize, smallSize } = item;
       return height <= 256 ? largeSize : smallSize;
@@ -1071,17 +1056,17 @@ Other Style Guides
     ```
 
   <a name="whitespace--implicit-arrow-linebreak"></a>
-  - [8.6](#whitespace--implicit-arrow-linebreak) Enforce the location of arrow function bodies with implicit returns. eslint: [`implicit-arrow-linebreak`](https://eslint.org/docs/rules/implicit-arrow-linebreak)
+  - [8.6](#whitespace--implicit-arrow-linebreak) 在隐式return中强制约束函数体的位置。 eslint: [`implicit-arrow-linebreak`](https://eslint.org/docs/rules/implicit-arrow-linebreak)
 
     ```javascript
-    // bad
+    // 反例
     (foo) =>
       bar;
 
     (foo) =>
       (bar);
 
-    // good
+    // 正确示例
     (foo) => bar;
     (foo) => (bar);
     (foo) => (
@@ -1089,17 +1074,17 @@ Other Style Guides
     )
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
-## Classes & Constructors
+## 类 & 构造函数
 
   <a name="constructors--use-class"></a><a name="9.1"></a>
-  - [9.1](#constructors--use-class) Always use `class`. Avoid manipulating `prototype` directly.
+  - [9.1](#constructors--use-class) 总是使用 `class`。避免直接操作 `prototype` 。
 
-    > Why? `class` syntax is more concise and easier to reason about.
+    > 因为`class`语法更简洁易读。
 
     ```javascript
-    // bad
+    // 反例
     function Queue(contents = []) {
       this.queue = [...contents];
     }
@@ -1109,7 +1094,7 @@ Other Style Guides
       return value;
     };
 
-    // good
+    // 正确示例
     class Queue {
       constructor(contents = []) {
         this.queue = [...contents];
@@ -1123,12 +1108,12 @@ Other Style Guides
     ```
 
   <a name="constructors--extends"></a><a name="9.2"></a>
-  - [9.2](#constructors--extends) Use `extends` for inheritance.
+  - [9.2](#constructors--extends) 使用 `extends` 来继承。
 
-    > Why? It is a built-in way to inherit prototype functionality without breaking `instanceof`.
+    > 因为这是一个内置的原型继承方法并且不会破坏 `instanceof`。
 
     ```javascript
-    // bad
+    // 反例
     const inherits = require('inherits');
     function PeekableQueue(contents) {
       Queue.apply(this, contents);
@@ -1138,7 +1123,7 @@ Other Style Guides
       return this.queue[0];
     };
 
-    // good
+    // 正确示例
     class PeekableQueue extends Queue {
       peek() {
         return this.queue[0];
@@ -1147,10 +1132,10 @@ Other Style Guides
     ```
 
   <a name="constructors--chaining"></a><a name="9.3"></a>
-  - [9.3](#constructors--chaining) Methods can return `this` to help with method chaining.
+  - [9.3](#constructors--chaining) 方法可以返回`this` 来实现链式调用。
 
     ```javascript
-    // bad
+    // 反例
     Jedi.prototype.jump = function () {
       this.jumping = true;
       return true;
@@ -1164,7 +1149,7 @@ Other Style Guides
     luke.jump(); // => true
     luke.setHeight(20); // => undefined
 
-    // good
+    // 正确示例
     class Jedi {
       jump() {
         this.jumping = true;
@@ -1184,7 +1169,7 @@ Other Style Guides
     ```
 
   <a name="constructors--tostring"></a><a name="9.4"></a>
-  - [9.4](#constructors--tostring) It’s okay to write a custom `toString()` method, just make sure it works successfully and causes no side effects.
+  - [9.4](#constructors--tostring) 可以自定义`toString()` 方法, 但是要保证它能正确执行并且不产生副作用。 
 
     ```javascript
     class Jedi {
@@ -1203,10 +1188,10 @@ Other Style Guides
     ```
 
   <a name="constructors--no-useless"></a><a name="9.5"></a>
-  - [9.5](#constructors--no-useless) Classes have a default constructor if one is not specified. An empty constructor function or one that just delegates to a parent class is unnecessary. eslint: [`no-useless-constructor`](https://eslint.org/docs/rules/no-useless-constructor)
+  - [9.5](#constructors--no-useless) 如果没有指定，类有默认的构造方法。不需要写空的构造函数或仅代表父类的构造函数。 eslint: [`no-useless-constructor`](https://eslint.org/docs/rules/no-useless-constructor)
 
     ```javascript
-    // bad
+    // 反例
     class Jedi {
       constructor() {}
 
@@ -1215,14 +1200,14 @@ Other Style Guides
       }
     }
 
-    // bad
+    // 反例
     class Rey extends Jedi {
       constructor(...args) {
         super(...args);
       }
     }
 
-    // good
+    // 正确示例
     class Rey extends Jedi {
       constructor(...args) {
         super(...args);
@@ -1232,39 +1217,39 @@ Other Style Guides
     ```
 
   <a name="classes--no-duplicate-members"></a>
-  - [9.6](#classes--no-duplicate-members) Avoid duplicate class members. eslint: [`no-dupe-class-members`](https://eslint.org/docs/rules/no-dupe-class-members)
+  - [9.6](#classes--no-duplicate-members) 避免重复的类。eslint: [`no-dupe-class-members`](https://eslint.org/docs/rules/no-dupe-class-members)
 
-    > Why? Duplicate class member declarations will silently prefer the last one - having duplicates is almost certainly a bug.
+    > 因为重复的类只会执行最后一个。———— 重复本身就是一个bug。
 
     ```javascript
-    // bad
+    // 反例
     class Foo {
       bar() { return 1; }
       bar() { return 2; }
     }
 
-    // good
+    // 正确示例
     class Foo {
       bar() { return 1; }
     }
 
-    // good
+    // 正确示例
     class Foo {
       bar() { return 2; }
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
-## Modules
+## 模块
 
   <a name="modules--use-them"></a><a name="10.1"></a>
-  - [10.1](#modules--use-them) Always use modules (`import`/`export`) over a non-standard module system. You can always transpile to your preferred module system.
+  - [10.1](#modules--use-them) 使用 (`import`/`export`) 模块而不是非标准模块系统。这样可以随时转到喜欢的模块系统。
 
-    > Why? Modules are the future, let’s start using the future now.
+    > 模块化是未来，那么让我们现在就开启未来吧。
 
     ```javascript
-    // bad
+    // 反例
     const AirbnbStyleGuide = require('./AirbnbStyleGuide');
     module.exports = AirbnbStyleGuide.es6;
 
@@ -1278,30 +1263,30 @@ Other Style Guides
     ```
 
   <a name="modules--no-wildcard"></a><a name="10.2"></a>
-  - [10.2](#modules--no-wildcard) Do not use wildcard imports.
+  - [10.2](#modules--no-wildcard) 不要使用import通配符(*)。
 
-    > Why? This makes sure you have a single default export.
+    > 因为这需要确保每个模块都有一个默认的导出。
 
     ```javascript
-    // bad
+    // 反例
     import * as AirbnbStyleGuide from './AirbnbStyleGuide';
 
-    // good
+    // 正确示例
     import AirbnbStyleGuide from './AirbnbStyleGuide';
     ```
 
   <a name="modules--no-export-from-import"></a><a name="10.3"></a>
-  - [10.3](#modules--no-export-from-import) And do not export directly from an import.
+  - [10.3](#modules--no-export-from-import) 不要直接从import中export
 
-    > Why? Although the one-liner is concise, having one clear way to import and one clear way to export makes things consistent.
+    > 虽然一行很简洁，但是需要有一个明确的入口和一个明确的出口来保持一致性。
 
     ```javascript
-    // bad
-    // filename es6.js
+    // 反例
+    // 文件名 es6.js
     export { es6 as default } from './AirbnbStyleGuide';
 
-    // good
-    // filename es6.js
+    // 正确示例
+    // 文件名 es6.js
     import { es6 } from './AirbnbStyleGuide';
     export default es6;
     ```
@@ -1312,15 +1297,15 @@ Other Style Guides
     > Why? Having multiple lines that import from the same path can make code harder to maintain.
 
     ```javascript
-    // bad
+    // 反例
     import foo from 'foo';
     // … some other imports … //
     import { named1, named2 } from 'foo';
 
-    // good
+    // 正确示例
     import foo, { named1, named2 } from 'foo';
 
-    // good
+    // 正确示例
     import foo, {
       named1,
       named2,
@@ -1333,11 +1318,11 @@ Other Style Guides
     > Why? Mutation should be avoided in general, but in particular when exporting mutable bindings. While this technique may be needed for some special cases, in general, only constant references should be exported.
 
     ```javascript
-    // bad
+    // 反例
     let foo = 3;
     export { foo };
 
-    // good
+    // 正确示例
     const foo = 3;
     export { foo };
     ```
@@ -1348,10 +1333,10 @@ Other Style Guides
     > Why? To encourage more files that only ever export one thing, which is better for readability and maintainability.
 
     ```javascript
-    // bad
+    // 反例
     export function foo() {}
 
-    // good
+    // 正确示例
     export default function foo() {}
     ```
 
@@ -1361,13 +1346,13 @@ Other Style Guides
     > Why? Since `import`s are hoisted, keeping them all at the top prevents surprising behavior.
 
     ```javascript
-    // bad
+    // 反例
     import foo from 'foo';
     foo.init();
 
     import bar from 'bar';
 
-    // good
+    // 正确示例
     import foo from 'foo';
     import bar from 'bar';
 
@@ -1380,10 +1365,10 @@ Other Style Guides
     > Why? The curly braces follow the same indentation rules as every other curly brace block in the style guide, as do the trailing commas.
 
     ```javascript
-    // bad
+    // 反例
     import {longNameA, longNameB, longNameC, longNameD, longNameE} from 'path';
 
-    // good
+    // 正确示例
     import {
       longNameA,
       longNameB,
@@ -1399,16 +1384,16 @@ Other Style Guides
     > Why? Since using Webpack syntax in the imports couples the code to a module bundler. Prefer using the loader syntax in `webpack.config.js`.
 
     ```javascript
-    // bad
+    // 反例
     import fooSass from 'css!sass!foo.scss';
     import barCss from 'style!css!bar.css';
 
-    // good
+    // 正确示例
     import fooSass from 'foo.scss';
     import barCss from 'bar.css';
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Iterators and Generators
 
@@ -1422,14 +1407,14 @@ Other Style Guides
     ```javascript
     const numbers = [1, 2, 3, 4, 5];
 
-    // bad
+    // 反例
     let sum = 0;
     for (let num of numbers) {
       sum += num;
     }
     sum === 15;
 
-    // good
+    // 正确示例
     let sum = 0;
     numbers.forEach((num) => {
       sum += num;
@@ -1440,13 +1425,13 @@ Other Style Guides
     const sum = numbers.reduce((total, num) => total + num, 0);
     sum === 15;
 
-    // bad
+    // 反例
     const increasedByOne = [];
     for (let i = 0; i < numbers.length; i++) {
       increasedByOne.push(numbers[i] + 1);
     }
 
-    // good
+    // 正确示例
     const increasedByOne = [];
     numbers.forEach((num) => {
       increasedByOne.push(num + 1);
@@ -1467,32 +1452,32 @@ Other Style Guides
     > Why? `function` and `*` are part of the same conceptual keyword - `*` is not a modifier for `function`, `function*` is a unique construct, different from `function`.
 
     ```javascript
-    // bad
+    // 反例
     function * foo() {
       // ...
     }
 
-    // bad
+    // 反例
     const bar = function * () {
       // ...
     };
 
-    // bad
+    // 反例
     const baz = function *() {
       // ...
     };
 
-    // bad
+    // 反例
     const quux = function*() {
       // ...
     };
 
-    // bad
+    // 反例
     function*foo() {
       // ...
     }
 
-    // bad
+    // 反例
     function *foo() {
       // ...
     }
@@ -1511,18 +1496,18 @@ Other Style Guides
       // ...
     };
 
-    // good
+    // 正确示例
     function* foo() {
       // ...
     }
 
-    // good
+    // 正确示例
     const foo = function* () {
       // ...
     };
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Properties
 
@@ -1535,10 +1520,10 @@ Other Style Guides
       age: 28,
     };
 
-    // bad
+    // 反例
     const isJedi = luke['jedi'];
 
-    // good
+    // 正确示例
     const isJedi = luke.jedi;
     ```
 
@@ -1561,14 +1546,14 @@ Other Style Guides
   - [12.3](#es2016-properties--exponentiation-operator) Use exponentiation operator `**` when calculating exponentiations. eslint: [`no-restricted-properties`](https://eslint.org/docs/rules/no-restricted-properties).
 
     ```javascript
-    // bad
+    // 反例
     const binary = Math.pow(2, 10);
 
-    // good
+    // 正确示例
     const binary = 2 ** 10;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Variables
 
@@ -1576,10 +1561,10 @@ Other Style Guides
   - [13.1](#variables--const) Always use `const` or `let` to declare variables. Not doing so will result in global variables. We want to avoid polluting the global namespace. Captain Planet warned us of that. eslint: [`no-undef`](https://eslint.org/docs/rules/no-undef) [`prefer-const`](https://eslint.org/docs/rules/prefer-const)
 
     ```javascript
-    // bad
+    // 反例
     superPower = new SuperPower();
 
-    // good
+    // 正确示例
     const superPower = new SuperPower();
     ```
 
@@ -1589,18 +1574,18 @@ Other Style Guides
     > Why? It’s easier to add new variable declarations this way, and you never have to worry about swapping out a `;` for a `,` or introducing punctuation-only diffs. You can also step through each declaration with the debugger, instead of jumping through all of them at once.
 
     ```javascript
-    // bad
+    // 反例
     const items = getItems(),
         goSportsTeam = true,
         dragonball = 'z';
 
-    // bad
+    // 反例
     // (compare to above, and try to spot the mistake)
     const items = getItems(),
         goSportsTeam = true;
         dragonball = 'z';
 
-    // good
+    // 正确示例
     const items = getItems();
     const goSportsTeam = true;
     const dragonball = 'z';
@@ -1612,19 +1597,19 @@ Other Style Guides
     > Why? This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
 
     ```javascript
-    // bad
+    // 反例
     let i, len, dragonball,
         items = getItems(),
         goSportsTeam = true;
 
-    // bad
+    // 反例
     let i;
     const items = getItems();
     let dragonball;
     const goSportsTeam = true;
     let len;
 
-    // good
+    // 正确示例
     const goSportsTeam = true;
     const items = getItems();
     let dragonball;
@@ -1638,7 +1623,7 @@ Other Style Guides
     > Why? `let` and `const` are block scoped and not function scoped.
 
     ```javascript
-    // bad - unnecessary function call
+    // 反例 - unnecessary function call
     function checkName(hasName) {
       const name = getName();
 
@@ -1654,7 +1639,7 @@ Other Style Guides
       return name;
     }
 
-    // good
+    // 正确示例
     function checkName(hasName) {
       if (hasName === 'test') {
         return false;
@@ -1676,7 +1661,7 @@ Other Style Guides
     > Why? Chaining variable assignments creates implicit global variables.
 
     ```javascript
-    // bad
+    // 反例
     (function example() {
       // JavaScript interprets this as
       // let a = ( b = ( c = 1 ) );
@@ -1689,7 +1674,7 @@ Other Style Guides
     console.log(b); // 1
     console.log(c); // 1
 
-    // good
+    // 正确示例
     (function example() {
       let a = 1;
       let b = a;
@@ -1709,7 +1694,7 @@ Other Style Guides
     > Why? Per the eslint documentation, unary increment and decrement statements are subject to automatic semicolon insertion and can cause silent errors with incrementing or decrementing values within an application. It is also more expressive to mutate your values with statements like `num += 1` instead of `num++` or `num ++`. Disallowing unary increment and decrement statements also prevents you from pre-incrementing/pre-decrementing values unintentionally which can also cause unexpected behavior in your programs.
 
     ```javascript
-    // bad
+    // 反例
 
     const array = [1, 2, 3];
     let num = 1;
@@ -1726,7 +1711,7 @@ Other Style Guides
       }
     }
 
-    // good
+    // 正确示例
 
     const array = [1, 2, 3];
     let num = 1;
@@ -1743,20 +1728,20 @@ Other Style Guides
     > Why? Linebreaks surrounding `=` can obfuscate the value of an assignment.
 
     ```javascript
-    // bad
+    // 反例
     const foo =
       superLongLongLongLongLongLongLongLongFunctionName();
 
-    // bad
+    // 反例
     const foo
       = 'superLongLongLongLongLongLongLongLongString';
 
-    // good
+    // 正确示例
     const foo = (
       superLongLongLongLongLongLongLongLongFunctionName()
     );
 
-    // good
+    // 正确示例
     const foo = 'superLongLongLongLongLongLongLongLongString';
     ```
 
@@ -1766,7 +1751,7 @@ Other Style Guides
     > Why? Variables that are declared and not used anywhere in the code are most likely an error due to incomplete refactoring. Such variables take up space in the code and can lead to confusion by readers.
 
     ```javascript
-    // bad
+    // 反例
 
     var some_unused_var = 42;
 
@@ -1783,7 +1768,7 @@ Other Style Guides
         return x;
     }
 
-    // good
+    // 正确示例
 
     function getXPlusY(x, y) {
       return x + y;
@@ -1800,7 +1785,7 @@ Other Style Guides
     // 'coords' is now the 'data' object without its 'type' property.
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Hoisting
 
@@ -1899,7 +1884,7 @@ Other Style Guides
 
   - For more information refer to [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting/) by [Ben Cherry](http://www.adequatelygood.com/).
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Comparison Operators & Equality
 
@@ -1927,32 +1912,32 @@ Other Style Guides
   - [15.3](#comparison--shortcuts) Use shortcuts for booleans, but explicit comparisons for strings and numbers.
 
     ```javascript
-    // bad
+    // 反例
     if (isValid === true) {
       // ...
     }
 
-    // good
+    // 正确示例
     if (isValid) {
       // ...
     }
 
-    // bad
+    // 反例
     if (name) {
       // ...
     }
 
-    // good
+    // 正确示例
     if (name !== '') {
       // ...
     }
 
-    // bad
+    // 反例
     if (collection.length) {
       // ...
     }
 
-    // good
+    // 正确示例
     if (collection.length > 0) {
       // ...
     }
@@ -1967,7 +1952,7 @@ Other Style Guides
     > Why? Lexical declarations are visible in the entire `switch` block but only get initialized when assigned, which only happens when its `case` is reached. This causes problems when multiple `case` clauses attempt to define the same thing.
 
     ```javascript
-    // bad
+    // 反例
     switch (foo) {
       case 1:
         let x = 1;
@@ -1984,7 +1969,7 @@ Other Style Guides
         class C {}
     }
 
-    // good
+    // 正确示例
     switch (foo) {
       case 1: {
         let x = 1;
@@ -2013,7 +1998,7 @@ Other Style Guides
   - [15.6](#comparison--nested-ternaries) Ternaries should not be nested and generally be single line expressions. eslint: [`no-nested-ternary`](https://eslint.org/docs/rules/no-nested-ternary.html)
 
     ```javascript
-    // bad
+    // 反例
     const foo = maybe1 > maybe2
       ? "bar"
       : value1 > value2 ? "baz" : null;
@@ -2034,12 +2019,12 @@ Other Style Guides
   - [15.7](#comparison--unneeded-ternary) Avoid unneeded ternary statements. eslint: [`no-unneeded-ternary`](https://eslint.org/docs/rules/no-unneeded-ternary.html)
 
     ```javascript
-    // bad
+    // 反例
     const foo = a ? a : b;
     const bar = c ? true : false;
     const baz = c ? false : true;
 
-    // good
+    // 正确示例
     const foo = a || b;
     const bar = !!c;
     const baz = !c;
@@ -2052,37 +2037,37 @@ Other Style Guides
     > Why? This improves readability and clarifies the developer’s intention.
 
     ```javascript
-    // bad
+    // 反例
     const foo = a && b < 0 || c > 0 || d + 1 === 0;
 
-    // bad
+    // 反例
     const bar = a ** b - 5 % d;
 
-    // bad
+    // 反例
     // one may be confused into thinking (a || b) && c
     if (a || b && c) {
       return d;
     }
 
-    // bad
+    // 反例
     const bar = a + b / c * d;
 
-    // good
+    // 正确示例
     const foo = (a && b < 0) || c > 0 || (d + 1 === 0);
 
-    // good
+    // 正确示例
     const bar = a ** b - (5 % d);
 
-    // good
+    // 正确示例
     if (a || (b && c)) {
       return d;
     }
 
-    // good
+    // 正确示例
     const bar = a + (b / c) * d;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Blocks
 
@@ -2090,22 +2075,22 @@ Other Style Guides
   - [16.1](#blocks--braces) Use braces with all multi-line blocks. eslint: [`nonblock-statement-body-position`](https://eslint.org/docs/rules/nonblock-statement-body-position)
 
     ```javascript
-    // bad
+    // 反例
     if (test)
       return false;
 
-    // good
+    // 正确示例
     if (test) return false;
 
-    // good
+    // 正确示例
     if (test) {
       return false;
     }
 
-    // bad
+    // 反例
     function foo() { return false; }
 
-    // good
+    // 正确示例
     function bar() {
       return false;
     }
@@ -2115,7 +2100,7 @@ Other Style Guides
   - [16.2](#blocks--cuddled-elses) If you’re using multi-line blocks with `if` and `else`, put `else` on the same line as your `if` block’s closing brace. eslint: [`brace-style`](https://eslint.org/docs/rules/brace-style.html)
 
     ```javascript
-    // bad
+    // 反例
     if (test) {
       thing1();
       thing2();
@@ -2124,7 +2109,7 @@ Other Style Guides
       thing3();
     }
 
-    // good
+    // 正确示例
     if (test) {
       thing1();
       thing2();
@@ -2137,7 +2122,7 @@ Other Style Guides
   - [16.3](#blocks--no-else-return) If an `if` block always executes a `return` statement, the subsequent `else` block is unnecessary. A `return` in an `else if` block following an `if` block that contains a `return` can be separated into multiple `if` blocks. eslint: [`no-else-return`](https://eslint.org/docs/rules/no-else-return)
 
     ```javascript
-    // bad
+    // 反例
     function foo() {
       if (x) {
         return x;
@@ -2146,7 +2131,7 @@ Other Style Guides
       }
     }
 
-    // bad
+    // 反例
     function cats() {
       if (x) {
         return x;
@@ -2155,7 +2140,7 @@ Other Style Guides
       }
     }
 
-    // bad
+    // 反例
     function dogs() {
       if (x) {
         return x;
@@ -2166,7 +2151,7 @@ Other Style Guides
       }
     }
 
-    // good
+    // 正确示例
     function foo() {
       if (x) {
         return x;
@@ -2175,7 +2160,7 @@ Other Style Guides
       return y;
     }
 
-    // good
+    // 正确示例
     function cats() {
       if (x) {
         return x;
@@ -2186,7 +2171,7 @@ Other Style Guides
       }
     }
 
-    // good
+    // 正确示例
     function dogs(x) {
       if (x) {
         if (z) {
@@ -2198,7 +2183,7 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Control Statements
 
@@ -2208,24 +2193,24 @@ Other Style Guides
     > Why? Requiring operators at the beginning of the line keeps the operators aligned and follows a pattern similar to method chaining. This also improves readability by making it easier to visually follow complex logic.
 
     ```javascript
-    // bad
+    // 反例
     if ((foo === 123 || bar === 'abc') && doesItLookGoodWhenItBecomesThatLong() && isThisReallyHappening()) {
       thing1();
     }
 
-    // bad
+    // 反例
     if (foo === 123 &&
       bar === 'abc') {
       thing1();
     }
 
-    // bad
+    // 反例
     if (foo === 123
       && bar === 'abc') {
       thing1();
     }
 
-    // bad
+    // 反例
     if (
       foo === 123 &&
       bar === 'abc'
@@ -2233,7 +2218,7 @@ Other Style Guides
       thing1();
     }
 
-    // good
+    // 正确示例
     if (
       foo === 123
       && bar === 'abc'
@@ -2241,7 +2226,7 @@ Other Style Guides
       thing1();
     }
 
-    // good
+    // 正确示例
     if (
       (foo === 123 || bar === 'abc')
       && doesItLookGoodWhenItBecomesThatLong()
@@ -2250,7 +2235,7 @@ Other Style Guides
       thing1();
     }
 
-    // good
+    // 正确示例
     if (foo === 123 && bar === 'abc') {
       thing1();
     }
@@ -2260,16 +2245,16 @@ Other Style Guides
   - [17.2](#control-statements--value-selection) Don't use selection operators in place of control statements.
 
     ```javascript
-    // bad
+    // 反例
     !isRunning && startRunning();
 
-    // good
+    // 正确示例
     if (!isRunning) {
       startRunning();
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Comments
 
@@ -2277,7 +2262,7 @@ Other Style Guides
   - [18.1](#comments--multiline) Use `/** ... */` for multi-line comments.
 
     ```javascript
-    // bad
+    // 反例
     // make() returns a new element
     // based on the passed in tag name
     //
@@ -2290,7 +2275,7 @@ Other Style Guides
       return element;
     }
 
-    // good
+    // 正确示例
     /**
      * make() returns a new element
      * based on the passed-in tag name
@@ -2307,14 +2292,14 @@ Other Style Guides
   - [18.2](#comments--singleline) Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment unless it’s on the first line of a block.
 
     ```javascript
-    // bad
+    // 反例
     const active = true;  // is current tab
 
-    // good
+    // 正确示例
     // is current tab
     const active = true;
 
-    // bad
+    // 反例
     function getType() {
       console.log('fetching type...');
       // set the default type to 'no type'
@@ -2323,7 +2308,7 @@ Other Style Guides
       return type;
     }
 
-    // good
+    // 正确示例
     function getType() {
       console.log('fetching type...');
 
@@ -2346,15 +2331,15 @@ Other Style Guides
   - [18.3](#comments--spaces) Start all comments with a space to make it easier to read. eslint: [`spaced-comment`](https://eslint.org/docs/rules/spaced-comment)
 
     ```javascript
-    // bad
+    // 反例
     //is current tab
     const active = true;
 
-    // good
+    // 正确示例
     // is current tab
     const active = true;
 
-    // bad
+    // 反例
     /**
      *make() returns a new element
      *based on the passed-in tag name
@@ -2366,7 +2351,7 @@ Other Style Guides
       return element;
     }
 
-    // good
+    // 正确示例
     /**
      * make() returns a new element
      * based on the passed-in tag name
@@ -2410,7 +2395,7 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Whitespace
 
@@ -2418,17 +2403,17 @@ Other Style Guides
   - [19.1](#whitespace--spaces) Use soft tabs (space character) set to 2 spaces. eslint: [`indent`](https://eslint.org/docs/rules/indent.html)
 
     ```javascript
-    // bad
+    // 反例
     function foo() {
     ∙∙∙∙let name;
     }
 
-    // bad
+    // 反例
     function bar() {
     ∙let name;
     }
 
-    // good
+    // 正确示例
     function baz() {
     ∙∙let name;
     }
@@ -2438,23 +2423,23 @@ Other Style Guides
   - [19.2](#whitespace--before-blocks) Place 1 space before the leading brace. eslint: [`space-before-blocks`](https://eslint.org/docs/rules/space-before-blocks.html)
 
     ```javascript
-    // bad
+    // 反例
     function test(){
       console.log('test');
     }
 
-    // good
+    // 正确示例
     function test() {
       console.log('test');
     }
 
-    // bad
+    // 反例
     dog.set('attr',{
       age: '1 year',
       breed: 'Bernese Mountain Dog',
     });
 
-    // good
+    // 正确示例
     dog.set('attr', {
       age: '1 year',
       breed: 'Bernese Mountain Dog',
@@ -2465,22 +2450,22 @@ Other Style Guides
   - [19.3](#whitespace--around-keywords) Place 1 space before the opening parenthesis in control statements (`if`, `while` etc.). Place no space between the argument list and the function name in function calls and declarations. eslint: [`keyword-spacing`](https://eslint.org/docs/rules/keyword-spacing.html)
 
     ```javascript
-    // bad
+    // 反例
     if(isJedi) {
       fight ();
     }
 
-    // good
+    // 正确示例
     if (isJedi) {
       fight();
     }
 
-    // bad
+    // 反例
     function fight () {
       console.log ('Swooosh!');
     }
 
-    // good
+    // 正确示例
     function fight() {
       console.log('Swooosh!');
     }
@@ -2490,10 +2475,10 @@ Other Style Guides
   - [19.4](#whitespace--infix-ops) Set off operators with spaces. eslint: [`space-infix-ops`](https://eslint.org/docs/rules/space-infix-ops.html)
 
     ```javascript
-    // bad
+    // 反例
     const x=y+5;
 
-    // good
+    // 正确示例
     const x = y + 5;
     ```
 
@@ -2501,14 +2486,14 @@ Other Style Guides
   - [19.5](#whitespace--newline-at-end) End files with a single newline character. eslint: [`eol-last`](https://github.com/eslint/eslint/blob/master/docs/rules/eol-last.md)
 
     ```javascript
-    // bad
+    // 反例
     import { es6 } from './AirbnbStyleGuide';
       // ...
     export default es6;
     ```
 
     ```javascript
-    // bad
+    // 反例
     import { es6 } from './AirbnbStyleGuide';
       // ...
     export default es6;↵
@@ -2516,7 +2501,7 @@ Other Style Guides
     ```
 
     ```javascript
-    // good
+    // 正确示例
     import { es6 } from './AirbnbStyleGuide';
       // ...
     export default es6;↵
@@ -2527,10 +2512,10 @@ Other Style Guides
     emphasizes that the line is a method call, not a new statement. eslint: [`newline-per-chained-call`](https://eslint.org/docs/rules/newline-per-chained-call) [`no-whitespace-before-property`](https://eslint.org/docs/rules/no-whitespace-before-property)
 
     ```javascript
-    // bad
+    // 反例
     $('#items').find('.selected').highlight().end().find('.open').updateCount();
 
-    // bad
+    // 反例
     $('#items').
       find('.selected').
         highlight().
@@ -2538,7 +2523,7 @@ Other Style Guides
       find('.open').
         updateCount();
 
-    // good
+    // 正确示例
     $('#items')
       .find('.selected')
         .highlight()
@@ -2546,13 +2531,13 @@ Other Style Guides
       .find('.open')
         .updateCount();
 
-    // bad
+    // 反例
     const leds = stage.selectAll('.led').data(data).enter().append('svg:svg').classed('led', true)
         .attr('width', (radius + margin) * 2).append('svg:g')
         .attr('transform', `translate(${radius + margin},${radius + margin})`)
         .call(tron.led);
 
-    // good
+    // 正确示例
     const leds = stage.selectAll('.led')
         .data(data)
       .enter().append('svg:svg')
@@ -2562,7 +2547,7 @@ Other Style Guides
         .attr('transform', `translate(${radius + margin},${radius + margin})`)
         .call(tron.led);
 
-    // good
+    // 正确示例
     const leds = stage.selectAll('.led').data(data);
     ```
 
@@ -2570,20 +2555,20 @@ Other Style Guides
   - [19.7](#whitespace--after-blocks) Leave a blank line after blocks and before the next statement.
 
     ```javascript
-    // bad
+    // 反例
     if (foo) {
       return bar;
     }
     return baz;
 
-    // good
+    // 正确示例
     if (foo) {
       return bar;
     }
 
     return baz;
 
-    // bad
+    // 反例
     const obj = {
       foo() {
       },
@@ -2592,7 +2577,7 @@ Other Style Guides
     };
     return obj;
 
-    // good
+    // 正确示例
     const obj = {
       foo() {
       },
@@ -2603,7 +2588,7 @@ Other Style Guides
 
     return obj;
 
-    // bad
+    // 反例
     const arr = [
       function foo() {
       },
@@ -2612,7 +2597,7 @@ Other Style Guides
     ];
     return arr;
 
-    // good
+    // 正确示例
     const arr = [
       function foo() {
       },
@@ -2628,14 +2613,14 @@ Other Style Guides
   - [19.8](#whitespace--padded-blocks) Do not pad your blocks with blank lines. eslint: [`padded-blocks`](https://eslint.org/docs/rules/padded-blocks.html)
 
     ```javascript
-    // bad
+    // 反例
     function bar() {
 
       console.log(foo);
 
     }
 
-    // bad
+    // 反例
     if (baz) {
 
       console.log(qux);
@@ -2644,7 +2629,7 @@ Other Style Guides
 
     }
 
-    // bad
+    // 反例
     class Foo {
 
       constructor(bar) {
@@ -2652,12 +2637,12 @@ Other Style Guides
       }
     }
 
-    // good
+    // 正确示例
     function bar() {
       console.log(foo);
     }
 
-    // good
+    // 正确示例
     if (baz) {
       console.log(qux);
     } else {
@@ -2670,7 +2655,7 @@ Other Style Guides
 
     <!-- markdownlint-disable MD012 -->
     ```javascript
-    // bad
+    // 反例
     class Person {
       constructor(fullName, email, birthday) {
         this.fullName = fullName;
@@ -2699,7 +2684,7 @@ Other Style Guides
       }
     }
 
-    // good
+    // 正确示例
     class Person {
       constructor(fullName, email, birthday) {
         this.fullName = fullName;
@@ -2723,22 +2708,22 @@ Other Style Guides
   - [19.10](#whitespace--in-parens) Do not add spaces inside parentheses. eslint: [`space-in-parens`](https://eslint.org/docs/rules/space-in-parens.html)
 
     ```javascript
-    // bad
+    // 反例
     function bar( foo ) {
       return foo;
     }
 
-    // good
+    // 正确示例
     function bar(foo) {
       return foo;
     }
 
-    // bad
+    // 反例
     if ( foo ) {
       console.log(foo);
     }
 
-    // good
+    // 正确示例
     if (foo) {
       console.log(foo);
     }
@@ -2748,11 +2733,11 @@ Other Style Guides
   - [19.11](#whitespace--in-brackets) Do not add spaces inside brackets. eslint: [`array-bracket-spacing`](https://eslint.org/docs/rules/array-bracket-spacing.html)
 
     ```javascript
-    // bad
+    // 反例
     const foo = [ 1, 2, 3 ];
     console.log(foo[ 0 ]);
 
-    // good
+    // 正确示例
     const foo = [1, 2, 3];
     console.log(foo[0]);
     ```
@@ -2761,10 +2746,10 @@ Other Style Guides
   - [19.12](#whitespace--in-braces) Add spaces inside curly braces. eslint: [`object-curly-spacing`](https://eslint.org/docs/rules/object-curly-spacing.html)
 
     ```javascript
-    // bad
+    // 反例
     const foo = {clark: 'kent'};
 
-    // good
+    // 正确示例
     const foo = { clark: 'kent' };
     ```
 
@@ -2774,13 +2759,13 @@ Other Style Guides
     > Why? This ensures readability and maintainability.
 
     ```javascript
-    // bad
+    // 反例
     const foo = jsonData && jsonData.foo && jsonData.foo.bar && jsonData.foo.bar.baz && jsonData.foo.bar.baz.quux && jsonData.foo.bar.baz.quux.xyzzy;
 
-    // bad
+    // 反例
     $.ajax({ method: 'POST', url: 'https://airbnb.com/', data: { name: 'John' } }).done(() => console.log('Congratulations!')).fail(() => console.log('You have failed this city.'));
 
-    // good
+    // 正确示例
     const foo = jsonData
       && jsonData.foo
       && jsonData.foo.bar
@@ -2788,7 +2773,7 @@ Other Style Guides
       && jsonData.foo.bar.baz.quux
       && jsonData.foo.bar.baz.quux.xyzzy;
 
-    // good
+    // 正确示例
     $.ajax({
       method: 'POST',
       url: 'https://airbnb.com/',
@@ -2802,11 +2787,11 @@ Other Style Guides
   - [19.14](#whitespace--block-spacing) Require consistent spacing inside an open block token and the next token on the same line. This rule also enforces consistent spacing inside a close block token and previous token on the same line. eslint: [`block-spacing`](https://eslint.org/docs/rules/block-spacing)
 
     ```javascript
-    // bad
+    // 反例
     function foo() {return true;}
     if (foo) { bar = 0;}
 
-    // good
+    // 正确示例
     function foo() { return true; }
     if (foo) { bar = 0; }
     ```
@@ -2815,11 +2800,11 @@ Other Style Guides
   - [19.15](#whitespace--comma-spacing) Avoid spaces before commas and require a space after commas. eslint: [`comma-spacing`](https://eslint.org/docs/rules/comma-spacing)
 
     ```javascript
-    // bad
+    // 反例
     var foo = 1,bar = 2;
     var arr = [1 , 2];
 
-    // good
+    // 正确示例
     var foo = 1, bar = 2;
     var arr = [1, 2];
     ```
@@ -2828,13 +2813,13 @@ Other Style Guides
   - [19.16](#whitespace--computed-property-spacing) Enforce spacing inside of computed property brackets. eslint: [`computed-property-spacing`](https://eslint.org/docs/rules/computed-property-spacing)
 
     ```javascript
-    // bad
+    // 反例
     obj[foo ]
     obj[ 'foo']
     var x = {[ b ]: a}
     obj[foo[ bar ]]
 
-    // good
+    // 正确示例
     obj[foo]
     obj['foo']
     var x = { [b]: a }
@@ -2845,13 +2830,13 @@ Other Style Guides
   - [19.17](#whitespace--func-call-spacing) Avoid spaces between functions and their invocations. eslint: [`func-call-spacing`](https://eslint.org/docs/rules/func-call-spacing)
 
     ```javascript
-    // bad
+    // 反例
     func ();
 
     func
     ();
 
-    // good
+    // 正确示例
     func();
     ```
 
@@ -2859,11 +2844,11 @@ Other Style Guides
   - [19.18](#whitespace--key-spacing) Enforce spacing between keys and values in object literal properties. eslint: [`key-spacing`](https://eslint.org/docs/rules/key-spacing)
 
     ```javascript
-    // bad
+    // 反例
     var obj = { "foo" : 42 };
     var obj2 = { "foo":42 };
 
-    // good
+    // 正确示例
     var obj = { "foo": 42 };
     ```
 
@@ -2875,30 +2860,30 @@ Other Style Guides
 
     <!-- markdownlint-disable MD012 -->
     ```javascript
-    // bad - multiple empty lines
+    // 反例 - multiple empty lines
     var x = 1;
 
 
     var y = 2;
 
-    // bad - 2+ newlines at end of file
+    // 反例 - 2+ newlines at end of file
     var x = 1;
     var y = 2;
 
 
-    // bad - 1+ newline(s) at beginning of file
+    // 反例 - 1+ newline(s) at beginning of file
 
     var x = 1;
     var y = 2;
 
-    // good
+    // 正确示例
     var x = 1;
     var y = 2;
 
     ```
     <!-- markdownlint-enable MD012 -->
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Commas
 
@@ -2906,21 +2891,21 @@ Other Style Guides
   - [20.1](#commas--leading-trailing) Leading commas: **Nope.** eslint: [`comma-style`](https://eslint.org/docs/rules/comma-style.html)
 
     ```javascript
-    // bad
+    // 反例
     const story = [
         once
       , upon
       , aTime
     ];
 
-    // good
+    // 正确示例
     const story = [
       once,
       upon,
       aTime,
     ];
 
-    // bad
+    // 反例
     const hero = {
         firstName: 'Ada'
       , lastName: 'Lovelace'
@@ -2928,7 +2913,7 @@ Other Style Guides
       , superPower: 'computers'
     };
 
-    // good
+    // 正确示例
     const hero = {
       firstName: 'Ada',
       lastName: 'Lovelace',
@@ -2943,7 +2928,7 @@ Other Style Guides
     > Why? This leads to cleaner git diffs. Also, transpilers like Babel will remove the additional trailing comma in the transpiled code which means you don’t have to worry about the [trailing comma problem](https://github.com/airbnb/javascript/blob/es5-deprecated/es5/README.md#commas) in legacy browsers.
 
     ```diff
-    // bad - git diff without trailing comma
+    // 反例 - git diff without trailing comma
     const hero = {
          firstName: 'Florence',
     -    lastName: 'Nightingale'
@@ -2951,7 +2936,7 @@ Other Style Guides
     +    inventorOf: ['coxcomb chart', 'modern nursing']
     };
 
-    // good - git diff with trailing comma
+    // 正确示例 - git diff with trailing comma
     const hero = {
          firstName: 'Florence',
          lastName: 'Nightingale',
@@ -2960,7 +2945,7 @@ Other Style Guides
     ```
 
     ```javascript
-    // bad
+    // 反例
     const hero = {
       firstName: 'Dana',
       lastName: 'Scully'
@@ -2971,7 +2956,7 @@ Other Style Guides
       'Superman'
     ];
 
-    // good
+    // 正确示例
     const hero = {
       firstName: 'Dana',
       lastName: 'Scully',
@@ -2982,7 +2967,7 @@ Other Style Guides
       'Superman',
     ];
 
-    // bad
+    // 反例
     function createHero(
       firstName,
       lastName,
@@ -2991,7 +2976,7 @@ Other Style Guides
       // does nothing
     }
 
-    // good
+    // 正确示例
     function createHero(
       firstName,
       lastName,
@@ -3000,7 +2985,7 @@ Other Style Guides
       // does nothing
     }
 
-    // good (note that a comma must not appear after a "rest" element)
+    // 正确示例 (note that a comma must not appear after a "rest" element)
     function createHero(
       firstName,
       lastName,
@@ -3010,21 +2995,21 @@ Other Style Guides
       // does nothing
     }
 
-    // bad
+    // 反例
     createHero(
       firstName,
       lastName,
       inventorOf
     );
 
-    // good
+    // 正确示例
     createHero(
       firstName,
       lastName,
       inventorOf,
     );
 
-    // good (note that a comma must not appear after a "rest" element)
+    // 正确示例 (note that a comma must not appear after a "rest" element)
     createHero(
       firstName,
       lastName,
@@ -3033,7 +3018,7 @@ Other Style Guides
     );
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Semicolons
 
@@ -3043,39 +3028,39 @@ Other Style Guides
     > Why? When JavaScript encounters a line break without a semicolon, it uses a set of rules called [Automatic Semicolon Insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion) to determine whether or not it should regard that line break as the end of a statement, and (as the name implies) place a semicolon into your code before the line break if it thinks so. ASI contains a few eccentric behaviors, though, and your code will break if JavaScript misinterprets your line break. These rules will become more complicated as new features become a part of JavaScript. Explicitly terminating your statements and configuring your linter to catch missing semicolons will help prevent you from encountering issues.
 
     ```javascript
-    // bad - raises exception
+    // 反例 - raises exception
     const luke = {}
     const leia = {}
     [luke, leia].forEach((jedi) => jedi.father = 'vader')
 
-    // bad - raises exception
+    // 反例 - raises exception
     const reaction = "No! That’s impossible!"
     (async function meanwhileOnTheFalcon() {
       // handle `leia`, `lando`, `chewie`, `r2`, `c3p0`
       // ...
     }())
 
-    // bad - returns `undefined` instead of the value on the next line - always happens when `return` is on a line by itself because of ASI!
+    // 反例 - returns `undefined` instead of the value on the next line - always happens when `return` is on a line by itself because of ASI!
     function foo() {
       return
         'search your feelings, you know it to be foo'
     }
 
-    // good
+    // 正确示例
     const luke = {};
     const leia = {};
     [luke, leia].forEach((jedi) => {
       jedi.father = 'vader';
     });
 
-    // good
+    // 正确示例
     const reaction = "No! That’s impossible!";
     (async function meanwhileOnTheFalcon() {
       // handle `leia`, `lando`, `chewie`, `r2`, `c3p0`
       // ...
     }());
 
-    // good
+    // 正确示例
     function foo() {
       return 'search your feelings, you know it to be foo';
     }
@@ -3083,7 +3068,7 @@ Other Style Guides
 
     [Read more](https://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214#7365214).
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Type Casting & Coercion
 
@@ -3096,16 +3081,16 @@ Other Style Guides
     ```javascript
     // => this.reviewScore = 9;
 
-    // bad
+    // 反例
     const totalScore = new String(this.reviewScore); // typeof totalScore is "object" not "string"
 
-    // bad
+    // 反例
     const totalScore = this.reviewScore + ''; // invokes this.reviewScore.valueOf()
 
-    // bad
+    // 反例
     const totalScore = this.reviewScore.toString(); // isn’t guaranteed to return a string
 
-    // good
+    // 正确示例
     const totalScore = String(this.reviewScore);
     ```
 
@@ -3115,22 +3100,22 @@ Other Style Guides
     ```javascript
     const inputValue = '4';
 
-    // bad
+    // 反例
     const val = new Number(inputValue);
 
-    // bad
+    // 反例
     const val = +inputValue;
 
-    // bad
+    // 反例
     const val = inputValue >> 0;
 
-    // bad
+    // 反例
     const val = parseInt(inputValue);
 
-    // good
+    // 正确示例
     const val = Number(inputValue);
 
-    // good
+    // 正确示例
     const val = parseInt(inputValue, 10);
     ```
 
@@ -3138,7 +3123,7 @@ Other Style Guides
   - [22.4](#coercion--comment-deviations) If for whatever reason you are doing something wild and `parseInt` is your bottleneck and need to use Bitshift for [performance reasons](https://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you’re doing.
 
     ```javascript
-    // good
+    // 正确示例
     /**
      * parseInt was the reason my code was slow.
      * Bitshifting the String to coerce it to a
@@ -3162,17 +3147,17 @@ Other Style Guides
     ```javascript
     const age = 0;
 
-    // bad
+    // 反例
     const hasAge = new Boolean(age);
 
-    // good
+    // 正确示例
     const hasAge = Boolean(age);
 
     // best
     const hasAge = !!age;
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Naming Conventions
 
@@ -3180,12 +3165,12 @@ Other Style Guides
   - [23.1](#naming--descriptive) Avoid single letter names. Be descriptive with your naming. eslint: [`id-length`](https://eslint.org/docs/rules/id-length)
 
     ```javascript
-    // bad
+    // 反例
     function q() {
       // ...
     }
 
-    // good
+    // 正确示例
     function query() {
       // ...
     }
@@ -3195,12 +3180,12 @@ Other Style Guides
   - [23.2](#naming--camelCase) Use camelCase when naming objects, functions, and instances. eslint: [`camelcase`](https://eslint.org/docs/rules/camelcase.html)
 
     ```javascript
-    // bad
+    // 反例
     const OBJEcttsssss = {};
     const this_is_my_object = {};
     function c() {}
 
-    // good
+    // 正确示例
     const thisIsMyObject = {};
     function thisIsMyFunction() {}
     ```
@@ -3209,7 +3194,7 @@ Other Style Guides
   - [23.3](#naming--PascalCase) Use PascalCase only when naming constructors or classes. eslint: [`new-cap`](https://eslint.org/docs/rules/new-cap.html)
 
     ```javascript
-    // bad
+    // 反例
     function user(options) {
       this.name = options.name;
     }
@@ -3218,7 +3203,7 @@ Other Style Guides
       name: 'nope',
     });
 
-    // good
+    // 正确示例
     class User {
       constructor(options) {
         this.name = options.name;
@@ -3236,15 +3221,15 @@ Other Style Guides
     > Why? JavaScript does not have the concept of privacy in terms of properties or methods. Although a leading underscore is a common convention to mean “private”, in fact, these properties are fully public, and as such, are part of your public API contract. This convention might lead developers to wrongly think that a change won’t count as breaking, or that tests aren’t needed. tl;dr: if you want something to be “private”, it must not be observably present.
 
     ```javascript
-    // bad
+    // 反例
     this.__firstName__ = 'Panda';
     this.firstName_ = 'Panda';
     this._firstName = 'Panda';
 
-    // good
+    // 正确示例
     this.firstName = 'Panda';
 
-    // good, in environments where WeakMaps are available
+    // 正确示例, in environments where WeakMaps are available
     // see https://kangax.github.io/compat-table/es6/#test-WeakMap
     const firstNames = new WeakMap();
     firstNames.set(this, 'Panda');
@@ -3254,7 +3239,7 @@ Other Style Guides
   - [23.5](#naming--self-this) Don’t save references to `this`. Use arrow functions or [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
 
     ```javascript
-    // bad
+    // 反例
     function foo() {
       const self = this;
       return function () {
@@ -3262,7 +3247,7 @@ Other Style Guides
       };
     }
 
-    // bad
+    // 反例
     function foo() {
       const that = this;
       return function () {
@@ -3270,7 +3255,7 @@ Other Style Guides
       };
     }
 
-    // good
+    // 正确示例
     function foo() {
       return () => {
         console.log(this);
@@ -3295,19 +3280,19 @@ Other Style Guides
     export default function insideDirectory() {}
 
     // in some other file
-    // bad
+    // 反例
     import CheckBox from './checkBox'; // PascalCase import/export, camelCase filename
     import FortyTwo from './FortyTwo'; // PascalCase import/filename, camelCase export
     import InsideDirectory from './InsideDirectory'; // PascalCase import/filename, camelCase export
 
-    // bad
+    // 反例
     import CheckBox from './check_box'; // PascalCase import/export, snake_case filename
     import forty_two from './forty_two'; // snake_case import/filename, camelCase export
     import inside_directory from './inside_directory'; // snake_case import, camelCase export
     import index from './inside_directory/index'; // requiring the index file explicitly
     import insideDirectory from './insideDirectory/index'; // requiring the index file explicitly
 
-    // good
+    // 正确示例
     import CheckBox from './CheckBox'; // PascalCase export/import/filename
     import fortyTwo from './fortyTwo'; // camelCase export/import/filename
     import insideDirectory from './insideDirectory'; // camelCase export/import/directory name/implicit "index"
@@ -3343,18 +3328,18 @@ Other Style Guides
     > Why? Names are for readability, not to appease a computer algorithm.
 
     ```javascript
-    // bad
+    // 反例
     import SmsContainer from './containers/SmsContainer';
 
-    // bad
+    // 反例
     const HttpRequests = [
       // ...
     ];
 
-    // good
+    // 正确示例
     import SMSContainer from './containers/SMSContainer';
 
-    // good
+    // 正确示例
     const HTTPRequests = [
       // ...
     ];
@@ -3381,13 +3366,13 @@ Other Style Guides
     - What about exported objects? - Uppercase at the top level of export (e.g. `EXPORTED_OBJECT.key`) and maintain that all nested properties do not change.
 
     ```javascript
-    // bad
+    // 反例
     const PRIVATE_VARIABLE = 'should not be unnecessarily uppercased within a file';
 
-    // bad
+    // 反例
     export const THING_TO_BE_CHANGED = 'should obviously not be uppercased';
 
-    // bad
+    // 反例
     export let REASSIGNABLE_VARIABLE = 'do not use let with uppercase variables';
 
     // ---
@@ -3400,18 +3385,18 @@ Other Style Guides
 
     // ---
 
-    // bad - unnecessarily uppercases key while adding no semantic value
+    // 反例 - unnecessarily uppercases key while adding no semantic value
     export const MAPPING = {
       KEY: 'value'
     };
 
-    // good
+    // 正确示例
     export const MAPPING = {
       key: 'value'
     };
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Accessors
 
@@ -3422,7 +3407,7 @@ Other Style Guides
   - [24.2](#accessors--no-getters-setters) Do not use JavaScript getters/setters as they cause unexpected side effects and are harder to test, maintain, and reason about. Instead, if you do make accessor functions, use `getVal()` and `setVal('hello')`.
 
     ```javascript
-    // bad
+    // 反例
     class Dragon {
       get age() {
         // ...
@@ -3433,7 +3418,7 @@ Other Style Guides
       }
     }
 
-    // good
+    // 正确示例
     class Dragon {
       getAge() {
         // ...
@@ -3449,12 +3434,12 @@ Other Style Guides
   - [24.3](#accessors--boolean-prefix) If the property/method is a `boolean`, use `isVal()` or `hasVal()`.
 
     ```javascript
-    // bad
+    // 反例
     if (!dragon.age()) {
       return false;
     }
 
-    // good
+    // 正确示例
     if (!dragon.hasAge()) {
       return false;
     }
@@ -3480,7 +3465,7 @@ Other Style Guides
     }
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Events
 
@@ -3488,7 +3473,7 @@ Other Style Guides
   - [25.1](#events--hash) When attaching data payloads to events (whether DOM events or something more proprietary like Backbone events), pass an object literal (also known as a "hash") instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
 
     ```javascript
-    // bad
+    // 反例
     $(this).trigger('listingUpdated', listing.id);
 
     // ...
@@ -3501,7 +3486,7 @@ Other Style Guides
     prefer:
 
     ```javascript
-    // good
+    // 正确示例
     $(this).trigger('listingUpdated', { listingID: listing.id });
 
     // ...
@@ -3511,7 +3496,7 @@ Other Style Guides
     });
     ```
 
-  **[⬆ back to top](#table-of-contents)**
+  **[⬆ 回到目录](#目录)**
 
 ## jQuery
 
@@ -3519,13 +3504,13 @@ Other Style Guides
   - [26.1](#jquery--dollar-prefix) Prefix jQuery object variables with a `$`.
 
     ```javascript
-    // bad
+    // 反例
     const sidebar = $('.sidebar');
 
-    // good
+    // 正确示例
     const $sidebar = $('.sidebar');
 
-    // good
+    // 正确示例
     const $sidebarBtn = $('.sidebar-btn');
     ```
 
@@ -3533,7 +3518,7 @@ Other Style Guides
   - [26.2](#jquery--cache) Cache jQuery lookups.
 
     ```javascript
-    // bad
+    // 反例
     function setSidebar() {
       $('.sidebar').hide();
 
@@ -3544,7 +3529,7 @@ Other Style Guides
       });
     }
 
-    // good
+    // 正确示例
     function setSidebar() {
       const $sidebar = $('.sidebar');
       $sidebar.hide();
@@ -3564,30 +3549,30 @@ Other Style Guides
   - [26.4](#jquery--find) Use `find` with scoped jQuery object queries.
 
     ```javascript
-    // bad
+    // 反例
     $('ul', '.sidebar').hide();
 
-    // bad
+    // 反例
     $('.sidebar').find('ul').hide();
 
-    // good
+    // 正确示例
     $('.sidebar ul').hide();
 
-    // good
+    // 正确示例
     $('.sidebar > ul').hide();
 
-    // good
+    // 正确示例
     $sidebar.find('ul').hide();
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## ECMAScript 5 Compatibility
 
   <a name="es5-compat--kangax"></a><a name="26.1"></a>
   - [27.1](#es5-compat--kangax) Refer to [Kangax](https://twitter.com/kangax/)’s ES5 [compatibility table](https://kangax.github.io/es5-compat-table/).
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 <a name="ecmascript-6-styles"></a>
 ## ECMAScript 6+ (ES 2015+) Styles
@@ -3615,7 +3600,7 @@ Other Style Guides
 
     > Why? [They are not finalized](https://tc39.github.io/process-document/), and they are subject to change or to be withdrawn entirely. We want to use JavaScript, and proposals are not JavaScript yet.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
 ## Standard Library
 
@@ -3630,11 +3615,11 @@ Other Style Guides
     > If this behavior is desired, make it explicit.
 
     ```javascript
-    // bad
+    // 反例
     isNaN('1.2'); // false
     isNaN('1.2.3'); // true
 
-    // good
+    // 正确示例
     Number.isNaN('1.2.3'); // false
     Number.isNaN(Number('1.2.3')); // true
     ```
@@ -3647,274 +3632,29 @@ Other Style Guides
     > If this behavior is desired, make it explicit.
 
     ```javascript
-    // bad
+    // 反例
     isFinite('2e3'); // true
 
-    // good
+    // 正确示例
     Number.isFinite('2e3'); // false
     Number.isFinite(parseInt('2e3', 10)); // true
     ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
-## Testing
-
-  <a name="testing--yup"></a><a name="28.1"></a>
-  - [30.1](#testing--yup) **Yup.**
-
-    ```javascript
-    function foo() {
-      return true;
-    }
-    ```
+## 测试
 
   <a name="testing--for-real"></a><a name="28.2"></a>
-  - [30.2](#testing--for-real) **No, but seriously**:
-    - Whichever testing framework you use, you should be writing tests!
-    - Strive to write many small pure functions, and minimize where mutations occur.
+  - [30.1](#testing--for-real) **No, but seriously**:
+    - 无论使用哪个测试框架，都需要写测试。
+    - 尽量写小而美的纯函数。
     - Be cautious about stubs and mocks - they can make your tests more brittle.
     - We primarily use [`mocha`](https://www.npmjs.com/package/mocha) and [`jest`](https://www.npmjs.com/package/jest) at Airbnb. [`tape`](https://www.npmjs.com/package/tape) is also used occasionally for small, separate modules.
     - 100% test coverage is a good goal to strive for, even if it’s not always practical to reach it.
     - Whenever you fix a bug, _write a regression test_. A bug fixed without a regression test is almost certainly going to break again in the future.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
-## Performance
-
-  - [On Layout & Web Performance](https://www.kellegous.com/j/2013/01/26/layout-performance/)
-  - [String vs Array Concat](https://jsperf.com/string-vs-array-concat/2)
-  - [Try/Catch Cost In a Loop](https://jsperf.com/try-catch-in-loop-cost/12)
-  - [Bang Function](https://jsperf.com/bang-function)
-  - [jQuery Find vs Context, Selector](https://jsperf.com/jquery-find-vs-context-sel/164)
-  - [innerHTML vs textContent for script text](https://jsperf.com/innerhtml-vs-textcontent-for-script-text)
-  - [Long String Concatenation](https://jsperf.com/ya-string-concat/38)
-  - [Are JavaScript functions like `map()`, `reduce()`, and `filter()` optimized for traversing arrays?](https://www.quora.com/JavaScript-programming-language-Are-Javascript-functions-like-map-reduce-and-filter-already-optimized-for-traversing-array/answer/Quildreen-Motta)
-  - Loading...
-
-**[⬆ back to top](#table-of-contents)**
-
-## Resources
-
-**Learning ES6+**
-
-  - [Latest ECMA spec](https://tc39.github.io/ecma262/)
-  - [ExploringJS](http://exploringjs.com/)
-  - [ES6 Compatibility Table](https://kangax.github.io/compat-table/es6/)
-  - [Comprehensive Overview of ES6 Features](http://es6-features.org/)
-
-**Read This**
-
-  - [Standard ECMA-262](http://www.ecma-international.org/ecma-262/6.0/index.html)
-
-**Tools**
-
-  - Code Style Linters
-    - [ESlint](https://eslint.org/) - [Airbnb Style .eslintrc](https://github.com/airbnb/javascript/blob/master/linters/.eslintrc)
-    - [JSHint](http://jshint.com/) - [Airbnb Style .jshintrc](https://github.com/airbnb/javascript/blob/master/linters/.jshintrc)
-  - Neutrino Preset - [@neutrinojs/airbnb](https://neutrinojs.org/packages/airbnb/)
-
-**Other Style Guides**
-
-  - [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
-  - [Google JavaScript Style Guide (Old)](https://google.github.io/styleguide/javascriptguide.xml)
-  - [jQuery Core Style Guidelines](https://contribute.jquery.org/style-guide/js/)
-  - [Principles of Writing Consistent, Idiomatic JavaScript](https://github.com/rwaldron/idiomatic.js)
-  - [StandardJS](https://standardjs.com)
-
-**Other Styles**
-
-  - [Naming this in nested functions](https://gist.github.com/cjohansen/4135065) - Christian Johansen
-  - [Conditional Callbacks](https://github.com/airbnb/javascript/issues/52) - Ross Allen
-  - [Popular JavaScript Coding Conventions on GitHub](http://sideeffect.kr/popularconvention/#javascript) - JeongHoon Byun
-  - [Multiple var statements in JavaScript, not superfluous](http://benalman.com/news/2012/05/multiple-var-statements-javascript/) - Ben Alman
-
-**Further Reading**
-
-  - [Understanding JavaScript Closures](https://javascriptweblog.wordpress.com/2010/10/25/understanding-javascript-closures/) - Angus Croll
-  - [Basic JavaScript for the impatient programmer](http://www.2ality.com/2013/06/basic-javascript.html) - Dr. Axel Rauschmayer
-  - [You Might Not Need jQuery](http://youmightnotneedjquery.com/) - Zack Bloom & Adam Schwartz
-  - [ES6 Features](https://github.com/lukehoban/es6features) - Luke Hoban
-  - [Frontend Guidelines](https://github.com/bendc/frontend-guidelines) - Benjamin De Cock
-
-**Books**
-
-  - [JavaScript: The Good Parts](https://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742) - Douglas Crockford
-  - [JavaScript Patterns](https://www.amazon.com/JavaScript-Patterns-Stoyan-Stefanov/dp/0596806752) - Stoyan Stefanov
-  - [Pro JavaScript Design Patterns](https://www.amazon.com/JavaScript-Design-Patterns-Recipes-Problem-Solution/dp/159059908X) - Ross Harmes and Dustin Diaz
-  - [High Performance Web Sites: Essential Knowledge for Front-End Engineers](https://www.amazon.com/High-Performance-Web-Sites-Essential/dp/0596529309) - Steve Souders
-  - [Maintainable JavaScript](https://www.amazon.com/Maintainable-JavaScript-Nicholas-C-Zakas/dp/1449327680) - Nicholas C. Zakas
-  - [JavaScript Web Applications](https://www.amazon.com/JavaScript-Web-Applications-Alex-MacCaw/dp/144930351X) - Alex MacCaw
-  - [Pro JavaScript Techniques](https://www.amazon.com/Pro-JavaScript-Techniques-John-Resig/dp/1590597273) - John Resig
-  - [Smashing Node.js: JavaScript Everywhere](https://www.amazon.com/Smashing-Node-js-JavaScript-Everywhere-Magazine/dp/1119962595) - Guillermo Rauch
-  - [Secrets of the JavaScript Ninja](https://www.amazon.com/Secrets-JavaScript-Ninja-John-Resig/dp/193398869X) - John Resig and Bear Bibeault
-  - [Human JavaScript](http://humanjavascript.com/) - Henrik Joreteg
-  - [Superhero.js](http://superherojs.com/) - Kim Joar Bekkelund, Mads Mobæk, & Olav Bjorkoy
-  - [JSBooks](http://jsbooks.revolunet.com/) - Julien Bouquillon
-  - [Third Party JavaScript](https://www.manning.com/books/third-party-javascript) - Ben Vinegar and Anton Kovalyov
-  - [Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript](http://amzn.com/0321812182) - David Herman
-  - [Eloquent JavaScript](http://eloquentjavascript.net/) - Marijn Haverbeke
-  - [You Don’t Know JS: ES6 & Beyond](http://shop.oreilly.com/product/0636920033769.do) - Kyle Simpson
-
-**Blogs**
-
-  - [JavaScript Weekly](http://javascriptweekly.com/)
-  - [JavaScript, JavaScript...](https://javascriptweblog.wordpress.com/)
-  - [Bocoup Weblog](https://bocoup.com/weblog)
-  - [Adequately Good](http://www.adequatelygood.com/)
-  - [NCZOnline](https://www.nczonline.net/)
-  - [Perfection Kills](http://perfectionkills.com/)
-  - [Ben Alman](http://benalman.com/)
-  - [Dmitry Baranovskiy](http://dmitry.baranovskiy.com/)
-  - [nettuts](http://code.tutsplus.com/?s=javascript)
-
-**Podcasts**
-
-  - [JavaScript Air](https://javascriptair.com/)
-  - [JavaScript Jabber](https://devchat.tv/js-jabber/)
-
-**[⬆ back to top](#table-of-contents)**
-
-## In the Wild
-
-  This is a list of organizations that are using this style guide. Send us a pull request and we'll add you to the list.
-
-  - **123erfasst**: [123erfasst/javascript](https://github.com/123erfasst/javascript)
-  - **3blades**: [3Blades](https://github.com/3blades)
-  - **4Catalyzer**: [4Catalyzer/javascript](https://github.com/4Catalyzer/javascript)
-  - **Aan Zee**: [AanZee/javascript](https://github.com/AanZee/javascript)
-  - **Adult Swim**: [adult-swim/javascript](https://github.com/adult-swim/javascript)
-  - **Airbnb**: [airbnb/javascript](https://github.com/airbnb/javascript)
-  - **AltSchool**: [AltSchool/javascript](https://github.com/AltSchool/javascript)
-  - **Apartmint**: [apartmint/javascript](https://github.com/apartmint/javascript)
-  - **Ascribe**: [ascribe/javascript](https://github.com/ascribe/javascript)
-  - **Avalara**: [avalara/javascript](https://github.com/avalara/javascript)
-  - **Avant**: [avantcredit/javascript](https://github.com/avantcredit/javascript)
-  - **Axept**: [axept/javascript](https://github.com/axept/javascript)
-  - **BashPros**: [BashPros/javascript](https://github.com/BashPros/javascript)
-  - **Billabong**: [billabong/javascript](https://github.com/billabong/javascript)
-  - **Bisk**: [bisk](https://github.com/Bisk/)
-  - **Bonhomme**: [bonhommeparis/javascript](https://github.com/bonhommeparis/javascript)
-  - **Brainshark**: [brainshark/javascript](https://github.com/brainshark/javascript)
-  - **CaseNine**: [CaseNine/javascript](https://github.com/CaseNine/javascript)
-  - **Cerner**: [Cerner](https://github.com/cerner/)
-  - **Chartboost**: [ChartBoost/javascript-style-guide](https://github.com/ChartBoost/javascript-style-guide)
-  - **Coeur d'Alene Tribe**: [www.cdatribe-nsn.gov](https://www.cdatribe-nsn.gov)
-  - **ComparaOnline**: [comparaonline/javascript](https://github.com/comparaonline/javascript-style-guide)
-  - **Compass Learning**: [compasslearning/javascript-style-guide](https://github.com/compasslearning/javascript-style-guide)
-  - **DailyMotion**: [dailymotion/javascript](https://github.com/dailymotion/javascript)
-  - **DoSomething**: [DoSomething/eslint-config](https://github.com/DoSomething/eslint-config)
-  - **Digitpaint** [digitpaint/javascript](https://github.com/digitpaint/javascript)
-  - **Drupal**: [www.drupal.org](https://www.drupal.org/project/drupal)
-  - **Ecosia**: [ecosia/javascript](https://github.com/ecosia/javascript)
-  - **Evernote**: [evernote/javascript-style-guide](https://github.com/evernote/javascript-style-guide)
-  - **Evolution Gaming**: [evolution-gaming/javascript](https://github.com/evolution-gaming/javascript)
-  - **EvozonJs**: [evozonjs/javascript](https://github.com/evozonjs/javascript)
-  - **ExactTarget**: [ExactTarget/javascript](https://github.com/ExactTarget/javascript)
-  - **Expensify** [Expensify/Style-Guide](https://github.com/Expensify/Style-Guide/blob/master/javascript.md)
-  - **Flexberry**: [Flexberry/javascript-style-guide](https://github.com/Flexberry/javascript-style-guide)
-  - **Gawker Media**: [gawkermedia](https://github.com/gawkermedia/)
-  - **General Electric**: [GeneralElectric/javascript](https://github.com/GeneralElectric/javascript)
-  - **Generation Tux**: [GenerationTux/javascript](https://github.com/generationtux/styleguide)
-  - **GoodData**: [gooddata/gdc-js-style](https://github.com/gooddata/gdc-js-style)
-  - **GreenChef**: [greenchef/javascript](https://github.com/greenchef/javascript)
-  - **Grooveshark**: [grooveshark/javascript](https://github.com/grooveshark/javascript)
-  - **Grupo-Abraxas**: [Grupo-Abraxas/javascript](https://github.com/Grupo-Abraxas/javascript)
-  - **Happeo**: [happeo/javascript](https://github.com/happeo/javascript)
-  - **Honey**: [honeyscience/javascript](https://github.com/honeyscience/javascript)
-  - **How About We**: [howaboutwe/javascript](https://github.com/howaboutwe/javascript-style-guide)
-  - **Huballin**: [huballin](https://github.com/huballin/)
-  - **HubSpot**: [HubSpot/javascript](https://github.com/HubSpot/javascript)
-  - **Hyper**: [hyperoslo/javascript-playbook](https://github.com/hyperoslo/javascript-playbook/blob/master/style.md)
-  - **InterCity Group**: [intercitygroup/javascript-style-guide](https://github.com/intercitygroup/javascript-style-guide)
-  - **Jam3**: [Jam3/Javascript-Code-Conventions](https://github.com/Jam3/Javascript-Code-Conventions)
-  - **JeopardyBot**: [kesne/jeopardy-bot](https://github.com/kesne/jeopardy-bot/blob/master/STYLEGUIDE.md)
-  - **JSSolutions**: [JSSolutions/javascript](https://github.com/JSSolutions/javascript)
-  - **Kaplan Komputing**: [kaplankomputing/javascript](https://github.com/kaplankomputing/javascript)
-  - **KickorStick**: [kickorstick](https://github.com/kickorstick/)
-  - **Kinetica Solutions**: [kinetica/javascript](https://github.com/kinetica/Javascript-style-guide)
-  - **LEINWAND**: [LEINWAND/javascript](https://github.com/LEINWAND/javascript)
-  - **Lonely Planet**: [lonelyplanet/javascript](https://github.com/lonelyplanet/javascript)
-  - **M2GEN**: [M2GEN/javascript](https://github.com/M2GEN/javascript)
-  - **Mighty Spring**: [mightyspring/javascript](https://github.com/mightyspring/javascript)
-  - **MinnPost**: [MinnPost/javascript](https://github.com/MinnPost/javascript)
-  - **MitocGroup**: [MitocGroup/javascript](https://github.com/MitocGroup/javascript)
-  - **ModCloth**: [modcloth/javascript](https://github.com/modcloth/javascript)
-  - **Money Advice Service**: [moneyadviceservice/javascript](https://github.com/moneyadviceservice/javascript)
-  - **Muber**: [muber](https://github.com/muber/)
-  - **National Geographic**: [natgeo](https://github.com/natgeo/)
-  - **Nimbl3**: [nimbl3/javascript](https://github.com/nimbl3/javascript)
-  - **NullDev**: [NullDevCo/JavaScript-Styleguide](https://github.com/NullDevCo/JavaScript-Styleguide)
-  - **Nulogy**: [nulogy/javascript](https://github.com/nulogy/javascript)
-  - **Orange Hill Development**: [orangehill/javascript](https://github.com/orangehill/javascript)
-  - **Orion Health**: [orionhealth/javascript](https://github.com/orionhealth/javascript)
-  - **OutBoxSoft**: [OutBoxSoft/javascript](https://github.com/OutBoxSoft/javascript)
-  - **Peerby**: [Peerby/javascript](https://github.com/Peerby/javascript)
-  - **Pier 1**: [Pier1/javascript](https://github.com/pier1/javascript)
-  - **Qotto**: [Qotto/javascript-style-guide](https://github.com/Qotto/javascript-style-guide)
-  - **Razorfish**: [razorfish/javascript-style-guide](https://github.com/razorfish/javascript-style-guide)
-  - **reddit**: [reddit/styleguide/javascript](https://github.com/reddit/styleguide/tree/master/javascript)
-  - **React**: [facebook.github.io/react/contributing/how-to-contribute.html#style-guide](https://facebook.github.io/react/contributing/how-to-contribute.html#style-guide)
-  - **REI**: [reidev/js-style-guide](https://github.com/rei/code-style-guides/)
-  - **Ripple**: [ripple/javascript-style-guide](https://github.com/ripple/javascript-style-guide)
-  - **Sainsbury’s Supermarkets**: [jsainsburyplc](https://github.com/jsainsburyplc)
-  - **SeekingAlpha**: [seekingalpha/javascript-style-guide](https://github.com/seekingalpha/javascript-style-guide)
-  - **Shutterfly**: [shutterfly/javascript](https://github.com/shutterfly/javascript)
-  - **Sourcetoad**: [sourcetoad/javascript](https://github.com/sourcetoad/javascript)
-  - **Springload**: [springload](https://github.com/springload/)
-  - **StratoDem Analytics**: [stratodem/javascript](https://github.com/stratodem/javascript)
-  - **SteelKiwi Development**: [steelkiwi/javascript](https://github.com/steelkiwi/javascript)
-  - **StudentSphere**: [studentsphere/javascript](https://github.com/studentsphere/guide-javascript)
-  - **SwoopApp**: [swoopapp/javascript](https://github.com/swoopapp/javascript)
-  - **SysGarage**: [sysgarage/javascript-style-guide](https://github.com/sysgarage/javascript-style-guide)
-  - **Syzygy Warsaw**: [syzygypl/javascript](https://github.com/syzygypl/javascript)
-  - **Target**: [target/javascript](https://github.com/target/javascript)
-  - **Terra**: [terra](https://github.com/cerner?utf8=%E2%9C%93&q=terra&type=&language=)
-  - **TheLadders**: [TheLadders/javascript](https://github.com/TheLadders/javascript)
-  - **The Nerdery**: [thenerdery/javascript-standards](https://github.com/thenerdery/javascript-standards)
-  - **Tomify**: [tomprats](https://github.com/tomprats)
-  - **Traitify**: [traitify/eslint-config-traitify](https://github.com/traitify/eslint-config-traitify)
-  - **T4R Technology**: [T4R-Technology/javascript](https://github.com/T4R-Technology/javascript)
-  - **UrbanSim**: [urbansim](https://github.com/urbansim/)
-  - **VoxFeed**: [VoxFeed/javascript-style-guide](https://github.com/VoxFeed/javascript-style-guide)
-  - **WeBox Studio**: [weboxstudio/javascript](https://github.com/weboxstudio/javascript)
-  - **Weggo**: [Weggo/javascript](https://github.com/Weggo/javascript)
-  - **Zillow**: [zillow/javascript](https://github.com/zillow/javascript)
-  - **ZocDoc**: [ZocDoc/javascript](https://github.com/ZocDoc/javascript)
-
-**[⬆ back to top](#table-of-contents)**
-
-## Translation
-
-  This style guide is also available in other languages:
-
-  - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [armoucar/javascript-style-guide](https://github.com/armoucar/javascript-style-guide)
-  - ![bg](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bulgaria.png) **Bulgarian**: [borislavvv/javascript](https://github.com/borislavvv/javascript)
-  - ![ca](https://raw.githubusercontent.com/fpmweb/javascript-style-guide/master/img/catala.png) **Catalan**: [fpmweb/javascript-style-guide](https://github.com/fpmweb/javascript-style-guide)
-  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: [lin-123/javascript](https://github.com/lin-123/javascript)
-  - ![tw](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Taiwan.png) **Chinese (Traditional)**: [jigsawye/javascript](https://github.com/jigsawye/javascript)
-  - ![fr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/France.png) **French**: [nmussy/javascript-style-guide](https://github.com/nmussy/javascript-style-guide)
-  - ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [timofurrer/javascript-style-guide](https://github.com/timofurrer/javascript-style-guide)
-  - ![it](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Italy.png) **Italian**: [sinkswim/javascript-style-guide](https://github.com/sinkswim/javascript-style-guide)
-  - ![jp](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [mitsuruog/javascript-style-guide](https://github.com/mitsuruog/javascript-style-guide)
-  - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [ParkSB/javascript-style-guide](https://github.com/ParkSB/javascript-style-guide)
-  - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**: [leonidlebedev/javascript-airbnb](https://github.com/leonidlebedev/javascript-airbnb)
-  - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) **Spanish**: [paolocarrasco/javascript-style-guide](https://github.com/paolocarrasco/javascript-style-guide)
-  - ![th](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Thailand.png) **Thai**: [lvarayut/javascript-style-guide](https://github.com/lvarayut/javascript-style-guide)
-  - ![tr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Turkey.png) **Turkish**: [eraycetinay/javascript](https://github.com/eraycetinay/javascript)
-  - ![ua](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Ukraine.png) **Ukrainian**: [ivanzusko/javascript](https://github.com/ivanzusko/javascript)
-  - ![vn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnam**: [dangkyokhoang/javascript-style-guide](https://github.com/dangkyokhoang/javascript-style-guide)
-
-## The JavaScript Style Guide Guide
-
-  - [Reference](https://github.com/airbnb/javascript/wiki/The-JavaScript-Style-Guide-Guide)
-
-## Chat With Us About JavaScript
-
-  - Find us on [gitter](https://gitter.im/airbnb/javascript).
-
-## Contributors
-
-  - [View Contributors](https://github.com/airbnb/javascript/graphs/contributors)
 
 ## License
 
@@ -3941,10 +3681,10 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 回到目录](#目录)**
 
-## Amendments
+## 修订记录
 
-We encourage you to fork this guide and change the rules to fit your team’s style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
+
 
 # };
