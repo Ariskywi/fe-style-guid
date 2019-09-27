@@ -13,8 +13,8 @@
 
 ## 目录
 
-  1. [类型](#types)
-  1. [引用](#references)
+  1. [类型](#类型)
+  1. [引用](#引用)
   1. [对象](#objects)
   1. [数组](#arrays)
   1. [解构](#destructuring)
