@@ -38,7 +38,7 @@
   1. [命名规则](#命名规范)
   1. [访问器函数](#访问器函数)
   1. [事件](#事件)
-  1. [jQuery](#jQuery)
+  1. [jQuery](#juery)
   1. [ECMAScript-5-兼容性](#ECMAScript-5-兼容性)
   1. [ECMAScript-6+(ES-2015+)编码规范](#ECMAScript-6+(ES-2015+)编码规范)
   1. [标准库](#标准库)
@@ -2022,7 +2022,7 @@
   - [15.7](#comparison--no-mixed-operators) 当操作符混用时，使用圆括号。 只有标准运算符: `+`, `-`, 和 `**` 的优先级显而易见时，可以不使用圆括号。 建议将 `/` 和 `*` 放在圆括号中，因为当它们混合使用时，优先级可能产生歧义。
   eslint: [`no-mixed-operators`](https://eslint.org/docs/rules/no-mixed-operators.html)
 
-    > Why? This improves readability and clarifies the developer’s intention.
+    > 这样提高了可读性，并且明确了开发者意图。
 
     ```javascript
     // 反例
@@ -2064,7 +2064,7 @@
 ## 代码块
 
   <a name="blocks--braces"></a><a name="16.1"></a>
-  - [16.1](#blocks--braces) Use braces with all multi-line blocks. eslint: [`nonblock-statement-body-position`](https://eslint.org/docs/rules/nonblock-statement-body-position)
+  - [16.1](#blocks--braces) 使用大括号包裹多行代码块。 eslint: [`nonblock-statement-body-position`](https://eslint.org/docs/rules/nonblock-statement-body-position)
 
     ```javascript
     // 反例
@@ -2089,7 +2089,7 @@
     ```
 
   <a name="blocks--cuddled-elses"></a><a name="16.2"></a>
-  - [16.2](#blocks--cuddled-elses) If you’re using multi-line blocks with `if` and `else`, put `else` on the same line as your `if` block’s closing brace. eslint: [`brace-style`](https://eslint.org/docs/rules/brace-style.html)
+  - [16.2](#blocks--cuddled-elses) 如果通过`if` 和`else`使用多行代码块，把`else`放在`if`代码块关闭括号的同一行。 eslint: [`brace-style`](https://eslint.org/docs/rules/brace-style.html)
 
     ```javascript
     // 反例
@@ -2111,7 +2111,7 @@
     ```
 
   <a name="blocks--no-else-return"></a><a name="16.3"></a>
-  - [16.3](#blocks--no-else-return) If an `if` block always executes a `return` statement, the subsequent `else` block is unnecessary. A `return` in an `else if` block following an `if` block that contains a `return` can be separated into multiple `if` blocks. eslint: [`no-else-return`](https://eslint.org/docs/rules/no-else-return)
+  - [16.3](#blocks--no-else-return) 如果`if` 代码块中总是需要用 `return` 返回,那么 `else`就不需要写了。如果`if`代码块包含`return`，其后的`else if`也包含`return`，此时可将return分到多个`if` 代码块中。 eslint: [`no-else-return`](https://eslint.org/docs/rules/no-else-return)
 
     ```javascript
     // 反例
@@ -2180,9 +2180,9 @@
 ## 控制声明
 
   <a name="control-statements"></a>
-  - [17.1](#control-statements) In case your control statement (`if`, `while` etc.) gets too long or exceeds the maximum line length, each (grouped) condition could be put into a new line. The logical operator should begin the line.
+  - [17.1](#control-statements) 当控制语句 (`if`, `while` 等) 太长或超过最大长度限制时，把每一个(组)判断条件放在单独一行里。逻辑操作符放在行首。
 
-    > Why? Requiring operators at the beginning of the line keeps the operators aligned and follows a pattern similar to method chaining. This also improves readability by making it easier to visually follow complex logic.
+    > 将操作符放在行首目的是与链式函数调用保持一致。这提高了可读性，也使复杂逻辑更清晰。
 
     ```javascript
     // 反例
@@ -2234,7 +2234,7 @@
     ```
 
   <a name="control-statement--value-selection"></a><a name="control-statements--value-selection"></a>
-  - [17.2](#control-statements--value-selection) Don't use selection operators in place of control statements.
+  - [17.2](#control-statements--value-selection) 不要用逻辑操作符代替控制语句。
 
     ```javascript
     // 反例
@@ -2251,7 +2251,7 @@
 ## 注释
 
   <a name="comments--multiline"></a><a name="17.1"></a>
-  - [18.1](#comments--multiline) Use `/** ... */` for multi-line comments.
+  - [18.1](#comments--multiline) 函数说明使用 `/** ... */` 作为多行注释。包含描述、指定所有参数和返回值的类型和值。
 
     ```javascript
     // 反例
@@ -2280,8 +2280,8 @@
     }
     ```
 
-  <a name="comments--singleline"></a><a name="17.2"></a>
-  - [18.2](#comments--singleline) Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment unless it’s on the first line of a block.
+  <a name="comments--singleline"></a><a name="18.2"></a>
+  - [18.2](#comments--singleline) 单行注释用 `//`。将单行注释放在被注释区域上面单独一行。如果注释不是第一行，那么注释前面空一行。
 
     ```javascript
     // 反例
@@ -2319,8 +2319,8 @@
     }
     ```
 
-  <a name="comments--spaces"></a>
-  - [18.3](#comments--spaces) Start all comments with a space to make it easier to read. eslint: [`spaced-comment`](https://eslint.org/docs/rules/spaced-comment)
+  <a name="comments--spaces"></a><a name="18.3"></a>
+  - [18.3](#comments--spaces) 注释开头空一格，便于阅读。 eslint: [`spaced-comment`](https://eslint.org/docs/rules/spaced-comment)
 
     ```javascript
     // 反例
@@ -2356,11 +2356,11 @@
     }
     ```
 
-  <a name="comments--actionitems"></a><a name="17.3"></a>
-  - [18.4](#comments--actionitems) Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you’re pointing out a problem that needs to be revisited, or if you’re suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME: -- need to figure this out` or `TODO: -- need to implement`.
+  <a name="comments--actionitems"></a><a name="18.4"></a>
+  - [18.4](#comments--actionitems) 给注释增加 `FIXME` or `TODO` 来帮助其他开发者快速理解意图。`FIXME: -- 需要研究` ，`TODO: -- 需要实现`.
 
-  <a name="comments--fixme"></a><a name="17.4"></a>
-  - [18.5](#comments--fixme) Use `// FIXME:` to annotate problems.
+  <a name="comments--fixme"></a><a name="18.5"></a>
+  - [18.5](#comments--fixme) 使用 `// FIXME:` 给问题做注释
 
     ```javascript
     class Calculator extends Abacus {
@@ -2373,8 +2373,8 @@
     }
     ```
 
-  <a name="comments--todo"></a><a name="17.5"></a>
-  - [18.6](#comments--todo) Use `// TODO:` to annotate solutions to problems.
+  <a name="comments--todo"></a><a name="18.6"></a>
+  - [18.6](#comments--todo) 使用 `// TODO:` 注释问题的解决方案。
 
     ```javascript
     class Calculator extends Abacus {
@@ -2391,8 +2391,8 @@
 
 ## 留白
 
-  <a name="whitespace--spaces"></a><a name="18.1"></a>
-  - [19.1](#whitespace--spaces) Use soft tabs (space character) set to 2 spaces. eslint: [`indent`](https://eslint.org/docs/rules/indent.html)
+  <a name="whitespace--spaces"></a><a name="19.1"></a>
+  - [19.1](#whitespace--spaces) 使用2个空格还是4个空格缩进，可以根据项目的prettier配置。 eslint: [`indent`](https://eslint.org/docs/rules/indent.html)
 
     ```javascript
     // 反例
@@ -2411,8 +2411,8 @@
     }
     ```
 
-  <a name="whitespace--before-blocks"></a><a name="18.2"></a>
-  - [19.2](#whitespace--before-blocks) Place 1 space before the leading brace. eslint: [`space-before-blocks`](https://eslint.org/docs/rules/space-before-blocks.html)
+  <a name="whitespace--before-blocks"></a><a name="19.2"></a>
+  - [19.2](#whitespace--before-blocks) 在花括号前放置一个空格。 eslint: [`space-before-blocks`](https://eslint.org/docs/rules/space-before-blocks.html)
 
     ```javascript
     // 反例
@@ -2438,8 +2438,8 @@
     });
     ```
 
-  <a name="whitespace--around-keywords"></a><a name="18.3"></a>
-  - [19.3](#whitespace--around-keywords) Place 1 space before the opening parenthesis in control statements (`if`, `while` etc.). Place no space between the argument list and the function name in function calls and declarations. eslint: [`keyword-spacing`](https://eslint.org/docs/rules/keyword-spacing.html)
+  <a name="whitespace--around-keywords"></a><a name="19.3"></a>
+  - [19.3](#whitespace--around-keywords) 在控制语句 (`if`, `while` 等)的小括号前放一个空格。在函数调用及声明中，不在函数的参数列表前加空格。 eslint: [`keyword-spacing`](https://eslint.org/docs/rules/keyword-spacing.html)
 
     ```javascript
     // 反例
@@ -2463,8 +2463,8 @@
     }
     ```
 
-  <a name="whitespace--infix-ops"></a><a name="18.4"></a>
-  - [19.4](#whitespace--infix-ops) Set off operators with spaces. eslint: [`space-infix-ops`](https://eslint.org/docs/rules/space-infix-ops.html)
+  <a name="whitespace--infix-ops"></a><a name="19.4"></a>
+  - [19.4](#whitespace--infix-ops) 使用空格将运算符隔开。 eslint: [`space-infix-ops`](https://eslint.org/docs/rules/space-infix-ops.html)
 
     ```javascript
     // 反例
@@ -2474,8 +2474,8 @@
     const x = y + 5;
     ```
 
-  <a name="whitespace--newline-at-end"></a><a name="18.5"></a>
-  - [19.5](#whitespace--newline-at-end) End files with a single newline character. eslint: [`eol-last`](https://github.com/eslint/eslint/blob/master/docs/rules/eol-last.md)
+  <a name="whitespace--newline-at-end"></a><a name="19.5"></a>
+  - [19.5](#whitespace--newline-at-end) 在文件末尾插入一个空行。 eslint: [`eol-last`](https://github.com/eslint/eslint/blob/master/docs/rules/eol-last.md)
 
     ```javascript
     // 反例
@@ -2499,9 +2499,8 @@
     export default es6;↵
     ```
 
-  <a name="whitespace--chains"></a><a name="18.6"></a>
-  - [19.6](#whitespace--chains) Use indentation when making long method chains (more than 2 method chains). Use a leading dot, which
-    emphasizes that the line is a method call, not a new statement. eslint: [`newline-per-chained-call`](https://eslint.org/docs/rules/newline-per-chained-call) [`no-whitespace-before-property`](https://eslint.org/docs/rules/no-whitespace-before-property)
+  <a name="whitespace--chains"></a><a name="19.6"></a>
+  - [19.6](#whitespace--chains) 使用长的链式调用时，使用缩进。(多于两个方法). 将点号前置，强调该方法是调用而不是新语句。 eslint: [`newline-per-chained-call`](https://eslint.org/docs/rules/newline-per-chained-call) [`no-whitespace-before-property`](https://eslint.org/docs/rules/no-whitespace-before-property)
 
     ```javascript
     // 反例
@@ -2543,8 +2542,8 @@
     const leds = stage.selectAll('.led').data(data);
     ```
 
-  <a name="whitespace--after-blocks"></a><a name="18.7"></a>
-  - [19.7](#whitespace--after-blocks) Leave a blank line after blocks and before the next statement.
+  <a name="whitespace--after-blocks"></a><a name="19.7"></a>
+  - [19.7](#whitespace--after-blocks) 在块末尾和新语句前插入空白行。
 
     ```javascript
     // 反例
@@ -2601,8 +2600,8 @@
     return arr;
     ```
 
-  <a name="whitespace--padded-blocks"></a><a name="18.8"></a>
-  - [19.8](#whitespace--padded-blocks) Do not pad your blocks with blank lines. eslint: [`padded-blocks`](https://eslint.org/docs/rules/padded-blocks.html)
+  <a name="whitespace--padded-blocks"></a><a name="19.8"></a>
+  - [19.8](#whitespace--padded-blocks) 不要在块内使用空白行。 eslint: [`padded-blocks`](https://eslint.org/docs/rules/padded-blocks.html)
 
     ```javascript
     // 反例
@@ -2642,8 +2641,8 @@
     }
     ```
 
-  <a name="whitespace--no-multiple-blanks"></a>
-  - [19.9](#whitespace--no-multiple-blanks) Do not use multiple blank lines to pad your code. eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
+  <a name="whitespace--no-multiple-blanks"></a><a name="19.9"></a>
+  - [19.9](#whitespace--no-multiple-blanks) 不要在代码之间使用多个空白行。 eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
 
     <!-- markdownlint-disable MD012 -->
     ```javascript
@@ -2696,8 +2695,8 @@
     }
     ```
 
-  <a name="whitespace--in-parens"></a><a name="18.9"></a>
-  - [19.10](#whitespace--in-parens) Do not add spaces inside parentheses. eslint: [`space-in-parens`](https://eslint.org/docs/rules/space-in-parens.html)
+  <a name="whitespace--in-parens"></a><a name="19.10"></a>
+  - [19.10](#whitespace--in-parens) 不要在括号内添加空格。 eslint: [`space-in-parens`](https://eslint.org/docs/rules/space-in-parens.html)
 
     ```javascript
     // 反例
@@ -2721,8 +2720,8 @@
     }
     ```
 
-  <a name="whitespace--in-brackets"></a><a name="18.10"></a>
-  - [19.11](#whitespace--in-brackets) Do not add spaces inside brackets. eslint: [`array-bracket-spacing`](https://eslint.org/docs/rules/array-bracket-spacing.html)
+  <a name="whitespace--in-brackets"></a><a name="19.11"></a>
+  - [19.11](#whitespace--in-brackets) 不要在数组括号内的前后添加空格。 eslint: [`array-bracket-spacing`](https://eslint.org/docs/rules/array-bracket-spacing.html)
 
     ```javascript
     // 反例
@@ -2734,8 +2733,8 @@
     console.log(foo[0]);
     ```
 
-  <a name="whitespace--in-braces"></a><a name="18.11"></a>
-  - [19.12](#whitespace--in-braces) Add spaces inside curly braces. eslint: [`object-curly-spacing`](https://eslint.org/docs/rules/object-curly-spacing.html)
+  <a name="whitespace--in-braces"></a><a name="19.12"></a>
+  - [19.12](#whitespace--in-braces) 在大括号内添加空格。 eslint: [`object-curly-spacing`](https://eslint.org/docs/rules/object-curly-spacing.html)
 
     ```javascript
     // 反例
@@ -2745,10 +2744,10 @@
     const foo = { clark: 'kent' };
     ```
 
-  <a name="whitespace--max-len"></a><a name="18.12"></a>
-  - [19.13](#whitespace--max-len) Avoid having lines of code that are longer than 100 characters (including whitespace). Note: per [above](#strings--line-length), long strings are exempt from this rule, and should not be broken up. eslint: [`max-len`](https://eslint.org/docs/rules/max-len.html)
+  <a name="whitespace--max-len"></a><a name="19.13"></a>
+  - [19.13](#whitespace--max-len) 避免单行代码超过100个字符(包括空格)。 注: 遵循上面的约定 [above](#strings--line-length), 长字符串不适用于此规则，不应被分解。 eslint: [`max-len`](https://eslint.org/docs/rules/max-len.html)
 
-    > Why? This ensures readability and maintainability.
+    > 因为这将确保可读性和可维护性。
 
     ```javascript
     // 反例
@@ -2775,8 +2774,8 @@
       .fail(() => console.log('You have failed this city.'));
     ```
 
-  <a name="whitespace--block-spacing"></a>
-  - [19.14](#whitespace--block-spacing) Require consistent spacing inside an open block token and the next token on the same line. This rule also enforces consistent spacing inside a close block token and previous token on the same line. eslint: [`block-spacing`](https://eslint.org/docs/rules/block-spacing)
+  <a name="whitespace--block-spacing"></a><a name="19.14"></a>
+  - [19.14](#whitespace--block-spacing) 同一行的代码块(开放/闭合)需要保持一致的空格。即作为语句的花括号内也要加空格 —— { 后和 } 前都需要空格。 eslint: [`block-spacing`](https://eslint.org/docs/rules/block-spacing)
 
     ```javascript
     // 反例
@@ -2789,7 +2788,7 @@
     ```
 
   <a name="whitespace--comma-spacing"></a>
-  - [19.15](#whitespace--comma-spacing) Avoid spaces before commas and require a space after commas. eslint: [`comma-spacing`](https://eslint.org/docs/rules/comma-spacing)
+  - [19.15](#whitespace--comma-spacing) 逗号前不要加空格，逗号后加空格。 eslint: [`comma-spacing`](https://eslint.org/docs/rules/comma-spacing)
 
     ```javascript
     // 反例
@@ -2802,7 +2801,7 @@
     ```
 
   <a name="whitespace--computed-property-spacing"></a>
-  - [19.16](#whitespace--computed-property-spacing) Enforce spacing inside of computed property brackets. eslint: [`computed-property-spacing`](https://eslint.org/docs/rules/computed-property-spacing)
+  - [19.16](#whitespace--computed-property-spacing) 计算属性的括号内必须使用空格。 eslint: [`computed-property-spacing`](https://eslint.org/docs/rules/computed-property-spacing)
 
     ```javascript
     // 反例
@@ -2819,7 +2818,7 @@
     ```
 
   <a name="whitespace--func-call-spacing"></a>
-  - [19.17](#whitespace--func-call-spacing) Avoid spaces between functions and their invocations. eslint: [`func-call-spacing`](https://eslint.org/docs/rules/func-call-spacing)
+  - [19.17](#whitespace--func-call-spacing) 调用函数时函数名和小括号之间不要加空格。 eslint: [`func-call-spacing`](https://eslint.org/docs/rules/func-call-spacing)
 
     ```javascript
     // 反例
@@ -2833,7 +2832,7 @@
     ```
 
   <a name="whitespace--key-spacing"></a>
-  - [19.18](#whitespace--key-spacing) Enforce spacing between keys and values in object literal properties. eslint: [`key-spacing`](https://eslint.org/docs/rules/key-spacing)
+  - [19.18](#whitespace--key-spacing) 定义对象的字面量属性时，key和value之间应该加空格。 eslint: [`key-spacing`](https://eslint.org/docs/rules/key-spacing)
 
     ```javascript
     // 反例
@@ -2845,10 +2844,10 @@
     ```
 
   <a name="whitespace--no-trailing-spaces"></a>
-  - [19.19](#whitespace--no-trailing-spaces) Avoid trailing spaces at the end of lines. eslint: [`no-trailing-spaces`](https://eslint.org/docs/rules/no-trailing-spaces)
+  - [19.19](#whitespace--no-trailing-spaces) 行末不要加空格。 eslint: [`no-trailing-spaces`](https://eslint.org/docs/rules/no-trailing-spaces)
 
   <a name="whitespace--no-multiple-empty-lines"></a>
-  - [19.20](#whitespace--no-multiple-empty-lines) Avoid multiple empty lines, only allow one newline at the end of files, and avoid a newline at the beginning of files. eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
+  - [19.20](#whitespace--no-multiple-empty-lines) 避免出现多个空行，文件末尾只空一行。文件不要以空行开始。 eslint: [`no-multiple-empty-lines`](https://eslint.org/docs/rules/no-multiple-empty-lines)
 
     <!-- markdownlint-disable MD012 -->
     ```javascript
@@ -2879,8 +2878,8 @@
 
 ## 逗号
 
-  <a name="commas--leading-trailing"></a><a name="19.1"></a>
-  - [20.1](#commas--leading-trailing) Leading commas: **Nope.** eslint: [`comma-style`](https://eslint.org/docs/rules/comma-style.html)
+  <a name="commas--leading-trailing"></a><a name="20.1"></a>
+  - [20.1](#commas--leading-trailing) 逗号不要前置。 eslint: [`comma-style`](https://eslint.org/docs/rules/comma-style.html)
 
     ```javascript
     // 反例
@@ -2914,13 +2913,13 @@
     };
     ```
 
-  <a name="commas--dangling"></a><a name="19.2"></a>
-  - [20.2](#commas--dangling) Additional trailing comma: **Yup.** eslint: [`comma-dangle`](https://eslint.org/docs/rules/comma-dangle.html)
+  <a name="commas--dangling"></a><a name="20.2"></a>
+  - [20.2](#commas--dangling) 结尾可以添加额外的逗号。 eslint: [`comma-dangle`](https://eslint.org/docs/rules/comma-dangle.html)
 
-    > Why? This leads to cleaner git diffs. Also, transpilers like Babel will remove the additional trailing comma in the transpiled code which means you don’t have to worry about the [trailing comma problem](https://github.com/airbnb/javascript/blob/es5-deprecated/es5/README.md#commas) in legacy browsers.
+    > 可以使git diff 更清晰。 像Babel这样的编译器会删除代码中的额外逗号，这意味着不必担心旧版浏览器中的 [结尾逗号问题](https://github.com/airbnb/javascript/blob/es5-deprecated/es5/README.md#commas) in legacy browsers.
 
     ```diff
-    // 反例 - git diff without trailing comma
+    // 反例 - 无结尾逗号的git diff
     const hero = {
          firstName: 'Florence',
     -    lastName: 'Nightingale'
@@ -2928,7 +2927,7 @@
     +    inventorOf: ['coxcomb chart', 'modern nursing']
     };
 
-    // 正确示例 - git diff with trailing comma
+    // 正确示例 - 有结尾逗号的 git diff
     const hero = {
          firstName: 'Florence',
          lastName: 'Nightingale',
@@ -3014,80 +3013,48 @@
 
 ## 分号
 
-  <a name="semicolons--required"></a><a name="20.1"></a>
-  - [21.1](#semicolons--required) **Yup.** eslint: [`semi`](https://eslint.org/docs/rules/semi.html)
+  <a name="semicolons--required"></a><a name="21.1"></a>
+  - [21.1](#semicolons--required) 编译器发展到如今，分号基本已经成为了一个风格问题。各自遵循项目的约定即可。建议参照vue，不添加分号。 eslint: [`semi`](https://eslint.org/docs/rules/semi.html)
 
-    > Why? When JavaScript encounters a line break without a semicolon, it uses a set of rules called [Automatic Semicolon Insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion) to determine whether or not it should regard that line break as the end of a statement, and (as the name implies) place a semicolon into your code before the line break if it thinks so. ASI contains a few eccentric behaviors, though, and your code will break if JavaScript misinterprets your line break. These rules will become more complicated as new features become a part of JavaScript. Explicitly terminating your statements and configuring your linter to catch missing semicolons will help prevent you from encountering issues.
+    > 在对分号有兼容要求的项目中，可以配置prettier自动添加分号。
 
     ```javascript
-    // 反例 - raises exception
-    const luke = {}
-    const leia = {}
-    [luke, leia].forEach((jedi) => jedi.father = 'vader')
-
-    // 反例 - raises exception
-    const reaction = "No! That’s impossible!"
-    (async function meanwhileOnTheFalcon() {
-      // handle `leia`, `lando`, `chewie`, `r2`, `c3p0`
-      // ...
-    }())
-
-    // 反例 - returns `undefined` instead of the value on the next line - always happens when `return` is on a line by itself because of ASI!
-    function foo() {
-      return
-        'search your feelings, you know it to be foo'
-    }
-
-    // 正确示例
-    const luke = {};
-    const leia = {};
-    [luke, leia].forEach((jedi) => {
-      jedi.father = 'vader';
-    });
-
-    // 正确示例
-    const reaction = "No! That’s impossible!";
-    (async function meanwhileOnTheFalcon() {
-      // handle `leia`, `lando`, `chewie`, `r2`, `c3p0`
-      // ...
-    }());
-
-    // 正确示例
-    function foo() {
-      return 'search your feelings, you know it to be foo';
-    }
+    // 无分号配置 - prettier
+    semi: false,
+    // 有分号配置 - prettier
+    semi: true,
     ```
 
-    [Read more](https://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214#7365214).
+    [参考](https://stackoverflow.com/questions/7365172/semicolon-before-self-invoking-function/7365214#7365214).
 
 **[⬆ 回到目录](#目录)**
 
 ## 强制类型转换
 
-  <a name="coercion--explicit"></a><a name="21.1"></a>
-  - [22.1](#coercion--explicit) Perform type coercion at the beginning of the statement.
+  <a name="coercion--explicit"></a><a name="22.1"></a>
+  - [22.1](#coercion--explicit) 在语句开始时执行强制类型转换。
 
-  <a name="coercion--strings"></a><a name="21.2"></a>
-  - [22.2](#coercion--strings) Strings: eslint: [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
+  <a name="coercion--strings"></a><a name="22.2"></a>
+  - [22.2](#coercion--strings) 字符串: eslint: [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
 
     ```javascript
     // => this.reviewScore = 9;
 
     // 反例
-    const totalScore = new String(this.reviewScore); // typeof totalScore is "object" not "string"
+    const totalScore = new String(this.reviewScore); // typeof totalScore 值为 "object" 而不是 "string"
 
     // 反例
-    const totalScore = this.reviewScore + ''; // invokes this.reviewScore.valueOf()
+    const totalScore = this.reviewScore + ''; // 执行的是 this.reviewScore.valueOf()
 
     // 反例
-    const totalScore = this.reviewScore.toString(); // isn’t guaranteed to return a string
+    const totalScore = this.reviewScore.toString(); // 不能保证一定返回string
 
     // 正确示例
     const totalScore = String(this.reviewScore);
     ```
 
   <a name="coercion--numbers"></a><a name="21.3"></a>
-  - [22.3](#coercion--numbers) Numbers: Use `Number` for type casting and `parseInt` always with a radix for parsing strings. eslint: [`radix`](https://eslint.org/docs/rules/radix) [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
+  - [22.3](#coercion--numbers) 数字: 对 `Number` 使用 `parseInt` 转换，并始终带上类型转换的基数。 eslint: [`radix`](https://eslint.org/docs/rules/radix) [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
 
     ```javascript
     const inputValue = '4';
@@ -3112,20 +3079,19 @@
     ```
 
   <a name="coercion--comment-deviations"></a><a name="21.4"></a>
-  - [22.4](#coercion--comment-deviations) If for whatever reason you are doing something wild and `parseInt` is your bottleneck and need to use Bitshift for [performance reasons](https://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you’re doing.
+  - [22.4](#coercion--comment-deviations) 如果由于某些原因 `parseInt` 成为瓶颈，而需要使用位操作符解决 [性能问题](https://jsperf.com/coercion-vs-casting/3)时, 需要在注释中说明原因和目的。
 
     ```javascript
     // 正确示例
     /**
-     * parseInt was the reason my code was slow.
-     * Bitshifting the String to coerce it to a
-     * Number made it a lot faster.
+     * parseInt 是执行慢的原因
+     * 使用位操作符可以加快执行速度
      */
     const val = inputValue >> 0;
     ```
 
   <a name="coercion--bitwise"></a><a name="21.5"></a>
-  - [22.5](#coercion--bitwise) **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](https://es5.github.io/#x4.3.19), but bitshift operations always return a 32-bit integer ([source](https://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
+  - [22.5](#coercion--bitwise) **注:** 小心使用位操作符。 数字会被作为 [64位的值](https://es5.github.io/#x4.3.19), 但是位操作总是返回32位的整数。 ([source](https://es5.github.io/#x11.7))。 位运算对于大于32位的整数会产生意外行为。 [讨论](https://github.com/airbnb/javascript/issues/109)。最大的32位整数是 2,147,483,647:
 
     ```javascript
     2147483647 >> 0; // => 2147483647
@@ -3134,7 +3100,7 @@
     ```
 
   <a name="coercion--booleans"></a><a name="21.6"></a>
-  - [22.6](#coercion--booleans) Booleans: eslint: [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
+  - [22.6](#coercion--booleans) 布尔类型: eslint: [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
 
     ```javascript
     const age = 0;
@@ -3153,8 +3119,8 @@
 
 ## 命名规范
 
-  <a name="naming--descriptive"></a><a name="22.1"></a>
-  - [23.1](#naming--descriptive) Avoid single letter names. Be descriptive with your naming. eslint: [`id-length`](https://eslint.org/docs/rules/id-length)
+  <a name="naming--descriptive"></a><a name="23.1"></a>
+  - [23.1](#naming--descriptive) 避免一个字母的命名。使命名应具有描述性。 eslint: [`id-length`](https://eslint.org/docs/rules/id-length)
 
     ```javascript
     // 反例
@@ -3168,8 +3134,8 @@
     }
     ```
 
-  <a name="naming--camelCase"></a><a name="22.2"></a>
-  - [23.2](#naming--camelCase) Use camelCase when naming objects, functions, and instances. eslint: [`camelcase`](https://eslint.org/docs/rules/camelcase.html)
+  <a name="naming--camelCase"></a><a name="23.2"></a>
+  - [23.2](#naming--camelCase) 使用驼峰命名对象、函数和实例。 eslint: [`camelcase`](https://eslint.org/docs/rules/camelcase.html)
 
     ```javascript
     // 反例
@@ -3182,8 +3148,8 @@
     function thisIsMyFunction() {}
     ```
 
-  <a name="naming--PascalCase"></a><a name="22.3"></a>
-  - [23.3](#naming--PascalCase) Use PascalCase only when naming constructors or classes. eslint: [`new-cap`](https://eslint.org/docs/rules/new-cap.html)
+  <a name="naming--PascalCase"></a><a name="23.3"></a>
+  - [23.3](#naming--PascalCase) 使用大驼峰(PascalCase)命名构造函数或类。 eslint: [`new-cap`](https://eslint.org/docs/rules/new-cap.html)
 
     ```javascript
     // 反例
@@ -3207,10 +3173,10 @@
     });
     ```
 
-  <a name="naming--leading-underscore"></a><a name="22.4"></a>
-  - [23.4](#naming--leading-underscore) Do not use trailing or leading underscores. eslint: [`no-underscore-dangle`](https://eslint.org/docs/rules/no-underscore-dangle.html)
+  <a name="naming--leading-underscore"></a><a name="23.4"></a>
+  - [23.4](#naming--leading-underscore) 不要使用前置或后置下划线。 eslint: [`no-underscore-dangle`](https://eslint.org/docs/rules/no-underscore-dangle.html)
 
-    > Why? JavaScript does not have the concept of privacy in terms of properties or methods. Although a leading underscore is a common convention to mean “private”, in fact, these properties are fully public, and as such, are part of your public API contract. This convention might lead developers to wrongly think that a change won’t count as breaking, or that tests aren’t needed. tl;dr: if you want something to be “private”, it must not be observably present.
+    > 因为`JavaScript` 没有私有属性或私有方法的概念。尽管前置下划线通常代表 “私有”, 但实际上, 这些属性是完全公有的, 因此这部分也是 API 的内容。这可能会导致开发者误以为更改这个不会导致崩溃或不需要测试。如果想要私有的内容，就不要让它出现在这里。
 
     ```javascript
     // 反例
@@ -3222,13 +3188,13 @@
     this.firstName = 'Panda';
 
     // 正确示例, in environments where WeakMaps are available
-    // see https://kangax.github.io/compat-table/es6/#test-WeakMap
+    // 请见 https://kangax.github.io/compat-table/es6/#test-WeakMap
     const firstNames = new WeakMap();
     firstNames.set(this, 'Panda');
     ```
 
-  <a name="naming--self-this"></a><a name="22.5"></a>
-  - [23.5](#naming--self-this) Don’t save references to `this`. Use arrow functions or [Function#bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+  <a name="naming--self-this"></a><a name="23.5"></a>
+  - [23.5](#naming--self-this) 不要保存引用 `this`. 使用箭头函数或 [函数绑定](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
 
     ```javascript
     // 反例
@@ -3256,7 +3222,7 @@
     ```
 
   <a name="naming--filename-matches-export"></a><a name="22.6"></a>
-  - [23.6](#naming--filename-matches-export) A base filename should exactly match the name of its default export.
+  - [23.6](#naming--filename-matches-export) 文件名与default export导出的模块名应该完全一致。
 
     ```javascript
     // file 1 contents
@@ -3291,8 +3257,8 @@
     // ^ supports both insideDirectory.js and insideDirectory/index.js
     ```
 
-  <a name="naming--camelCase-default-export"></a><a name="22.7"></a>
-  - [23.7](#naming--camelCase-default-export) Use camelCase when you export-default a function. Your filename should be identical to your function’s name.
+  <a name="naming--camelCase-default-export"></a><a name="23.7"></a>
+  - [23.7](#naming--camelCase-default-export) 当使用export default 导出函数时，应使用驼峰命名。文件名应与函数名一致。
 
     ```javascript
     function makeStyleGuide() {
@@ -3302,8 +3268,8 @@
     export default makeStyleGuide;
     ```
 
-  <a name="naming--PascalCase-singleton"></a><a name="22.8"></a>
-  - [23.8](#naming--PascalCase-singleton) Use PascalCase when you export a constructor / class / singleton / function library / bare object.
+  <a name="naming--PascalCase-singleton"></a><a name="23.8"></a>
+  - [23.8](#naming--PascalCase-singleton) 导出一个结构体/类/单例/函数库/对象时，使用大驼峰(PascalCase)命名。
 
     ```javascript
     const AirbnbStyleGuide = {
@@ -3315,9 +3281,9 @@
     ```
 
   <a name="naming--Acronyms-and-Initialisms"></a>
-  - [23.9](#naming--Acronyms-and-Initialisms) Acronyms and initialisms should always be all uppercased, or all lowercased.
+  - [23.9](#naming--Acronyms-and-Initialisms) 简称或缩写应该全部大写或小写。
 
-    > Why? Names are for readability, not to appease a computer algorithm.
+    > 因为名字就是给人阅读的，不是为了适应电脑算法的。
 
     ```javascript
     // 反例
@@ -3351,11 +3317,14 @@
     ```
 
   <a name="naming--uppercase"></a>
-  - [23.10](#naming--uppercase) You may optionally uppercase a constant only if it (1) is exported, (2) is a `const` (it can not be reassigned), and (3) the programmer can trust it (and its nested properties) to never change.
+  - [23.10](#naming--uppercase) 应该使用全大写字母设置静态变量，但是需满足：
+   (1) 变量用于导出
+   (2) 变量由`const`定义，保证不可改变。
+   (3) 变量是可信的，且其自身及子属性都是不可变的。
 
-    > Why? This is an additional tool to assist in situations where the programmer would be unsure if a variable might ever change. UPPERCASE_VARIABLES are letting the programmer know that they can trust the variable (and its properties) not to change.
-    - What about all `const` variables? - This is unnecessary, so uppercasing should not be used for constants within a file. It should be used for exported constants however.
-    - What about exported objects? - Uppercase at the top level of export (e.g. `EXPORTED_OBJECT.key`) and maintain that all nested properties do not change.
+    > 这是一条额外的规则，来帮助开发者辨识一个变量是不是不可变的。
+    - 对于所有的 `const` 变量呢? ———— 这是不必要的。大写变量不应该在同一个文件里定义并使用，它只用来作为导出变量。
+    - 那导出对象呢? - 大写变量处于export的最高级 (例如： `EXPORTED_OBJECT.key`) 并且它包含的所有子属性都是不可比变的。
 
     ```javascript
     // 反例
@@ -3392,10 +3361,10 @@
 
 ## 访问器函数
 
-  <a name="accessors--not-required"></a><a name="23.1"></a>
-  - [24.1](#accessors--not-required) Accessor functions for properties are not required.
+  <a name="accessors--not-required"></a><a name="24.1"></a>
+  - [24.1](#accessors--not-required) 不应使用属性的访问器函数。
 
-  <a name="accessors--no-getters-setters"></a><a name="23.2"></a>
+  <a name="accessors--no-getters-setters"></a><a name="24.2"></a>
   - [24.2](#accessors--no-getters-setters) Do not use JavaScript getters/setters as they cause unexpected side effects and are harder to test, maintain, and reason about. Instead, if you do make accessor functions, use `getVal()` and `setVal('hello')`.
 
     ```javascript
@@ -3422,7 +3391,7 @@
     }
     ```
 
-  <a name="accessors--boolean-prefix"></a><a name="23.3"></a>
+  <a name="accessors--boolean-prefix"></a><a name="24.3"></a>
   - [24.3](#accessors--boolean-prefix) If the property/method is a `boolean`, use `isVal()` or `hasVal()`.
 
     ```javascript
@@ -3437,7 +3406,7 @@
     }
     ```
 
-  <a name="accessors--consistent"></a><a name="23.4"></a>
+  <a name="accessors--consistent"></a><a name="24.4"></a>
   - [24.4](#accessors--consistent) It’s okay to create `get()` and `set()` functions, but be consistent.
 
     ```javascript
@@ -3493,7 +3462,7 @@
 ## jQuery
 
   <a name="jquery--dollar-prefix"></a><a name="25.1"></a>
-  - [26.1](#jquery--dollar-prefix) Prefix jQuery object variables with a `$`.
+  - [26.1](#jquery--dollar-prefix) jQuery的变量对象应该以`$`开头。
 
     ```javascript
     // 反例
@@ -3572,8 +3541,8 @@
   <a name="es6-styles"></a><a name="27.1"></a>
   - [28.1](#es6-styles) This is a collection of links to the various ES6+ features.
 
-1. [Arrow Functions](#arrow-functions)
-1. [Classes](#classes--constructors)
+1. [箭头函数](#arrow-functions)
+1. [类](#classes--constructors)
 1. [Object Shorthand](#es6-object-shorthand)
 1. [Object Concise](#es6-object-concise)
 1. [Object Computed Properties](#es6-computed-properties)
