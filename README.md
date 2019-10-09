@@ -3365,7 +3365,7 @@
   - [24.1](#accessors--not-required) 不应使用属性的访问器函数。
 
   <a name="accessors--no-getters-setters"></a><a name="24.2"></a>
-  - [24.2](#accessors--no-getters-setters) Do not use JavaScript getters/setters as they cause unexpected side effects and are harder to test, maintain, and reason about. Instead, if you do make accessor functions, use `getVal()` and `setVal('hello')`.
+  - [24.2](#accessors--no-getters-setters) 不要使用JavaScript的getters/setters,因为它们会产生副作用,并且难以测试、理解和维护。可以用`getVal()` 和 `setVal('hello')`来创造自己的accessor函数。
 
     ```javascript
     // 反例
@@ -3392,7 +3392,7 @@
     ```
 
   <a name="accessors--boolean-prefix"></a><a name="24.3"></a>
-  - [24.3](#accessors--boolean-prefix) If the property/method is a `boolean`, use `isVal()` or `hasVal()`.
+  - [24.3](#accessors--boolean-prefix) 如果属性/方法是 `boolean`, 用 `isVal()` 或 `hasVal()`。
 
     ```javascript
     // 反例
@@ -3407,7 +3407,7 @@
     ```
 
   <a name="accessors--consistent"></a><a name="24.4"></a>
-  - [24.4](#accessors--consistent) It’s okay to create `get()` and `set()` functions, but be consistent.
+  - [24.4](#accessors--consistent) 可以使用`get()` 和 `set()` 函数, 但是要保持一致。
 
     ```javascript
     class Jedi {
@@ -3431,7 +3431,7 @@
 ## 事件
 
   <a name="events--hash"></a><a name="24.1"></a>
-  - [25.1](#events--hash) When attaching data payloads to events (whether DOM events or something more proprietary like Backbone events), pass an object literal (also known as a "hash") instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
+  - [25.1](#events--hash) 当为事件添加数据时 (无论是DOM事件还是Backbone之类的专有事件), 传递对象作为参数而不是值参数。 这允许后来者在添加更多数据到事件时，无需查找和更新事件的每个调用。因为参数是无序的。例如：
 
     ```javascript
     // 反例
@@ -3461,7 +3461,7 @@
 
 ## jQuery
 
-  <a name="jquery--dollar-prefix"></a><a name="25.1"></a>
+  <a name="jquery--dollar-prefix"></a><a name="26.1"></a>
   - [26.1](#jquery--dollar-prefix) jQuery的变量对象应该以`$`开头。
 
     ```javascript
@@ -3475,8 +3475,8 @@
     const $sidebarBtn = $('.sidebar-btn');
     ```
 
-  <a name="jquery--cache"></a><a name="25.2"></a>
-  - [26.2](#jquery--cache) Cache jQuery lookups.
+  <a name="jquery--cache"></a><a name="26.2"></a>
+  - [26.2](#jquery--cache) 缓存jQuery的选择器。
 
     ```javascript
     // 反例
@@ -3503,11 +3503,11 @@
     }
     ```
 
-  <a name="jquery--queries"></a><a name="25.3"></a>
-  - [26.3](#jquery--queries) For DOM queries use Cascading `$('.sidebar ul')` or parent > child `$('.sidebar > ul')`. [jsPerf](http://jsperf.com/jquery-find-vs-context-sel/16)
+  <a name="jquery--queries"></a><a name="26.3"></a>
+  - [26.3](#jquery--queries) DOM查找用级联选择器 `$('.sidebar ul')` 或 父节点 > 子节点 `$('.sidebar > ul')`. [jsPerf](http://jsperf.com/jquery-find-vs-context-sel/16)
 
-  <a name="jquery--find"></a><a name="25.4"></a>
-  - [26.4](#jquery--find) Use `find` with scoped jQuery object queries.
+  <a name="jquery--find"></a><a name="26.4"></a>
+  - [26.4](#jquery--find) 将 `find` 与jQuery 选择器对象作用域一起使用。
 
     ```javascript
     // 反例
@@ -3530,7 +3530,7 @@
 
 ## ECMAScript-5-兼容性
 
-  <a name="es5-compat--kangax"></a><a name="26.1"></a>
+  <a name="es5-compat--kangax"></a><a name="27.1"></a>
   - [27.1](#es5-compat--kangax) Refer to [Kangax](https://twitter.com/kangax/)’s ES5 [compatibility table](https://kangax.github.io/es5-compat-table/).
 
 **[⬆ 回到目录](#目录)**
@@ -3538,10 +3538,10 @@
 <a name="ecmascript-6-styles"></a>
 ## ECMAScript-6+(ES-2015+)编码规范
 
-  <a name="es6-styles"></a><a name="27.1"></a>
+  <a name="es6-styles"></a><a name="28.1"></a>
   - [28.1](#es6-styles) This is a collection of links to the various ES6+ features.
 
-1. [箭头函数](#arrow-functions)
+1. [箭头函数](#箭头函数)
 1. [类](#classes--constructors)
 1. [Object Shorthand](#es6-object-shorthand)
 1. [Object Concise](#es6-object-concise)
