@@ -482,7 +482,7 @@
   <a name="destructuring--object"></a><a name="5.1"></a>
   - [5.1](#destructuring--object) 使用解构来存取和使用对象的多个属性值。 eslint: [`prefer-destructuring`](https://eslint.org/docs/rules/prefer-destructuring)
 
-    > Why? Destructuring saves you from creating temporary references for those properties.
+    > 因为解构可以避免为这些属性创建临时引用。
 
     ```javascript
     // 反例
@@ -3531,7 +3531,7 @@
 ## ECMAScript-5-兼容性
 
   <a name="es5-compat--kangax"></a><a name="27.1"></a>
-  - [27.1](#es5-compat--kangax) Refer to [Kangax](https://twitter.com/kangax/)’s ES5 [compatibility table](https://kangax.github.io/es5-compat-table/).
+  - [27.1](#es5-compat--kangax) 参考 [Kangax](https://twitter.com/kangax/)的 ES5 [兼容性](https://kangax.github.io/es5-compat-table/).
 
 **[⬆ 回到目录](#目录)**
 
@@ -3539,41 +3539,39 @@
 ## ECMAScript-6+(ES-2015+)编码规范
 
   <a name="es6-styles"></a><a name="28.1"></a>
-  - [28.1](#es6-styles) This is a collection of links to the various ES6+ features.
+  - [28.1](#es6-styles) 以下是链接到ES6各个特性的列表。
 
 1. [箭头函数](#箭头函数)
-1. [类](#classes--constructors)
-1. [Object Shorthand](#es6-object-shorthand)
-1. [Object Concise](#es6-object-concise)
-1. [Object Computed Properties](#es6-computed-properties)
-1. [Template Strings](#es6-template-literals)
-1. [Destructuring](#destructuring)
-1. [Default Parameters](#es6-default-parameters)
-1. [Rest](#es6-rest)
-1. [Array Spreads](#es6-array-spreads)
-1. [Let and Const](#references)
-1. [Exponentiation Operator](#es2016-properties--exponentiation-operator)
-1. [Iterators and Generators](#iterators-and-generators)
-1. [Modules](#modules)
+1. [类](#类与构造函数)
+1. [对象方法简写](#es6-object-shorthand)
+1. [对象属性简写](#es6-object-concise)
+1. [对象的计算属性](#es6-computed-properties)
+1. [字符串模板](#es6-template-literals)
+1. [解构赋值](#解构)
+1. [参数默认值](#es6-default-parameters)
+1. [Rest](#Rest)
+1. [数组扩展运算符](#es6-array-spreads)
+1. [Let 和 Const](#引用)
+1. [幂操作符](#es2016-properties--exponentiation-operator)
+1. [迭代器与生成函数](#迭代器与生成函数)
+1. [模块](#模块)
 
   <a name="tc39-proposals"></a>
-  - [28.2](#tc39-proposals) Do not use [TC39 proposals](https://github.com/tc39/proposals) that have not reached stage 3.
+  - [28.2](#tc39-proposals) 不要使用 [TC39 proposals](https://github.com/tc39/proposals) 中没有进入stage 3的特性。
 
-    > Why? [They are not finalized](https://tc39.github.io/process-document/), and they are subject to change or to be withdrawn entirely. We want to use JavaScript, and proposals are not JavaScript yet.
+    > [因为它们还不是最终版](https://tc39.github.io/process-document/) 它们可能还有很多变化，或者被撤销。我们想要用的是JavaScript,但提议还不是JavaScript。
 
 **[⬆ 回到目录](#目录)**
 
 ## 标准库
 
-  The [Standard Library](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects)
-  contains utilities that are functionally broken but remain for legacy reasons.
+  [标准库](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects) 中包含一些由于历史原因遗留的但是已经不建议使用的工具。
 
   <a name="standard-library--isnan"></a>
-  - [29.1](#standard-library--isnan) Use `Number.isNaN` instead of global `isNaN`.
+  - [29.1](#standard-library--isnan) 使用 `Number.isNaN` 代替全局的 `isNaN`.
     eslint: [`no-restricted-globals`](https://eslint.org/docs/rules/no-restricted-globals)
 
-    > Why? The global `isNaN` coerces non-numbers to numbers, returning true for anything that coerces to NaN.
-    > If this behavior is desired, make it explicit.
+    > 因为全局`isNaN` 将非数类型强制转换为数字类型。对于任何强制转化后为NaN的变量都返回true。如果确实需要此功能，就显示使用它。
 
     ```javascript
     // 反例
@@ -3586,11 +3584,10 @@
     ```
 
   <a name="standard-library--isfinite"></a>
-  - [29.2](#standard-library--isfinite) Use `Number.isFinite` instead of global `isFinite`.
+  - [29.2](#standard-library--isfinite) 使用 `Number.isFinite` 代替全局的 `isFinite`.
     eslint: [`no-restricted-globals`](https://eslint.org/docs/rules/no-restricted-globals)
 
-    > Why? The global `isFinite` coerces non-numbers to numbers, returning true for anything that coerces to a finite number.
-    > If this behavior is desired, make it explicit.
+    > 理由同上，会将一个非数字变量强制转换为数字变量，然后再判断。需要显示使用。
 
     ```javascript
     // 反例
@@ -3606,13 +3603,13 @@
 ## 测试
 
   <a name="testing--for-real"></a><a name="28.2"></a>
-  - [30.1](#testing--for-real) **No, but seriously**:
+  - [30.1](#testing--for-real) **不必须，但真香**:
     - 无论使用哪个测试框架，都需要写测试。
     - 尽量写小而美的纯函数。
-    - Be cautious about stubs and mocks - they can make your tests more brittle.
-    - We primarily use [`mocha`](https://www.npmjs.com/package/mocha) and [`jest`](https://www.npmjs.com/package/jest) at Airbnb. [`tape`](https://www.npmjs.com/package/tape) is also used occasionally for small, separate modules.
-    - 100% test coverage is a good goal to strive for, even if it’s not always practical to reach it.
-    - Whenever you fix a bug, _write a regression test_. A bug fixed without a regression test is almost certainly going to break again in the future.
+    - 小心 stubs 和 模拟数据 - 它们会影响测试。
+    - 可以选择使用 [`mocha`](https://www.npmjs.com/package/mocha) 或 [`jest`](https://www.npmjs.com/package/jest)  [`tape`](https://www.npmjs.com/package/tape) 偶尔被用来测试一些小型的、独立的模块。
+    - 100%测试覆盖率是我们努力的目标。虽然实际上很难做到。
+    - 每当修改一个bug,都需要写一个回归测试。bug修复后没有回归测试很容易再次出现问题。
 
 **[⬆ 回到目录](#目录)**
 
@@ -3646,6 +3643,3 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## 修订
 
-
-
-# };
