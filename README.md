@@ -3559,7 +3559,7 @@
   <a name="tc39-proposals"></a>
   - [28.2](#tc39-proposals) 不要使用 [TC39 proposals](https://github.com/tc39/proposals) 中没有进入stage 3的特性。
 
-    > [因为它们还不是最终版](https://tc39.github.io/process-document/) 它们可能还有很多变化，或者被撤销。我们想要用的是JavaScript,但提议还不是JavaScript。
+    > 因为它们还不是[最终版](https://tc39.github.io/process-document/) 它们可能还有很多变化，或者被撤销。我们想要用的是JavaScript,但提议还不是JavaScript。
 
 **[⬆ 回到目录](#目录)**
 
@@ -3571,7 +3571,7 @@
   - [29.1](#standard-library--isnan) 使用 `Number.isNaN` 代替全局的 `isNaN`.
     eslint: [`no-restricted-globals`](https://eslint.org/docs/rules/no-restricted-globals)
 
-    > 因为全局`isNaN` 将非数类型强制转换为数字类型。对于任何强制转化后为NaN的变量都返回true。如果确实需要此功能，就显示使用它。
+    > 因为全局`isNaN` 将非数类型强制转换为数字类型。对于任何强制转化后为NaN的变量都返回true。如果确实需要此功能，就显式使用它。
 
     ```javascript
     // 反例
@@ -3587,7 +3587,7 @@
   - [29.2](#standard-library--isfinite) 使用 `Number.isFinite` 代替全局的 `isFinite`.
     eslint: [`no-restricted-globals`](https://eslint.org/docs/rules/no-restricted-globals)
 
-    > 理由同上，会将一个非数字变量强制转换为数字变量，然后再判断。需要显示使用。
+    > 理由同上，会将一个非数字变量强制转换为数字变量，然后再判断。需要显式使用。
 
     ```javascript
     // 反例
