@@ -586,7 +586,7 @@
   <a name="es6-template-literals"></a><a name="6.4"></a>
   - [6.3](#es6-template-literals) 使用字符串模板而不是字符串拼接来组织可变的字符串。 eslint: [`prefer-template`](https://eslint.org/docs/rules/prefer-template.html) [`template-curly-spacing`](https://eslint.org/docs/rules/template-curly-spacing)
 
-    > Why? Template strings give you a readable, concise syntax with proper newlines and string interpolation features.
+    > 因为模板字符串提供了清晰易懂的语法，并带有适当的换行符和字符串插值功能。
 
     ```javascript
     // 反例
