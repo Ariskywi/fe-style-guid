@@ -634,7 +634,7 @@
   <a name="functions--declarations"></a><a name="7.1"></a>
   - [7.1](#functions--declarations) 使用命名函数表达式而不是函数声明。 eslint: [`func-style`](https://eslint.org/docs/rules/func-style)
 
-    > 函数声明提升，意味着在文件中非常容易在定义函数前就使用函数的引用。 这对可读性和可维护性都有损害。如果函数足够大或复杂，以至于影响到了对上下文其他内容的理解, 这可能是时候将这个函数单独抽成一个模块了! 不要忘记显示命名表达式, 无论该名字是否可以从包含的变量推断出(在现代浏览器或使用Babel等编译器时，经常会出现这种情况)。这消除了由错误调用栈产生的所有假设。  ([Discussion](https://github.com/airbnb/javascript/issues/794))
+    > 函数声明提升，意味着在文件中非常容易在定义函数前就使用函数的引用。 这对可读性和可维护性都有损害。如果函数足够大或复杂，以至于影响到了对上下文其他内容的理解, 这可能是时候将这个函数单独抽成一个模块了! 不要忘记显示命名表达式, 无论该名字是否可以从包含的变量推断出(在现代浏览器或使用Babel等编译器时，经常会出现这种情况)。这消除了由错误调用栈产生的调试匿名函数的问题。  ([Discussion](https://github.com/airbnb/javascript/issues/794))
 
     ```javascript
     // 反例
