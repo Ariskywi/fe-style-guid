@@ -1401,7 +1401,7 @@
   <a name="iterators--nope"></a><a name="11.1"></a>
   - [11.1](#iterators--nope) 不要使用迭代器，使用JavaScript的高级函数来代替`for-in` 或 `for-of`。 eslint: [`no-iterator`](https://eslint.org/docs/rules/no-iterator.html) [`no-restricted-syntax`](https://eslint.org/docs/rules/no-restricted-syntax)
 
-    > 这强调了不可变原则。 Dealing with pure functions that return values is easier to reason about than side effects.
+    > 这强调了不可变原则。 处理有返回值的纯函数比处理有副作用的函数更容易。
 
     > 使用迭代方法 `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` /遍历数组， 使用对象的这些方法 `Object.keys()` / `Object.values()` / `Object.entries()`生成数组，这样就可以遍历对象了。
 
@@ -1445,7 +1445,7 @@
   <a name="generators--spacing"></a>
   - [11.2](#generators--spacing) 如果使用生成函数, 确保它们的函数声明中空格与普通函数是一致的。 eslint: [`generator-star-spacing`](https://eslint.org/docs/rules/generator-star-spacing)
 
-    > Why? `function` and `*` are part of the same conceptual keyword - `*` is not a modifier for `function`, `function*` is a unique construct, different from `function`.
+    > Why? `function` 和 `*` 都是关键字的一部分 - `*` 不是 `function`的修饰符, `function*` 是独立构造语句, 与 `function`不同。
 
     ```javascript
     // 反例
