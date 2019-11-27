@@ -3032,7 +3032,7 @@
 ## 强制类型转换
 
   <a name="coercion--explicit"></a><a name="22.1"></a>
-  - [22.1](#coercion--explicit) 在语句开始时执行强制类型转换。
+  - [22.1](#coercion--explicit) 在使用前执行强制类型转换。
 
   <a name="coercion--strings"></a><a name="22.2"></a>
   - [22.2](#coercion--strings) 字符串: eslint: [`no-new-wrappers`](https://eslint.org/docs/rules/no-new-wrappers)
